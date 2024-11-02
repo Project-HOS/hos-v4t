@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥»¥Ş¥Õ¥©                                                */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚»ãƒãƒ•ã‚©                                                */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,36 +11,36 @@
 
 
 
-/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ */
+/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾— */
 ER wai_sem(
-		ID semid)	/* »ñ¸»³ÍÆÀÂĞ¾İ¤Î¥»¥Ş¥Õ¥©IDÈÖ¹æ */
+		ID semid)	/* è³‡æºç²å¾—å¯¾è±¡ã®ã‚»ãƒãƒ•ã‚©IDç•ªå· */
 {
 	T_KERNEL_SEMCB *semcb;
 	ID             tskid;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
 	semcb = KERNEL_GET_SEMCB(semid);
 	
-	/* ¥»¥Ş¥Õ¥©»ñ¸»¤¬³ÍÆÀ¤Ç¤­¤ì¤ĞÀ®¸ù */
+	/* ã‚»ãƒãƒ•ã‚©è³‡æºãŒç²å¾—ã§ãã‚Œã°æˆåŠŸ */
 	if ( semcb->semcnt > 0 )
 	{
-		semcb->semcnt--;	/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ */
+		semcb->semcnt--;	/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾— */
 	}
 	else
 	{
-		/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
+		/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
 		tskid = KERNEL_GET_RUN_TSKID();
 
-		/* ¥¿¥¹¥¯¤òÂÔ¤Á¾õÂÖ¤Ë¤¹¤ë */
-		kernel_rmv_que(tskid);					/* ¥ì¥Ç¥£¡¼¥­¥å¡¼¤«¤é¼è¤ê³°¤· */
-		kernel_add_que(&semcb->que, tskid);		/* ¥»¥Ş¥Õ¥©ÂÔ¤Á¹ÔÎó¤ËÄÉ²Ã */
+		/* ã‚¿ã‚¹ã‚¯ã‚’å¾…ã¡çŠ¶æ…‹ã«ã™ã‚‹ */
+		kernel_rmv_que(tskid);					/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å–ã‚Šå¤–ã— */
+		kernel_add_que(&semcb->que, tskid);		/* ã‚»ãƒãƒ•ã‚©å¾…ã¡è¡Œåˆ—ã«è¿½åŠ  */
 		
-		/* ¥¿¥¹¥¯¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô */
+		/* ã‚¿ã‚¹ã‚¯ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ */
 		kernel_exe_dsp();
 	}
 		
-	kernel_unl_sys();		/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();		/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 
 	return E_OK;
 }

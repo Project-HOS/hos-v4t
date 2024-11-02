@@ -2,20 +2,20 @@
 #define __H8TINY_SCI_H_
 
 
-/* SCIÄÌ¿®Â®ÅÙÄêµÁ (16MHz¤Î¤È¤­) */
+/* SCIé€šä¿¡é€Ÿåº¦å®šç¾© (16MHzã®ã¨ã) */
 #define SCI_2400   207
 #define SCI_4800   103
 #define SCI_9600    51
 #define SCI_19200   25
 #define SCI_31250   15
 #define SCI_38400   12
-#define SCI_57600    8		/* ¸íº¹ -3.5% ¤®¤ê¤®¤ê¤¤¤±¤ë¤«¤â (^^;; */
+#define SCI_57600    8		/* èª¤å·® -3.5% ãã‚Šãã‚Šã„ã‘ã‚‹ã‹ã‚‚ (^^;; */
 
 /* SCI3 */
-void SCI3_Initialize(unsigned char rate);	/* SCI3½é´ü²½ */
-void SCI3_RxiHandler(VP_INT exinf);		/* ¼õ¿®³ä¤ê¹ş¤ß¥Ï¥ó¥É¥é */
-void SCI3_PutChar(char c);			/* £±Ê¸»ú½ĞÎÏ */
-int  SCI3_GetChar(void);			/* £±Ê¸»úÆşÎÏ */
+void SCI3_Initialize(unsigned char rate);	/* SCI3åˆæœŸåŒ– */
+void SCI3_RxiHandler(VP_INT exinf);		/* å—ä¿¡å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ© */
+void SCI3_PutChar(char c);			/* ï¼‘æ–‡å­—å‡ºåŠ› */
+int  SCI3_GetChar(void);			/* ï¼‘æ–‡å­—å…¥åŠ› */
 
 /* assign SCI3 for SCI*/
 #define Sci_Initialize SCI3_Initialize

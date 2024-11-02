@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    CRE_MBX API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    CRE_MBX API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -22,23 +22,23 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiCreMbx::CApiCreMbx()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
-	m_iParamSyntax[1] = 3;		// 3¥Ñ¥é¥á¡¼¥¿¡¼¤Î¥Ö¥í¥Ã¥¯
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+	m_iParamSyntax[1] = 3;		// 3ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒ–ãƒ­ãƒƒã‚¯
 	m_iParams = 2;
 }
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiCreMbx::~CApiCreMbx()
 {
 }
 
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiCreMbx::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blEx = false;
@@ -74,12 +74,12 @@ int CApiCreMbx::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ñ¤­½Ğ¤·
+// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
 void CApiCreMbx::WriteId(FILE* fp)
 {
 	int i;
 
-	// ID Ä¾ÀÜ»ØÄê¤Ç¤Ê¤¤¥ª¥Ö¥¸¥§¥¯¥È¤¬ºß¤ë¤«¤É¤¦¤«¥µ¡¼¥Á
+	// ID ç›´æ¥æŒ‡å®šã§ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒåœ¨ã‚‹ã‹ã©ã†ã‹ã‚µãƒ¼ãƒ
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		if ( atoi(m_pParamPacks[i]->GetParam(CREMBX_MBXID)) == 0 )
@@ -109,14 +109,14 @@ void CApiCreMbx::WriteId(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiCreMbx::WriteCfgDef(FILE* fp)
 {
 	const char* pszParam;
 	bool blOutput;
 	int  i, j;
 
-	// ¥³¥á¥ó¥È½ĞÎÏ
+	// ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -124,7 +124,7 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n"
 		, fp);
 
-	// Í¥ÀèÅÙÊÌ¤Î¥á¥Ã¥»¡¼¥¸¥­¥å¡¼¥Ø¥Ã¥À¤ÎÎÎ°è
+	// å„ªå…ˆåº¦åˆ¥ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚­ãƒ¥ãƒ¼ãƒ˜ãƒƒãƒ€ã®é ˜åŸŸ
 	blOutput = false;
 	for ( i = 0; i < m_iObjs; i++ )
 	{
@@ -154,7 +154,7 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 			"\t{\n",
 			m_iObjs);
 
-		// ¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯(ROMÉô)½ĞÎÏ
+		// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯(ROMéƒ¨)å‡ºåŠ›
 		for ( i = 0; i < m_iObjs; i++ )
 		{
 			fprintf(
@@ -180,7 +180,7 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 		fprintf(fp, "\t};\n");
 	}
 
-	// ¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯(RAMÉô)½ĞÎÏ
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯(RAMéƒ¨)å‡ºåŠ›
 	if ( m_iObjs > 0 )
 	{
 		fprintf(
@@ -190,7 +190,7 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 			m_iObjs);
 	}
 
-	// ¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë½ĞÎÏ
+	// ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«å‡ºåŠ›
 	if ( m_iMaxId > 0 )
 	{
 		fprintf(
@@ -202,7 +202,7 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 
 		for ( i = 0; i < m_iMaxId; i++ )
 		{
-			// ID¸¡º÷
+			// IDæ¤œç´¢
 			for ( j = 0; j < m_iObjs; j++ )
 			{
 				if ( m_iId[j] == i + 1 )
@@ -212,19 +212,19 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 			}
 			if ( j < m_iObjs )
 			{
-				// ¥ª¥Ö¥¸¥§¥¯¥È¤¬Â¸ºß¤·¤¿¾ì¹ç
+				// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå­˜åœ¨ã—ãŸå ´åˆ
 				fprintf(fp, "\t\t&kernel_mbxcb_ram[%d],\n", j);
 			}
 			else
 			{
-				// ¥ª¥Ö¥¸¥§¥¯¥È¤¬Ìµ¤¤¾ì¹ç
+				// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒç„¡ã„å ´åˆ
 				fputs("\t\tNULL,\n", fp);
 			}
 		}
 		fputs("\t};\n", fp);
 	}
 
-	// ¸Ä¿ô¾ğÊó½ĞÎÏ
+	// å€‹æ•°æƒ…å ±å‡ºåŠ›
 	fprintf(
 		fp,
 		"\n/* mail box control block count */\n"
@@ -233,16 +233,16 @@ void  CApiCreMbx::WriteCfgDef(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
 void  CApiCreMbx::WriteCfgIni(FILE* fp)
 {
-	// ¥ª¥Ö¥¸¥§¥¯¥ÈÂ¸ºß¥Á¥§¥Ã¥¯
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå­˜åœ¨ãƒã‚§ãƒƒã‚¯
 	if ( m_iObjs == 0 )
 	{
 		return;
 	}
 
-	// ½é´ü²½Éô½ĞÎÏ
+	// åˆæœŸåŒ–éƒ¨å‡ºåŠ›
 	fprintf(
 		fp,
 		"\t\n\t\n"
@@ -255,10 +255,10 @@ void  CApiCreMbx::WriteCfgIni(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 void  CApiCreMbx::WriteCfgStart(FILE* fp)
 {
-	// ¥ª¥Ö¥¸¥§¥¯¥ÈÂ¸ºß¥Á¥§¥Ã¥¯
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå­˜åœ¨ãƒã‚§ãƒƒã‚¯
 	if ( m_iObjs == 0 )
 	{
 		return;

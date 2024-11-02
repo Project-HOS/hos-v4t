@@ -1,6 +1,6 @@
 ; --------------------------------------------------------------------------- 
-;  Hyper Operating System V4  ÆüÎ© H8 ÍÑ ¥µ¥ó¥×¥ë¥×¥í¥°¥é¥à                   
-;    ¥¹¥¿¡¼¥È¥¢¥Ã¥×¥ë¡¼¥Á¥ó                                                   
+;  Hyper Operating System V4  æ—¥ç«‹ H8 ç”¨ ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ                    
+;    ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ãƒ«ãƒ¼ãƒãƒ³                                                   
 ;                                                                             
 ;                                   Copyright (C) 2003 by Project HOS    
 ;                                   http://sourceforge.jp/projects/hos/       
@@ -11,16 +11,16 @@
 				.h8300h
 
 ; -------------------------------------
-;  ¥¹¥¿¡¼¥È¥¢¥Ã¥×¥ë¡¼¥Á¥ó
+;  ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒƒãƒ—ãƒ«ãƒ¼ãƒãƒ³
 ; -------------------------------------
 				.text
 				.align 2
 				.global _startup
 _startup:
-		; ----- ¥¹¥¿¥Ã¥¯½é´ü²½
+		; ----- ã‚¹ã‚¿ãƒƒã‚¯åˆæœŸåŒ–
 				mov.w	#_stack,r7
 
-		; ----- .data ¥»¥¯¥·¥ç¥ó¥³¥Ô¡¼
+		; ----- .data ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚³ãƒ”ãƒ¼
 				mov.w	#___dtors_end,r5
 				mov.w	#___data,r6
 				mov.w	#data_size,r4
@@ -28,7 +28,7 @@ copy_dsec:	eepmov.w
 				mov.w	r4,r4
 				bne	copy_dsec
 				
-		; ----- .bss ¥»¥¯¥·¥ç¥ó¥¯¥ê¥¢
+		; ----- .bss ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã‚¯ãƒªã‚¢
 				mov.w	#_bss_start,r5
 				mov.w	#_bss_start+1,r6
 				mov.w	#bss_size,r4
@@ -38,7 +38,7 @@ clr_bsec:		eepmov.w
 				mov.w	r4,r4
 				bne	clr_bsec
 
-		; ----- ½é´ü²½¥ë¡¼¥Á¥ó¸Æ¤Ó½Ğ¤·
+		; ----- åˆæœŸåŒ–ãƒ«ãƒ¼ãƒãƒ³å‘¼ã³å‡ºã—
 				jsr	@_main
 idle_loop:
 				bra	idle_loop
@@ -48,7 +48,7 @@ idle_loop:
 				.section .rodata
 				.align 2
 _kernel_int_sp:
-				.word	_stack		/* ³ä¤ê¹ş¤ß»ş¤Î er7 ÊİÂ¸ÍÑ */
+				.word	_stack		/* å‰²ã‚Šè¾¼ã¿æ™‚ã® er7 ä¿å­˜ç”¨ */
 
 
 				.end

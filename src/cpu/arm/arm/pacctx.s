@@ -1,7 +1,7 @@
 ; --------------------------------------------------------------------------- 
-;  Hyper Operating System V4 Tiny ��ITRON4.0���� Real-Time OS                 
-;    �ץ����å���ݲ�����ݡ��ͥ�� (ARM Thumb�⡼����)                       
-;    ����ƥ���������                                                         
+;  Hyper Operating System V4 Tiny μITRON4.0仕様 Real-Time OS                 
+;    プロセッサ抽象化コンポーネント (ARM Thumbモード用)                       
+;    コンテキスト制御                                                         
 ;                                                                             
 ;                                     Copyright (C) 1998-2003 by Project HOS  
 ;                                     http://sourceforge.jp/projects/hos/     
@@ -10,10 +10,10 @@
 
 				INCLUDE	pacarm.inc
 
-				EXPORT	hospac_dis_int		; �����߶ػ�
-				EXPORT	hospac_ena_int		; �����ߵ���
-				EXPORT	hospac_cre_ctx		; �¹ԥ���ƥ����Ȥκ���
-				EXPORT	hospac_swi_ctx		; �¹ԥ���ƥ����Ȥ�����
+				EXPORT	hospac_dis_int		; 割り込み禁止
+				EXPORT	hospac_ena_int		; 割り込み許可
+				EXPORT	hospac_cre_ctx		; 実行コンテキストの作成
+				EXPORT	hospac_swi_ctx		; 実行コンテキストの切替
 
 				CODE16
 
@@ -21,20 +21,20 @@
 
 
 ; -----------------------------------------------
-;  �����߶ػ�
+;  割り込み禁止
 ;  void hospac_dis_int(void)
 ; -----------------------------------------------
 hospac_dis_int
-				mov		r0, #1			; Z�ե饰���ݤ�
+				mov		r0, #1			; Zフラグを倒す
 				adr		r0, ctl_int_32
 				bx		r0
 
 ; -----------------------------------------------
-;  �����ߵ���
+;  割り込み許可
 ;  void hospac_ena_int(void)
 ; -----------------------------------------------
 hospac_ena_int
-				mov		r0, #0			; Z�ե饰��Ω�Ƥ�
+				mov		r0, #0			; Zフラグを立てる
 				adr		r0, ctl_int_32
 				bx		r0
 
@@ -51,50 +51,50 @@ ctl_int_32
 
 
 ; -----------------------------------------------
-;  �¹ԥ���ƥ����ȥ���ȥ꡼���ɥ쥹
+;  実行コンテキストエントリーアドレス
 ; -----------------------------------------------
 				IMPORT	ext_tsk
 ctx_entry	
-				bl		hospac_ena_int	; �����ߵ���
-				mov		a1, v2			; �¹Ի��ѥ�᡼����������������
-				ldr		r0, =ext_tsk	; �꥿���󥢥ɥ쥹����
+				bl		hospac_ena_int	; 割り込み許可
+				mov		a1, v2			; 実行時パラメータを第一引数に設定
+				ldr		r0, =ext_tsk	; リターンアドレス設定
 				mov		lr, r0
-				bx		v1				; �¹ԥ��ɥ쥹��ʬ��
+				bx		v1				; 実行アドレスに分岐
 
 
 ; -----------------------------------------------
-;  �¹ԥ���ƥ����Ȥκ���
+;  実行コンテキストの作成
 ;  void hospac_cre_ctx(
-;		T_HOSPAC_CTXINF *pk_ctxinf,	/* �������륳��ƥ����� */
-;		VP     sp,					/* �����å��ݥ��� */
-;		void   (*task)(VP_INT),		/* �¹ԥ��ɥ쥹 */
-;		VP_INT exinf				/* �¹Ի��ѥ�᡼�� */
+;		T_HOSPAC_CTXINF *pk_ctxinf,	/* 作成するコンテキスト */
+;		VP     sp,					/* スタックポインタ */
+;		void   (*task)(VP_INT),		/* 実行アドレス */
+;		VP_INT exinf				/* 実行時パラメータ */
 ;		)
 ; -----------------------------------------------
 hospac_cre_ctx
-				sub		a2, #20			; �����å������
-				str		a3, [a2, #0]	; v1 ��ʬ�˼¹ԥ��ɥ쥹������
-				str		a4, [a2, #4]	; v2 ��ʬ�˼¹Ի��ѥ�᡼��������
+				sub		a2, #20			; スタックを確保
+				str		a3, [a2, #0]	; v1 部分に実行アドレスを設定
+				str		a4, [a2, #4]	; v2 部分に実行時パラメータを設定
 				ldr		a3, =ctx_entry
-				str		a3, [a2, #16]	; lr ��ʬ�˥���ȥ꡼���ɥ쥹������
-				str		a2, [a1]		; ����ƥ����ȤȤ��� sp ����¸
-				bx		lr				; �꥿����
+				str		a3, [a2, #16]	; lr 部分にエントリーアドレスを設定
+				str		a2, [a1]		; コンテキストとして sp を保存
+				bx		lr				; リターン
 
 
 ; -----------------------------------------------
-;  �¹ԥ���ƥ����Ȥ�����
+;  実行コンテキストの切替
 ;  void hospac_swi_ctx(
-;		T_HOSPAC_CTXINF *pk_pre_ctxinf,	/* ���ߤΥ���ƥ����Ȥ���¸�� */
-;		T_HOSPAC_CTXINF *pk_nxt_ctxinf	/* �ڤ��ؤ��륳��ƥ����� */
+;		T_HOSPAC_CTXINF *pk_pre_ctxinf,	/* 現在のコンテキストの保存先 */
+;		T_HOSPAC_CTXINF *pk_nxt_ctxinf	/* 切り替えるコンテキスト */
 ;		)
 ; -----------------------------------------------
 hospac_swi_ctx
-				push	{v1-v4, lr}			; �쥸������¸
+				push	{v1-v4, lr}			; レジスタ保存
 				mov		v1, sp
-				str		v1, [a1]			; �����å��ݥ�����¸
-				ldr		v1, [a2]			; �����å��ݥ�������
+				str		v1, [a1]			; スタックポインタ保存
+				ldr		v1, [a2]			; スタックポインタ復帰
 				mov		sp, v1
-				pop		{v1-v4, pc}			; �쥸�����������꥿����
+				pop		{v1-v4, pc}			; レジスタ復帰＆リターン
 
 				END
 

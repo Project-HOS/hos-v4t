@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ����ե�����졼����                           
-//    HOS_IDL_STK API �ν���                                                  
+//  Hyper Operating System V4  コンフィギュレーター                           
+//    HOS_IDL_STK API の処理                                                  
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -19,29 +19,29 @@
 #define IDLSTK_STK			1
 
 
-// ���󥹥ȥ饯��
+// コンストラクタ
 CApiIdleStack::CApiIdleStack()
 {
-	// �ѥ�᡼������ʸ����
-	m_iParamSyntax[0] = 0;		// ñ�ȥѥ�᡼����
+	// パラメーター構文設定
+	m_iParamSyntax[0] = 0;		// 単独パラメーター
 	m_iParams = 2;
 }
 
 
-// �ǥ��ȥ饯��
+// デストラクタ
 CApiIdleStack::~CApiIdleStack()
 {
 }
 
 
-// ��ưID�ֹ�������
+// 自動ID番号割り当て
 int CApiIdleStack::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// API�β���
+// APIの解析
 int CApiIdleStack::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blEx = false;
@@ -62,13 +62,13 @@ int CApiIdleStack::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// cfg�ե�����������񤭽Ф�
+// cfgファイル定義部書き出し
 void  CApiIdleStack::WriteCfgDef(FILE* fp)
 {
 	const char* pszSize;
 	const char* pszStack;
 
-	// �����Ƚ���
+	// コメント出力
 	fputs(
 		"\n\n\n"
 		"#if 0\n"
@@ -77,7 +77,7 @@ void  CApiIdleStack::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n\n"
 		, fp);
 
-	// �ѥ�᡼���ɤ߽Ф�
+	// パラメータ読み出し
 	if ( m_iObjs > 0 )
 	{
 		pszSize  = m_pParamPacks[0]->GetParam(IDLSTK_STKSZ);
@@ -85,11 +85,11 @@ void  CApiIdleStack::WriteCfgDef(FILE* fp)
 	}
 	else
 	{
-		pszSize  = "128";		// ���̵꤬����Хǥե���ȥ�����
-		pszStack = "NULL";		// ���̵꤬�����NULL(��ư����)
+		pszSize  = "128";		// 指定が無ければデフォルトサイズ
+		pszStack = "NULL";		// 指定が無ければNULL(自動生成)
 	}
 
-	// �����ɥ�롼���ѥ����å�����
+	// アイドルループ用スタック出力
 	if ( strcmp(pszStack, "NULL") == 0 )
 	{
 		fprintf(

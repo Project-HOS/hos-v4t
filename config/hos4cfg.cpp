@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ¥á¥¤¥ó¥ë¡¼¥Á¥ó                                                          
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³                                                          
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -29,9 +29,9 @@
 #define DEFAULT_CFGFILE			"kernel_cfg.c"
 
 
-int  ReadConfigFile(FILE* fpConfig);	// ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß
-void WriteIdFile(FILE* fp);				// ID ÄêµÁ¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë½ĞÎÏ
-void WriteCfgFile(FILE* fp);			// C ¸À¸ì¥½¡¼¥¹½ĞÎÏ
+int  ReadConfigFile(FILE* fpConfig);	// ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
+void WriteIdFile(FILE* fp);				// ID å®šç¾©ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›
+void WriteCfgFile(FILE* fp);			// C è¨€èªã‚½ãƒ¼ã‚¹å‡ºåŠ›
 void PrintUsage(void);
 
 
@@ -49,7 +49,7 @@ static const char *s_szPhysicalInputFile  = NULL;
 static const char *s_szIdFile             = DEFAULT_IDFILE;
 static const char *s_szCfgFile            = DEFAULT_CFGFILE;
 
-// APIÄêµÁ¥ê¥¹¥È
+// APIå®šç¾©ãƒªã‚¹ãƒˆ
 static CApiDef* g_ApiList[] =
 	{
 		&g_ApiInclude,
@@ -63,12 +63,12 @@ static CApiDef* g_ApiList[] =
 		&g_ApiAttIni,
 	};
 
-#define API_COUNT	(sizeof(g_ApiList) / sizeof(CApiDef*))		// API¸Ä¿ô
+#define API_COUNT	(sizeof(g_ApiList) / sizeof(CApiDef*))		// APIå€‹æ•°
 
 
 
 
-// ¥á¥¤¥ó´Ø¿ô
+// ãƒ¡ã‚¤ãƒ³é–¢æ•°
 int main(int argc, char *argv[])
 {
 	FILE* fpInput;
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 	int  iErr;
 	int  i;
 
-	// ¥³¥Ş¥ó¥É¥é¥¤¥ó²òÀÏ
+	// ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³è§£æ
 	for ( i = 1; i < argc; i++ )
 	{
 		if ( strcmp(argv[i], "-c") == 0 )
@@ -125,13 +125,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	// ÆşÎÏ¥Õ¥¡¥¤¥ë¾ÊÎ¬»ş¤Î¥Ç¥Õ¥©¥ë¥ÈÀßÄê
+	// å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«çœç•¥æ™‚ã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆè¨­å®š
 	if ( s_szPhysicalInputFile == NULL )
 	{
 		s_szPhysicalInputFile = DEFAULT_INPUTFILE;
 	}
 
-	// ÆşÎÏ¥Õ¥¡¥¤¥ë¥ª¡¼¥×¥ó
+	// å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	if ( strcmp(s_szPhysicalInputFile, "-") == 0) {
 		s_szPhysicalInputFile = "stdin";
 		fpInput = stdin;
@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 	
-	// ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß
+	// ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 	iErr = ReadConfigFile(fpInput) != 0;
 	fclose(fpInput);
 	if ( iErr != 0 )
@@ -150,13 +150,13 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
+	// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
 	for ( i = 0; i < API_COUNT; i++ )
 	{
 		g_ApiList[i]->AutoId();
 	}
 
-	// ID ÄêµÁ¥Õ¥¡¥¤¥ë¥ª¡¼¥×¥ó
+	// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	if ( (fpId = fopen(s_szIdFile, "w")) == NULL )
 	{
                fprintf(stderr, "could not open file \"%s\"\n", s_szIdFile);
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 	fclose(fpId);
 
 
-	// Cfg¥Õ¥¡¥¤¥ë¥ª¡¼¥×¥ó
+	// Cfgãƒ•ã‚¡ã‚¤ãƒ«ã‚ªãƒ¼ãƒ—ãƒ³
 	if ( (fpCfg = fopen(s_szCfgFile, "w")) == NULL )
 	{
                fprintf(stderr, "could not open file \"%s\"\n", s_szCfgFile);
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
 }
 
 
-// ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥·¥ç¥ó¥Õ¥¡¥¤¥ëÆÉ¤ß¹ş¤ß
+// ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 int ReadConfigFile(FILE* fpConfig)
 {
 	char szState[READ_MAX_STATE];
@@ -192,12 +192,12 @@ int ReadConfigFile(FILE* fpConfig)
 	int  iErr;
 	int  i;
 
-	CRead read(fpConfig, s_szPhysicalInputFile);	// ÆÉ¤ß½Ğ¤·¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®
+	CRead read(fpConfig, s_szPhysicalInputFile);	// èª­ã¿å‡ºã—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 
-	// ÆÉ¤ß¹ş¤ß
+	// èª­ã¿è¾¼ã¿
 	while (	(iErr = read.ReadState(szState)) != CFG_ERR_COMPLETE )
 	{
-		// ÆÉ¤ß¹ş¤ß¥¨¥é¡¼¥Á¥§¥Ã¥¯
+		// èª­ã¿è¾¼ã¿ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if ( iErr != CFG_ERR_OK )
 		{
                        fprintf(stderr, "%s line(%d) : %s\n",
@@ -206,7 +206,7 @@ int ReadConfigFile(FILE* fpConfig)
 			return 1;
 		}
 
-		// ¹½Ê¸²òÀÏ
+		// æ§‹æ–‡è§£æ
 		iErr = CAnalyze::SplitState(szApiName, szParams, szState);
 		if ( iErr != CFG_ERR_OK )
 		{
@@ -218,7 +218,7 @@ int ReadConfigFile(FILE* fpConfig)
 		CAnalyze::SpaceCut(szApiName);
 		CAnalyze::SpaceCut(szParams);
 
-		// API¸¡º÷
+		// APIæ¤œç´¢
 		iErr = CFG_ERR_SYNTAX;
 		for ( i = 0; i < API_COUNT; i++ )
 		{
@@ -241,12 +241,12 @@ int ReadConfigFile(FILE* fpConfig)
 }
 
 
-// IDÄêµÁ¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë½ĞÎÏ
+// IDå®šç¾©ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›
 void WriteIdFile(FILE* fp)
 {
 	int i;
 
-	/* ¥Ø¥Ã¥À½ĞÎÏ */
+	/* ãƒ˜ãƒƒãƒ€å‡ºåŠ› */
 	fputs(
 		"/* ------------------------------------------------------------------------ */\n"
 		"/*  HOS-V4  kernel configuration                                            */\n"
@@ -259,13 +259,13 @@ void WriteIdFile(FILE* fp)
 		"\n"
 		, fp);
 
-	// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ĞÎÏ
+	// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›
 	for ( i = 0; i < API_COUNT; i++ )
 	{
 		g_ApiList[i]->WriteId(fp);
 	}
 
-	// ¥Õ¥Ã¥¿½ĞÎÏ
+	// ãƒ•ãƒƒã‚¿å‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"#endif\t/* __HOS_V4__kernel_cfg_h__ */\n"
@@ -277,12 +277,12 @@ void WriteIdFile(FILE* fp)
 }
 
 
-// C ¸À¸ì¥½¡¼¥¹½ĞÎÏ
+// C è¨€èªã‚½ãƒ¼ã‚¹å‡ºåŠ›
 void WriteCfgFile(FILE* fp)
 {
 	int i;
 
-	/* ¥Ø¥Ã¥À½ĞÎÏ */
+	/* ãƒ˜ãƒƒãƒ€å‡ºåŠ› */
 	fprintf(
 		fp,
 		"/* ------------------------------------------------------------------------ */\n"
@@ -295,13 +295,13 @@ void WriteCfgFile(FILE* fp)
 		"#include \"%s\"\n"
 		, s_szIdFile);
 
-	// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ĞÎÏ
+	// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«å‡ºåŠ›
 	for ( i = 0; i < API_COUNT; i++ )
 	{
 		g_ApiList[i]->WriteCfgDef(fp);
 	}
 
-	// ½é´ü²½´Ø¿ô¥³¥á¥ó¥È½ĞÎÏ
+	// åˆæœŸåŒ–é–¢æ•°ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -309,7 +309,7 @@ void WriteCfgFile(FILE* fp)
 		"/* ------------------------------------------ */\n",
 		fp);
 
-	// ½é´ü²½´Ø¿ô½ĞÎÏ
+	// åˆæœŸåŒ–é–¢æ•°å‡ºåŠ›
 	fputs(
 		"\n/* object initialize */\n"
 		"void hoscfg_ini(void)\n"
@@ -321,7 +321,7 @@ void WriteCfgFile(FILE* fp)
 	}
 	fputs("}\n", fp);
 
-	// ½é´ü²½´Ø¿ô½ĞÎÏ
+	// åˆæœŸåŒ–é–¢æ•°å‡ºåŠ›
 	fputs(
 		"#if 0\n"
 		"/* start up */\n"
@@ -337,7 +337,7 @@ void WriteCfgFile(FILE* fp)
 		"#endif\n",
 		fp);
 
-	// ¥Õ¥Ã¥¿½ĞÎÏ
+	// ãƒ•ãƒƒã‚¿å‡ºåŠ›
 	fputs(
 		"\n\n"
 		"/* ------------------------------------------------------------------------ */\n"
@@ -346,7 +346,7 @@ void WriteCfgFile(FILE* fp)
 		, fp);
 }
 
-// »È¤¤ÊıÉ½¼¨
+// ä½¿ã„æ–¹è¡¨ç¤º
 void PrintUsage(void)
 {
        fprintf(stderr,

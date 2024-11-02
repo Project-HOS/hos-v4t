@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  е│еєе╒егеоехеьб╝е┐б╝                           
-//    CRE_SEM API д╬╜ш═¤                                                      
+//  Hyper Operating System V4  уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уГ╝                           
+//    CRE_SEM API уБохЗжчРЖ                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -22,22 +22,22 @@
 
 
 
-// е│еєе╣е╚ещепе┐
+// уВ│уГ│уВ╣уГИуГйуВпуВ┐
 CApiCreSem::CApiCreSem()
 {
-	// е╤ещесб╝е┐б╝╣╜╩╕└▀─ъ
-	m_iParamSyntax[0] = 0;		// ├▒╞╚е╤ещесб╝е┐б╝
-	m_iParamSyntax[1] = 3;		// 3е╤ещесб╝е┐б╝д╬е╓еэе├еп
+	// уГСуГйуГбуГ╝уВ┐уГ╝цзЛцЦЗшинхоЪ
+	m_iParamSyntax[0] = 0;		// хНШчЛмуГСуГйуГбуГ╝уВ┐уГ╝
+	m_iParamSyntax[1] = 3;		// 3уГСуГйуГбуГ╝уВ┐уГ╝уБоуГЦуГнуГГуВп
 	m_iParams = 2;
 }
 
-// е╟е╣е╚ещепе┐
+// уГЗуВ╣уГИуГйуВпуВ┐
 CApiCreSem::~CApiCreSem()
 {
 }
 
 
-// APIд╬▓Є└╧
+// APIуБошзгцЮР
 int CApiCreSem::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blExMid = false;
@@ -74,12 +74,12 @@ int CApiCreSem::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// ID ─ъ╡┴е╒ебедеы╜ёдн╜╨д╖
+// ID хоЪч╛йуГХуВбуВдуГлцЫ╕уБНхЗ║уБЧ
 void CApiCreSem::WriteId(FILE* fp)
 {
 	int i;
 
-	// ID ─╛└▄╗╪─ъд╟д╩ддеке╓е╕езепе╚дм║▀дыдлд╔дждле╡б╝е┴
+	// ID чЫ┤цОецМЗхоЪуБзуБкуБДуВкуГЦуВ╕уВзуВпуГИуБМхЬиуВЛуБЛуБйуБЖуБЛуВ╡уГ╝уГБ
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		if ( atoi(m_pParamPacks[i]->GetParam(CRESEM_SEMID)) == 0 )
@@ -109,12 +109,12 @@ void CApiCreSem::WriteId(FILE* fp)
 }
 
 
-// cfgе╒ебедеы─ъ╡┴╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлхоЪч╛йщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreSem::WriteCfgDef(FILE* fp)
 {
 	int  i, j;
 
-	// е│есеєе╚╜╨╬╧
+	// уВ│уГбуГ│уГИхЗ║хКЫ
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -130,7 +130,7 @@ void  CApiCreSem::WriteCfgDef(FILE* fp)
 			"\t{\n",
 			fp);
 
-		// е│еєе╚еэб╝еые╓еэе├еп╜╨╬╧
+		// уВ│уГ│уГИуГнуГ╝уГлуГЦуГнуГГуВпхЗ║хКЫ
 		for ( i = 0; i < m_iObjs; i++ )
 		{
 			fprintf(
@@ -141,7 +141,7 @@ void  CApiCreSem::WriteCfgDef(FILE* fp)
 		fprintf(fp, "\t};\n");
 	}
 
-	// е╞б╝е╓еые╡еде║╛Ё╩є╜╨╬╧
+	// уГЖуГ╝уГЦуГлуВ╡уВдуВ║цГЕха▒хЗ║хКЫ
 	fprintf(
 		fp,
 		"\n/* semaphore control block count */\n"
@@ -150,13 +150,13 @@ void  CApiCreSem::WriteCfgDef(FILE* fp)
 }
 
 
-// cfgе╒ебедеы╜щ┤№▓╜╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлхИЭцЬЯхМЦщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreSem::WriteCfgIni(FILE* fp)
 {
 }
 
 
-// cfgе╒ебедеы╡п╞░╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлш╡╖хЛХщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreSem::WriteCfgStart(FILE* fp)
 {
 }

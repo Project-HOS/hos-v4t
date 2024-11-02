@@ -1,6 +1,6 @@
 # ---------------------------------------------------------------------------
-#  Hyper Operating System V4 Tiny ¶ÃITRON4.0ª≈ÕÕ Real-Time OS
-#   •È•§•÷•È•Í•·•§•Ø•’•°•§•Î SH2 gccÕ—
+#  Hyper Operating System V4 Tiny ŒºITRON4.0‰ªïÊßò Real-Time OS
+#   „É©„Ç§„Éñ„É©„É™„É°„Ç§„ÇØ„Éï„Ç°„Ç§„É´ SH2 gccÁî®
 #
 #                                     Copyright (C) 1998-2003 by Project HOS
 #                                     http://sourceforge.jp/projects/hos/
@@ -8,7 +8,7 @@
 
 
 
-# •—•πƒÍµ¡
+# „Éë„ÇπÂÆöÁæ©
 HOSROOT	= ../../../..
 INCDIR	= $(HOSROOT)/include
 SRCDIR	= $(HOSROOT)/src
@@ -21,28 +21,28 @@ SYSDIR	= $(SRCDIR)/sys
 TSKDIR	= $(SRCDIR)/tsk
 
 
-# •ƒ°º•Î
+# „ÉÑ„Éº„É´
 CC	= sh-hms-gcc
 AS	= sh-hms-gcc
 LIBR	= sh-hms-ar
 RANLIB	= sh-hms-ranlib
 
 
-# •™•◊•∑•Á•Û
+# „Ç™„Éó„Ç∑„Éß„É≥
 CFLAGS = -c -O2 -m2 -I$(INCDIR)
 AFLAGS = -c -x assembler-with-cpp
 
 
-# •ø°º•≤•√•»
+# „Çø„Éº„Ç≤„ÉÉ„Éà
 TARGET  = libh4tsh2.a
 
 
-#•§•Û•Ø•Î°º•…•’•°•§•Î
+#„Ç§„É≥„ÇØ„É´„Éº„Éâ„Éï„Ç°„Ç§„É´
 INCS = $(INCDIR)/itron.h \
        $(INCDIR)/kernel.h
 
 
-# •™•÷•∏•ß•Ø•»•’•°•§•Î
+# „Ç™„Éñ„Ç∏„Çß„ÇØ„Éà„Éï„Ç°„Ç§„É´
 OBJS =	pacctx.o pacint.o \
 	exe_dsp.o \
 	chk_flg.o clr_flg.o pol_flg.o set_flg.o wai_flg.o \
@@ -52,14 +52,14 @@ OBJS =	pacctx.o pacint.o \
 	chg_pri.o ext_tsk.o get_pri.o slp_tsk.o sta_tsk.o wup_tsk.o
 
 
-# •È•§•÷•È•Í¿∏¿Æ
+# „É©„Ç§„Éñ„É©„É™ÁîüÊàê
 $(TARGET): $(OBJS)
 	$(LIBR) rc $(TARGET) $(OBJS)
 	$(RANLIB) $(TARGET)
 	rm -f $(OBJS)
 
 
-# •◊•Ì•ª•√•µ∞Õ¬∏
+# „Éó„É≠„Çª„ÉÉ„Çµ‰æùÂ≠ò
 pacctx.o: $(CPUDIR)/pacctx.s $(INCS)
 	$(AS) $(AFLAGS) $(CPUDIR)/pacctx.s
 
@@ -67,7 +67,7 @@ pacint.o: $(CPUDIR)/pacint.s $(INCS)
 	$(AS) $(AFLAGS) $(CPUDIR)/pacint.s
 
 
-# •´°º•Õ•Î∏«Õ≠
+# „Ç´„Éº„Éç„É´Âõ∫Êúâ
 sta_hos.o: $(SYSDIR)/sta_hos.c $(INCS)
 	$(CC) $(CFLAGS) $(SYSDIR)/sta_hos.c
 
@@ -75,7 +75,7 @@ exe_int.o: $(SYSDIR)/exe_int.c $(INCS)
 	$(CC) $(CFLAGS) $(SYSDIR)/exe_int.c
 
 
-# •ø•π•Ø
+# „Çø„Çπ„ÇØ
 chg_pri.o: $(TSKDIR)/chg_pri.c $(INCS)
 	$(CC) $(CFLAGS) $(TSKDIR)/chg_pri.c
 
@@ -95,7 +95,7 @@ wup_tsk.o: $(TSKDIR)/wup_tsk.c $(INCS)
 	$(CC) $(CFLAGS) $(TSKDIR)/wup_tsk.c
 
 
-# •ª•ﬁ•’•©
+# „Çª„Éû„Éï„Ç©
 pol_sem.o: $(SEMDIR)/pol_sem.c $(INCS)
 	$(CC) $(CFLAGS) $(SEMDIR)/pol_sem.c
 
@@ -106,7 +106,7 @@ wai_sem.o: $(SEMDIR)/wai_sem.c $(INCS)
 	$(CC) $(CFLAGS) $(SEMDIR)/wai_sem.c
 
 
-# •§•Ÿ•Û•»•’•È•∞
+# „Ç§„Éô„É≥„Éà„Éï„É©„Ç∞
 chk_flg.o: $(FLGDIR)/chk_flg.c $(INCS)
 	$(CC) $(CFLAGS) $(FLGDIR)/chk_flg.c
 
@@ -124,14 +124,14 @@ wai_flg.o: $(FLGDIR)/wai_flg.c $(INCS)
 
 
 
-# •≠•Â°º
+# „Ç≠„É•„Éº
 add_que.o: $(QUEDIR)/add_que.c
 	$(CC) $(CFLAGS) $(QUEDIR)/add_que.c
 
 rmv_que.o: $(QUEDIR)/rmv_que.c
 	$(CC) $(CFLAGS) $(QUEDIR)/rmv_que.c
 
-# •«•£•π•—•√•¡•„
+# „Éá„Ç£„Çπ„Éë„ÉÉ„ÉÅ„É£
 exe_dsp.o: $(DSPDIR)/exe_dsp.c
 	$(CC) $(CFLAGS) $(DSPDIR)/exe_dsp.c
 

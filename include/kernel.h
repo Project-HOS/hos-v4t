@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ¥«¡¼¥Í¥ë°ÍÂ¸¾ğÊóÄêµÁ¥Ø¥Ã¥À                                            */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ã‚«ãƒ¼ãƒãƒ«ä¾å­˜æƒ…å ±å®šç¾©ãƒ˜ãƒƒãƒ€                                            */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -16,190 +16,190 @@
 
 
 /* ------------------------------------------ */
-/*                  Äê¿ôÄêµÁ                  */
+/*                  å®šæ•°å®šç¾©                  */
 /* ------------------------------------------ */
 
-/* ¥·¥¹¥Æ¥à¤Î¾õÂÖ */
-#define KERNEL_TSS_TSK		0x00				/* ¥¿¥¹¥¯Éô¼Â¹ÔÃæ */
-#define KERNEL_TSS_INDP		0x04				/* ¥¿¥¹¥¯ÆÈÎ©Éô¼Â¹ÔÃæ */
-#define KERNEL_TSS_DDSP		0x01				/* ¥Ç¥£¥¹¥Ñ¥Ã¥Á¶Ø»ß (dis_dsp Í­¸ú) */
-#define KERNEL_TSS_DINT		0x02				/* ³ä¤ê¹ş¤ß¶Ø»ß(loc_cpu Í­¸ú) */
+/* ã‚·ã‚¹ãƒ†ãƒ ã®çŠ¶æ…‹ */
+#define KERNEL_TSS_TSK		0x00				/* ã‚¿ã‚¹ã‚¯éƒ¨å®Ÿè¡Œä¸­ */
+#define KERNEL_TSS_INDP		0x04				/* ã‚¿ã‚¹ã‚¯ç‹¬ç«‹éƒ¨å®Ÿè¡Œä¸­ */
+#define KERNEL_TSS_DDSP		0x01				/* ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒç¦æ­¢ (dis_dsp æœ‰åŠ¹) */
+#define KERNEL_TSS_DINT		0x02				/* å‰²ã‚Šè¾¼ã¿ç¦æ­¢(loc_cpu æœ‰åŠ¹) */
 
 
-/* ¥­¥å¡¼¥¤¥ó¥°¡¿¥Í¥¹¥È²ó¿ô¤ÎºÇÂçÃÍ */
-#define TMAX_ACTCNT			0					/* ¥¿¥¹¥¯µ¯Æ°Í×µá¥­¥å¡¼¥¤¥ó¥°¿ô¤ÎºÇÂçÃÍ */
-#define TMAX_WUPCNT			127					/* ¥¿¥¹¥¯µ¯¾²Í×µá¥­¥å¡¼¥¤¥ó¥°¿ô¤ÎºÇÂçÃÍ */
-#define TMAX_SUSCNT			0					/* ¥¿¥¹¥¯¶¯À©ÂÔ¤ÁÍ×µá¥Í¥¹¥È¿ô¤ÎºÇÂçÃÍ */
+/* ã‚­ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°ï¼ãƒã‚¹ãƒˆå›æ•°ã®æœ€å¤§å€¤ */
+#define TMAX_ACTCNT			0					/* ã‚¿ã‚¹ã‚¯èµ·å‹•è¦æ±‚ã‚­ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°æ•°ã®æœ€å¤§å€¤ */
+#define TMAX_WUPCNT			127					/* ã‚¿ã‚¹ã‚¯èµ·åºŠè¦æ±‚ã‚­ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°æ•°ã®æœ€å¤§å€¤ */
+#define TMAX_SUSCNT			0					/* ã‚¿ã‚¹ã‚¯å¼·åˆ¶å¾…ã¡è¦æ±‚ãƒã‚¹ãƒˆæ•°ã®æœ€å¤§å€¤ */
 
 
 
 /* ------------------------------------------ */
-/*                 ·¿ÄêµÁ                     */
+/*                 å‹å®šç¾©                     */
 /* ------------------------------------------ */
 
 
-/* ¥³¥ó¥Æ¥­¥¹¥È¾ğÊóÊİÂ¸¥Ö¥í¥Ã¥¯ */
+/* ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæƒ…å ±ä¿å­˜ãƒ–ãƒ­ãƒƒã‚¯ */
 typedef struct t_hos_pac_ctxinf
 {
-	VP sp;			/* ¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿ÊİÂ¸ÎÎ°è */
+	VP sp;			/* ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ä¿å­˜é ˜åŸŸ */
 } T_HOSPAC_CTXINF;
 
 
-/* ¥­¥å¡¼´ÉÍı¥Ö¥í¥Ã¥¯ */
+/* ã‚­ãƒ¥ãƒ¼ç®¡ç†ãƒ–ãƒ­ãƒƒã‚¯ */
 typedef struct t_kernel_que
 {
-	ID    head;					/* ¥­¥å¡¼ÀèÆ¬¤Î¥¿¥¹¥¯ID */
+	ID    head;					/* ã‚­ãƒ¥ãƒ¼å…ˆé ­ã®ã‚¿ã‚¹ã‚¯ID */
 } T_KERNEL_QUE;
 
 
-/* ¥¿¥¹¥¯¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯ */
+/* ã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ */
 typedef struct t_kernel_tcb
 {
-	T_HOSPAC_CTXINF ctxinf;		/* ¥³¥ó¥Æ¥­¥¹¥È¾ğÊóÊİÂ¸¥Ö¥í¥Ã¥¯ */
-	T_KERNEL_QUE    *que;		/* ÀÜÂ³¤µ¤ì¤Æ¤¤¤ë¥­¥å¡¼ */
-	PRI   tskpri;				/* ¸½ºß¤ÎÍ¥ÀèÅÙ */
-	ID    next;					/* ¼¡¤Î¥¿¥¹¥¯ */
-	ID    prev;					/* Á°¤Î¥¿¥¹¥¯ */
-	UB    wupcnt;				/* µ¯¾²Í×µá¥­¥å¡¼¥¤¥ó¥°¿ô */
-	FP    task;					/* ¥¿¥¹¥¯¤Îµ¯Æ°ÈÖÃÏ */
-	VP    isp;					/* ½é´ü¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿ */
+	T_HOSPAC_CTXINF ctxinf;		/* ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆæƒ…å ±ä¿å­˜ãƒ–ãƒ­ãƒƒã‚¯ */
+	T_KERNEL_QUE    *que;		/* æ¥ç¶šã•ã‚Œã¦ã„ã‚‹ã‚­ãƒ¥ãƒ¼ */
+	PRI   tskpri;				/* ç¾åœ¨ã®å„ªå…ˆåº¦ */
+	ID    next;					/* æ¬¡ã®ã‚¿ã‚¹ã‚¯ */
+	ID    prev;					/* å‰ã®ã‚¿ã‚¹ã‚¯ */
+	UB    wupcnt;				/* èµ·åºŠè¦æ±‚ã‚­ãƒ¥ãƒ¼ã‚¤ãƒ³ã‚°æ•° */
+	FP    task;					/* ã‚¿ã‚¹ã‚¯ã®èµ·å‹•ç•ªåœ° */
+	VP    isp;					/* åˆæœŸã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ */
 } T_KERNEL_TCB;
 
 
-/* ¥»¥Ş¥Õ¥©¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯ */
+/* ã‚»ãƒãƒ•ã‚©ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ */
 typedef struct t_kernel_semcb
 {
-	T_KERNEL_QUE que;			/* ¥»¥Ş¥Õ¥©ÂÔ¤Á¥¿¥¹¥¯¥­¥å¡¼ */
-	UB           semcnt;		/* ¥»¥Ş¥Õ¥©¤Î»ñ¸»¿ô */
+	T_KERNEL_QUE que;			/* ã‚»ãƒãƒ•ã‚©å¾…ã¡ã‚¿ã‚¹ã‚¯ã‚­ãƒ¥ãƒ¼ */
+	UB           semcnt;		/* ã‚»ãƒãƒ•ã‚©ã®è³‡æºæ•° */
 } T_KERNEL_SEMCB;
 
 
-/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯ */
+/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ */
 typedef struct t_kernel_flgcb
 {
-	ID     tskid;		/* ¥Õ¥é¥°ÂÔ¤Á¤Î¥¿¥¹¥¯ID */
-	FLGPTN flgptn;		/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥Ó¥Ã¥È¥Ñ¥¿¡¼¥ó */
-	MODE   wfmode;		/* ÂÔ¤Á¥â¡¼¥É */
-	FLGPTN waiptn;		/* ÂÔ¤Á¥Ó¥Ã¥È¥Ñ¥¿¡¼¥ó¡Ê²ò½ü»ş¥Ñ¥¿¡¼¥ó¤È·óÍÑ) */
-	FLGPTN *p_flgptn;	/* ¥Õ¥é¥°¥Ñ¥¿¡¼¥ó³ÊÇ¼¥¢¥É¥ì¥¹ */
+	ID     tskid;		/* ãƒ•ãƒ©ã‚°å¾…ã¡ã®ã‚¿ã‚¹ã‚¯ID */
+	FLGPTN flgptn;		/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ãƒ“ãƒƒãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³ */
+	MODE   wfmode;		/* å¾…ã¡ãƒ¢ãƒ¼ãƒ‰ */
+	FLGPTN waiptn;		/* å¾…ã¡ãƒ“ãƒƒãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³ï¼ˆè§£é™¤æ™‚ãƒ‘ã‚¿ãƒ¼ãƒ³ã¨å…¼ç”¨) */
+	FLGPTN *p_flgptn;	/* ãƒ•ãƒ©ã‚°ãƒ‘ã‚¿ãƒ¼ãƒ³æ ¼ç´ã‚¢ãƒ‰ãƒ¬ã‚¹ */
 } T_KERNEL_FLGCB;
 
 
-/* ³ä¤ê¹ş¤ß¥Ï¥ó¥É¥é */
+/* å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ© */
 typedef struct t_kernel_intcb
 {
-	FP    	isr;		/* ¥Ï¥ó¥É¥é¤Îµ¯Æ°ÈÖÃÏ */
+	FP    	isr;		/* ãƒãƒ³ãƒ‰ãƒ©ã®èµ·å‹•ç•ªåœ° */
 	VP_INT	exinf;
 } T_KERNEL_INTCB;
 
 
-/* ¥·¥¹¥Æ¥à´ÉÍı */
+/* ã‚·ã‚¹ãƒ†ãƒ ç®¡ç† */
 typedef struct t_kernel_sys
 {
-    T_HOSPAC_CTXINF ctxinf_idle;	/* ¥¢¥¤¥É¥ë¥³¥ó¥Æ¥­¥¹¥È */
-	T_KERNEL_QUE    rdyque;			/* ¥ì¥Ç¥£¡¼¥­¥å¡¼ */
-	UB              tskid_run;		/* ¼Â¹ÔÃæ¥¿¥¹¥¯¤ÎID */
-	UB              stat;			/* ¥·¥¹¥Æ¥à¤Î¥³¥ó¥Æ¥­¥¹¥È¾õÂÖ */
-	UB              dly_dsp;		/* ÃÙ±ä¤·¤Æ¤¤¤ë¥Ç¥£¥¹¥Ñ¥Ã¥Á¤¬¤¢¤ë¤« */
+    T_HOSPAC_CTXINF ctxinf_idle;	/* ã‚¢ã‚¤ãƒ‰ãƒ«ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ */
+	T_KERNEL_QUE    rdyque;			/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ */
+	UB              tskid_run;		/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯ã®ID */
+	UB              stat;			/* ã‚·ã‚¹ãƒ†ãƒ ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆçŠ¶æ…‹ */
+	UB              dly_dsp;		/* é…å»¶ã—ã¦ã„ã‚‹ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒãŒã‚ã‚‹ã‹ */
 } T_KERNEL_SYS;
 
 
 
 /* ---------------------------------- */
-/*        ¥°¥í¡¼¥Ğ¥ëÊÑ¿ôÀë¸À          */
+/*        ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°å®£è¨€          */
 /* ---------------------------------- */
 
 
-extern FP             kernel_irq_tbl[];			/* ³ä¤ê¹ş¤ß¥Ï¥ó¥É¥é¥Æ¡¼¥Ö¥ë */
-extern T_KERNEL_TCB   kernel_tcb_tbl[];			/* ¥¿¥¹¥¯¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë */
-extern T_KERNEL_SEMCB kernel_semcb_tbl[];		/* ¥»¥Ş¥Õ¥©¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë */
-extern T_KERNEL_FLGCB kernel_flgcb_tbl[];		/* ¥Õ¥é¥°¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë */
-extern const T_KERNEL_INTCB kernel_intcb_tbl[];		/* ³ä¤ê¹ş¤ß¥Ï¥ó¥É¥é¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë */
+extern FP             kernel_irq_tbl[];			/* å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©ãƒ†ãƒ¼ãƒ–ãƒ« */
+extern T_KERNEL_TCB   kernel_tcb_tbl[];			/* ã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ« */
+extern T_KERNEL_SEMCB kernel_semcb_tbl[];		/* ã‚»ãƒãƒ•ã‚©ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ« */
+extern T_KERNEL_FLGCB kernel_flgcb_tbl[];		/* ãƒ•ãƒ©ã‚°ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ« */
+extern const T_KERNEL_INTCB kernel_intcb_tbl[];		/* å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ©ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ« */
 
 
 /* ---------------------------------- */
-/*            ¥Ş¥¯¥íÄêµÁ              */
+/*            ãƒã‚¯ãƒ­å®šç¾©              */
 /* ---------------------------------- */
 
-/* ¥¿¥¹¥¯¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯¥Æ¡¼¥Ö¥ë¤Î0ÈÖÌÜ¤ÎÍ×ÁÇ¤Ë¥·¥¹¥Æ¥à¾ğÊó¤ò½Å¤Í¤ë */
-#define kernel_sys		(*((T_KERNEL_SYS*)(&kernel_tcb_tbl[0])))		/* 0ÈÖÌÜ¤Ëidle¤¬½Å¤Ê¤ë */
+/* ã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ãƒ†ãƒ¼ãƒ–ãƒ«ã®0ç•ªç›®ã®è¦ç´ ã«ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±ã‚’é‡ã­ã‚‹ */
+#define kernel_sys		(*((T_KERNEL_SYS*)(&kernel_tcb_tbl[0])))		/* 0ç•ªç›®ã«idleãŒé‡ãªã‚‹ */
 
-/* ¥·¥¹¥Æ¥àÀ©¸æ */
-#define KERNEL_SET_RUN_TSKID(tskid)	(kernel_sys.tskid_run = tskid)		/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤ÎÀßÄê */
-#define KERNEL_GET_RUN_TSKID()		(kernel_sys.tskid_run)				/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
-#define KERNEL_GET_RDYQUE()			(&kernel_sys.rdyque)				/* ¥ì¥Ç¥£¥­¥å¡¼¤Î¼èÆÀ */
+/* ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ */
+#define KERNEL_SET_RUN_TSKID(tskid)	(kernel_sys.tskid_run = tskid)		/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®è¨­å®š */
+#define KERNEL_GET_RUN_TSKID()		(kernel_sys.tskid_run)				/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
+#define KERNEL_GET_RDYQUE()			(&kernel_sys.rdyque)				/* ãƒ¬ãƒ‡ã‚£ã‚­ãƒ¥ãƒ¼ã®å–å¾— */
 
 
-#define KERNEL_GET_TCB(tskid)		(&kernel_tcb_tbl[tskid])			/* ¥¿¥¹¥¯ID¤«¤éTCB¥¢¥É¥ì¥¹¤ò¼èÆÀ */
-#define KERNEL_GET_SEMCB(semid)		(&kernel_semcb_tbl[(semid) - 1])	/* ¥»¥Ş¥Õ¥©ID¤«¤éSEMCB¥¢¥É¥ì¥¹¤ò¼èÆÀ */
-#define KERNEL_GET_FLGCB(flgid)		(&kernel_flgcb_tbl[(flgid) - 1])	/* ¥»¥Ş¥Õ¥©ID¤«¤éFLGCB¥¢¥É¥ì¥¹¤ò¼èÆÀ */
-#define KERNEL_GET_INTCB(intno)		(&kernel_intcb_tbl[(intno)])	/* ³ä¤ê¹ş¤ßÈÖ¹æ¤«¤éINTCB¥¢¥É¥ì¥¹¤ò¼èÆÀ */
+#define KERNEL_GET_TCB(tskid)		(&kernel_tcb_tbl[tskid])			/* ã‚¿ã‚¹ã‚¯IDã‹ã‚‰TCBã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾— */
+#define KERNEL_GET_SEMCB(semid)		(&kernel_semcb_tbl[(semid) - 1])	/* ã‚»ãƒãƒ•ã‚©IDã‹ã‚‰SEMCBã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾— */
+#define KERNEL_GET_FLGCB(flgid)		(&kernel_flgcb_tbl[(flgid) - 1])	/* ã‚»ãƒãƒ•ã‚©IDã‹ã‚‰FLGCBã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾— */
+#define KERNEL_GET_INTCB(intno)		(&kernel_intcb_tbl[(intno)])	/* å‰²ã‚Šè¾¼ã¿ç•ªå·ã‹ã‚‰INTCBã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾— */
 
 /* ------------------------------------------ */
-/*                ´Ø¿ôÀë¸À                    */
+/*                é–¢æ•°å®£è¨€                    */
 /* ------------------------------------------ */
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* ¥×¥í¥»¥Ã¥µÃê¾İ²½ÁØ */
-void    hospac_dis_int(void);								/* ³ä¤ê¹ş¤ß¶Ø»ß */
-void    hospac_ena_int(void);								/* ³ä¤ê¹ş¤ßµö²Ä */
+/* ãƒ—ãƒ­ã‚»ãƒƒã‚µæŠ½è±¡åŒ–å±¤ */
+void    hospac_dis_int(void);								/* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
+void    hospac_ena_int(void);								/* å‰²ã‚Šè¾¼ã¿è¨±å¯ */
 void    hospac_cre_ctx(T_HOSPAC_CTXINF *pk_ctxinf,
-						VP sp, FP task, VP_INT exinf);		/* ¼Â¹Ô¥³¥ó¥Æ¥­¥¹¥È¤ÎºîÀ® */
+						VP sp, FP task, VP_INT exinf);		/* å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ */
 void    hospac_swi_ctx(T_HOSPAC_CTXINF *pk_pre_ctxinf,
-						T_HOSPAC_CTXINF *pk_nxt_ctxinf);	/* ¼Â¹Ô¥³¥ó¥Æ¥­¥¹¥È¤ÎÀÚÂØ */
-#define hospac_idle()										/* ¥¢¥¤¥É¥ë»ş½èÍı */
+						T_HOSPAC_CTXINF *pk_nxt_ctxinf);	/* å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆ‡æ›¿ */
+#define hospac_idle()										/* ã‚¢ã‚¤ãƒ‰ãƒ«æ™‚å‡¦ç† */
 
 
-/* ¥­¥å¡¼Áàºî */
-void    kernel_add_que(T_KERNEL_QUE *que, ID tskid);		/* ¥¿¥¹¥¯¤òÍ¥ÀèÅÙ½ç¤Ç¥­¥å¡¼¤ËÄÉ²Ã */
-void    kernel_rmv_que(ID tskid);							/* ¥¿¥¹¥¯¤ò¥­¥å¡¼¤«¤é¼è¤ê½ü¤¯ */
-#define kernel_ref_qhd(que)	((que)->head)					/* ¥­¥å¡¼¤ÎÀèÆ¬¥¿¥¹¥¯¤Î»²¾È(¥Ş¥¯¥í´Ø¿ô) */
+/* ã‚­ãƒ¥ãƒ¼æ“ä½œ */
+void    kernel_add_que(T_KERNEL_QUE *que, ID tskid);		/* ã‚¿ã‚¹ã‚¯ã‚’å„ªå…ˆåº¦é †ã§ã‚­ãƒ¥ãƒ¼ã«è¿½åŠ  */
+void    kernel_rmv_que(ID tskid);							/* ã‚¿ã‚¹ã‚¯ã‚’ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å–ã‚Šé™¤ã */
+#define kernel_ref_qhd(que)	((que)->head)					/* ã‚­ãƒ¥ãƒ¼ã®å…ˆé ­ã‚¿ã‚¹ã‚¯ã®å‚ç…§(ãƒã‚¯ãƒ­é–¢æ•°) */
 
-void    kernel_exe_dsp(void);								/* ¥¿¥¹¥¯¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô */
+void    kernel_exe_dsp(void);								/* ã‚¿ã‚¹ã‚¯ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ */
 
-/* ¥·¥¹¥Æ¥àÀ©¸æ */
-#define kernel_loc_sys()	hospac_dis_int()				/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
-#define kernel_unl_sys()	hospac_ena_int()				/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+/* ã‚·ã‚¹ãƒ†ãƒ åˆ¶å¾¡ */
+#define kernel_loc_sys()	hospac_dis_int()				/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
+#define kernel_unl_sys()	hospac_ena_int()				/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 
 
-/* ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿ */
+/* ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ */
 void    hoscfg_ini(void);
 
 
-/* ¥«¡¼¥Í¥ë¥·¥¹¥Æ¥à´ÉÍı */
-ER      sta_hos(void);										/* ¥«¡¼¥Í¥ëÆ°ºî³«»Ï */
+/* ã‚«ãƒ¼ãƒãƒ«ã‚·ã‚¹ãƒ†ãƒ ç®¡ç† */
+ER      sta_hos(void);										/* ã‚«ãƒ¼ãƒãƒ«å‹•ä½œé–‹å§‹ */
 
 
-/* ¥¿¥¹¥¯´ÉÍıµ¡Ç½ */
-ER      sta_tsk(ID tskid, VP_INT stacd);					/* ¥¿¥¹¥¯¤Îµ¯Æ°(µ¯Æ°¥³¡¼¥É»ØÄê) */
-void    ext_tsk(void);										/* ¼«¥¿¥¹¥¯¤Î½ªÎ» */
-ER      chg_pri(ID tskid, ID tskpri);						/* ¥¿¥¹¥¯Í¥ÀèÅÙ¤ÎÊÑ¹¹ */
-ER      get_pri(ID tskid, PRI *p_tskpri);					/* ¥¿¥¹¥¯Í¥ÀèÅÙ¤Î»²¾È */
+/* ã‚¿ã‚¹ã‚¯ç®¡ç†æ©Ÿèƒ½ */
+ER      sta_tsk(ID tskid, VP_INT stacd);					/* ã‚¿ã‚¹ã‚¯ã®èµ·å‹•(èµ·å‹•ã‚³ãƒ¼ãƒ‰æŒ‡å®š) */
+void    ext_tsk(void);										/* è‡ªã‚¿ã‚¹ã‚¯ã®çµ‚äº† */
+ER      chg_pri(ID tskid, ID tskpri);						/* ã‚¿ã‚¹ã‚¯å„ªå…ˆåº¦ã®å¤‰æ›´ */
+ER      get_pri(ID tskid, PRI *p_tskpri);					/* ã‚¿ã‚¹ã‚¯å„ªå…ˆåº¦ã®å‚ç…§ */
 
 
-/* ¥¿¥¹¥¯ÉÕÂ°Æ±´üµ¡Ç½ */
-ER      slp_tsk(void);										/* ¥¿¥¹¥¯¤Îµ¯¾²ÂÔ¤Á */
-ER      wup_tsk(ID tskid);									/* ¥¿¥¹¥¯¤Îµ¯¾² */
-#define	iwup_tsk	wup_tsk									/* ¥¿¥¹¥¯¤Îµ¯¾²(Èó¥¿¥¹¥¯¥³¥ó¥Æ¥­¥¹¥ÈÍÑ¥Ş¥¯¥í) */
-ER_UINT can_wup(ID tskid);									/* ¥¿¥¹¥¯µ¯¾²Í×µá¤Î¥­¥ã¥ó¥»¥ë */
+/* ã‚¿ã‚¹ã‚¯ä»˜å±åŒæœŸæ©Ÿèƒ½ */
+ER      slp_tsk(void);										/* ã‚¿ã‚¹ã‚¯ã®èµ·åºŠå¾…ã¡ */
+ER      wup_tsk(ID tskid);									/* ã‚¿ã‚¹ã‚¯ã®èµ·åºŠ */
+#define	iwup_tsk	wup_tsk									/* ã‚¿ã‚¹ã‚¯ã®èµ·åºŠ(éã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒã‚¯ãƒ­) */
+ER_UINT can_wup(ID tskid);									/* ã‚¿ã‚¹ã‚¯èµ·åºŠè¦æ±‚ã®ã‚­ãƒ£ãƒ³ã‚»ãƒ« */
 
-/* ¥»¥Ş¥Õ¥© */
-ER      sig_sem(ID semid);									/* ¥»¥Ş¥Õ¥©»ñ¸»¤ÎÊÖµÑ */
-#define isig_sem sig_sem									/* ¥»¥Ş¥Õ¥©»ñ¸»¤ÎÊÖµÑ(Èó¥¿¥¹¥¯¥³¥ó¥Æ¥­¥¹¥ÈÍÑ¥Ş¥¯¥í) */
-ER      wai_sem(ID semid);									/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ */
-ER      pol_sem(ID semid);									/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ(¥İ¡¼¥ê¥ó¥°) */
+/* ã‚»ãƒãƒ•ã‚© */
+ER      sig_sem(ID semid);									/* ã‚»ãƒãƒ•ã‚©è³‡æºã®è¿”å´ */
+#define isig_sem sig_sem									/* ã‚»ãƒãƒ•ã‚©è³‡æºã®è¿”å´(éã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒã‚¯ãƒ­) */
+ER      wai_sem(ID semid);									/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾— */
+ER      pol_sem(ID semid);									/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾—(ãƒãƒ¼ãƒªãƒ³ã‚°) */
 
-/* ¥¤¥Ù¥ó¥È¥Õ¥é¥° */
-ER      set_flg(ID flgid, FLGPTN setptn);					/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥»¥Ã¥È */
-#define iset_flg	set_flg									/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥»¥Ã¥È(Èó¥¿¥¹¥¯¥³¥ó¥Æ¥­¥¹¥ÈÍÑ¥Ş¥¯¥í) */
-ER      clr_flg(ID flgid, FLGPTN clrptn);					/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥¯¥ê¥¢ */
+/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚° */
+ER      set_flg(ID flgid, FLGPTN setptn);					/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ */
+#define iset_flg	set_flg									/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ(éã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆç”¨ãƒã‚¯ãƒ­) */
+ER      clr_flg(ID flgid, FLGPTN clrptn);					/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ */
 ER      wai_flg(ID flgid, FLGPTN waiptn, MODE wfmode, FLGPTN *p_flgptn);
-															/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°ÂÔ¤Á */
+															/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°å¾…ã¡ */
 ER      pol_flg(ID flgid, FLGPTN waiptn, MODE wfmode, FLGPTN *p_flgptn);
-															/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°ÂÔ¤Á(¥İ¡¼¥ê¥ó¥°) */
+															/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°å¾…ã¡(ãƒãƒ¼ãƒªãƒ³ã‚°) */
 BOOL    kernel_chk_flg(T_KERNEL_FLGCB *flgcb);
 
 

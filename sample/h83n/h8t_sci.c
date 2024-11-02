@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------ */
-/*  H8/3664ÍÑ SCI3À©¸æ¥é¥¤¥Ö¥é¥ê                                            */
+/*  H8/3664ç”¨ SCI3åˆ¶å¾¡ãƒ©ã‚¤ãƒ–ãƒ©ãƒª                                            */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2002 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -8,28 +8,28 @@
 #include "h83664f.h"
 #include "h8t_sci.h"
 
-#define RECV_BUFSIZE	32		/* ¼õ¿®¥Ğ¥Ã¥Õ¥¡¤Î¥µ¥¤¥º */
+#define RECV_BUFSIZE	32		/* å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º */
 
 static unsigned char recv_buf[RECV_BUFSIZE];
 static int head;
 static int tail;
 
-/* SCI3½é´ü²½ */
+/* SCI3åˆæœŸåŒ– */
 void SCI3_Initialize(unsigned char rate)
 {
 	volatile int i;
 	
-	/* SCI3½é´ü²½ */
+	/* SCI3åˆæœŸåŒ– */
 	SCI3.SCR3.BYTE = 0x00;
 	SCI3.SMR.BYTE = 0x00;
 	SCI3.BRR = rate;
 	for ( i = 0; i < 280; i++ )
 		;
-	SCI3.SCR3.BYTE = 0x30; /* Á÷¿®²Ä|¼õ¿®²Ä */
+	SCI3.SCR3.BYTE = 0x30; /* é€ä¿¡å¯|å—ä¿¡å¯ */
 	IO.PMR1.BIT.TXD = 1;
 }
 
-/* £±Ê¸»ú½ĞÎÏ */
+/* ï¼‘æ–‡å­—å‡ºåŠ› */
 void SCI3_PutChar(char c)
 {
 	while ( !(SCI3.SSR.BYTE & 0x80) )
@@ -41,7 +41,7 @@ void SCI3_PutChar(char c)
 		;
 }
 
-/* £±Ê¸»úÆşÎÏ */
+/* ï¼‘æ–‡å­—å…¥åŠ› */
 int SCI3_GetChar(void)
 {
 	int c;
@@ -60,30 +60,30 @@ int SCI3_GetChar(void)
 	return c;
 }
 
-/* SCI¼õ¿®³ä¤ê¹ş¤ß */
+/* SCIå—ä¿¡å‰²ã‚Šè¾¼ã¿ */
 void SCI3_RxiHandler(VP_INT exinf)
 {
 	unsigned char c;
 	int next;
 	
-	/* 1Ê¸»ú¼õ¿® */
+	/* 1æ–‡å­—å—ä¿¡ */
 	c = SCI3.RDR;
 	SCI3.SSR.BYTE &= 0xbf;
 	
-	/* ¼¡¤ÎËöÈø°ÌÃÖ¤ò·×»» */
+	/* æ¬¡ã®æœ«å°¾ä½ç½®ã‚’è¨ˆç®— */
 	next = tail + 1;
 	if ( next == RECV_BUFSIZE )
 	{
 		next = 0;
 	}
 	
-	/* ¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼¥Á¥§¥Ã¥¯ */
+	/* ã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒã‚§ãƒƒã‚¯ */
 	if ( next == head )
 	{
 		return;
 	}
 	
-	/* ¼õ¿®¥Ğ¥Ã¥Õ¥¡¤Ë³ÊÇ¼ */
+	/* å—ä¿¡ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ */
 	recv_buf[tail] = c;
 	tail = next;
 }

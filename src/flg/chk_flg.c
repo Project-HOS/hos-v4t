@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¤¥Ù¥ó¥È¥Õ¥é¥°                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,18 +11,18 @@
 
 
 
-/* ¥Õ¥é¥°¤¬µ¯¾²¾ò·ï¤òËþ¤¿¤·¤Æ¤¤¤ë¤«¥Á¥§¥Ã¥¯ */
+/* ãƒ•ãƒ©ã‚°ãŒèµ·åºŠæ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯ */
 BOOL kernel_chk_flg(
-		T_KERNEL_FLGCB *flgcb)	/* ¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯ */
+		T_KERNEL_FLGCB *flgcb)	/* ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯ */
 {
 	if ( flgcb->wfmode == TWF_ANDW )
 	{
-		/* ANDÂÔ¤ÁÈ½Äê */
+		/* ANDå¾…ã¡åˆ¤å®š */
 		return ((flgcb->flgptn & flgcb->waiptn) == flgcb->waiptn);
 	}
 	else
 	{
-		/* ORÂÔ¤ÁÈ½Äê */
+		/* ORå¾…ã¡åˆ¤å®š */
 		return ((flgcb->flgptn & flgcb->waiptn) != 0);
 	}
 }

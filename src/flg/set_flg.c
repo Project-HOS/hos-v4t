@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¤¥Ù¥ó¥È¥Õ¥é¥°                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,42 +11,42 @@
 
 
 
-/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥»¥Ã¥È */
+/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ */
 ER set_flg(
-		ID     flgid,		/* ¥»¥Ã¥ÈÂĞ¾İ¤Î¥¤¥Ù¥ó¥È¥Õ¥é¥°¤ÎIDÈÖ¹æ */
-		FLGPTN setptn)		/* ¥»¥Ã¥È¤¹¤ë¥Ó¥Ã¥È¥Ñ¥¿¡¼¥ó */
+		ID     flgid,		/* ã‚»ãƒƒãƒˆå¯¾è±¡ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®IDç•ªå· */
+		FLGPTN setptn)		/* ã‚»ãƒƒãƒˆã™ã‚‹ãƒ“ãƒƒãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³ */
 {
 	T_KERNEL_FLGCB *flgcb;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 
 	flgcb = KERNEL_GET_FLGCB(flgid);
 	
-	/* ¥Õ¥é¥°¤Î¥»¥Ã¥È */
+	/* ãƒ•ãƒ©ã‚°ã®ã‚»ãƒƒãƒˆ */
 	flgcb->flgptn = (FLGPTN)(flgcb->flgptn | setptn);
 	
-	/* ÂÔ¤Á¥¿¥¹¥¯¤¬¤¢¤ì¤Ğµ¯¾²¥Á¥§¥Ã¥¯ */
+	/* å¾…ã¡ã‚¿ã‚¹ã‚¯ãŒã‚ã‚Œã°èµ·åºŠãƒã‚§ãƒƒã‚¯ */
 	if ( flgcb->tskid != 0 )
 	{
-		/* ¥Õ¥é¥°¥Á¥§¥Ã¥¯ */
+		/* ãƒ•ãƒ©ã‚°ãƒã‚§ãƒƒã‚¯ */
 		if ( kernel_chk_flg(flgcb) )
 		{
-			/* µ¯¾²¾ò·ï¤òËş¤¿¤·¤Æ¤¤¤ë¤Ê¤é */
+			/* èµ·åºŠæ¡ä»¶ã‚’æº€ãŸã—ã¦ã„ã‚‹ãªã‚‰ */
 			if ( flgcb->p_flgptn != NULL )
 			{
-				*flgcb->p_flgptn = flgcb->flgptn;	/* ¸½ºß¤Î¥Õ¥é¥°¥Ñ¥¿¡¼¥ó¤ò³ÊÇ¼ */
+				*flgcb->p_flgptn = flgcb->flgptn;	/* ç¾åœ¨ã®ãƒ•ãƒ©ã‚°ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’æ ¼ç´ */
 			}
 			
-			/* ÂÔ¤Á²ò½ü */
-			kernel_add_que(KERNEL_GET_RDYQUE(), flgcb->tskid);		/* ¥ì¥Ç¥£¡¼¥­¥å¡¼¤ËÅĞÏ¿ */
+			/* å¾…ã¡è§£é™¤ */
+			kernel_add_que(KERNEL_GET_RDYQUE(), flgcb->tskid);		/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ã«ç™»éŒ² */
 
-			kernel_exe_dsp();		/* ¥¿¥¹¥¯¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô */
+			kernel_exe_dsp();		/* ã‚¿ã‚¹ã‚¯ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ */
 		}
 	}
 	
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 	
-	return E_OK;	/* Àµ¾ï½ªÎ» */
+	return E_OK;	/* æ­£å¸¸çµ‚äº† */
 }
 
 

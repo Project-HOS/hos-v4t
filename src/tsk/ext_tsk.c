@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¿¥¹¥¯´ÉÍıµ¡Ç½                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¿ã‚¹ã‚¯ç®¡ç†æ©Ÿèƒ½                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,20 +11,20 @@
 
 
 
-/* ¼«¥¿¥¹¥¯¤Î½ªÎ» */
+/* è‡ªã‚¿ã‚¹ã‚¯ã®çµ‚äº† */
 void ext_tsk(void)
 {
 	ID tskid;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
-	/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
+	/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
 	tskid = KERNEL_GET_RUN_TSKID();
 	
-	/* ¥ì¥Ç¥£¡¼¥­¥å¡¼¤«¤éºï½ü */
+	/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å‰Šé™¤ */
 	kernel_rmv_que(tskid);
 	
-	/* ¥¿¥¹¥¯¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô */
+	/* ã‚¿ã‚¹ã‚¯ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ */
 	kernel_exe_dsp();
 }
 

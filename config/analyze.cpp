@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ¹½Ê¸²òÀÏ¥¯¥é¥¹                                                          
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    æ§‹æ–‡è§£æžã‚¯ãƒ©ã‚¹                                                          
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,12 +15,12 @@
 
 
 
-// ¥¹¥Æ¡¼¥È¥á¥ó¥È¤òAPIÌ¾¤È¥Ñ¥é¥á¡¼¥¿¡¼¤ËÊ¬³ä
+// ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’APIåã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã«åˆ†å‰²
 int CAnalyze::SplitState(char* pszApiName, char* pszParams, const char *pszState)
 {
 	int iErr;
 
-	// ¥³¥Þ¥ó¥ÉÌ¾¤ÎÀÚ¤ê½Ð¤·
+	// ã‚³ãƒžãƒ³ãƒ‰åã®åˆ‡ã‚Šå‡ºã—
 	while ( *pszState != '(' )
 	{
 		if ( *pszState == '\0' )
@@ -32,14 +32,14 @@ int CAnalyze::SplitState(char* pszApiName, char* pszParams, const char *pszState
 	*pszApiName = '\0';
 	pszState++;
 
-	// ¥Ñ¥é¥á¡¼¥¿¡¼Éô¤ÎÀÚ¤ê½Ð¤·
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼éƒ¨ã®åˆ‡ã‚Šå‡ºã—
 	iErr = SearchChar(pszParams, pszState, ')');
 	if ( iErr != CFG_ERR_OK )
 	{
 		return iErr;
 	}
 
-	// ¸åÂ³¥Á¥§¥Ã¥¯
+	// å¾Œç¶šãƒã‚§ãƒƒã‚¯
 	if ( *pszState != '\0' )
 	{
 		return CFG_ERR_SEMICOLON;
@@ -49,7 +49,7 @@ int CAnalyze::SplitState(char* pszApiName, char* pszParams, const char *pszState
 }
 
 
-// ÆÃÄêÊ¸»ú¤Î¤Þ¤Ç¤ÎÀÚ¤ê½Ð¤·
+// ç‰¹å®šæ–‡å­—ã®ã¾ã§ã®åˆ‡ã‚Šå‡ºã—
 int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 {
 	char cDelimiter;
@@ -59,14 +59,14 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 
 	for ( ; ; )
 	{
-		// ½ªÃ¼¥Á¥§¥Ã¥¯
+		// çµ‚ç«¯ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == '\0' )
 		{
 			iErr = CFG_ERR_SYNTAX;
 			break;
 		}
 
-		// Ê¸»ú¥Á¥§¥Ã¥¯
+		// æ–‡å­—ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == c )
 		{
 			pszText++;
@@ -74,7 +74,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 			break;
 		}
 
-		// '\' ¤Î¼¡¤ÎÊ¸»ú¤ÏÌµ¾ò·ï¤Ë¥¨¥¹¥±¡¼¥×
+		// '\' ã®æ¬¡ã®æ–‡å­—ã¯ç„¡æ¡ä»¶ã«ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
 		if ( blEsc )
 		{
 			*pszBuf++ = *pszText++;
@@ -83,7 +83,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 		}
 		blEsc = false;
 
-		// '\' ¥Á¥§¥Ã¥¯
+		// '\' ãƒã‚§ãƒƒã‚¯
 		if ( *pszBuf == '\\' )
 		{
 			*pszBuf++ = *pszText++;
@@ -91,7 +91,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 			continue;
 		}
 
-		// Ê¸»úÎó³«»Ï¥Á¥§¥Ã¥¯
+		// æ–‡å­—åˆ—é–‹å§‹ãƒã‚§ãƒƒã‚¯
 		if ( !blText && *pszText == '\"' || *pszText == '\'' )
 		{
 			cDelimiter = *pszText;
@@ -100,7 +100,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 			continue;
 		}
 
-		// Ê¸»úÎóÆâÉô
+		// æ–‡å­—åˆ—å†…éƒ¨
 		if ( blText )
 		{
 			if ( *pszText == cDelimiter )
@@ -115,7 +115,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 			continue;
 		}
 
-		// '{' ¥Á¥§¥Ã¥¯
+		// '{' ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == '{' )
 		{
 			*pszBuf++ = *pszText++;
@@ -129,7 +129,7 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 			continue;
 		}
 
-		// '(' ¥Á¥§¥Ã¥¯
+		// '(' ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == '(' )
 		{
 			*pszBuf++ = *pszText++;
@@ -152,16 +152,16 @@ int CAnalyze::SearchChar(char* pszBuf, const char* &pszText, char c)
 }
 
 
-// ¥Ñ¥é¥á¡¼¥¿¡¼¤ÎÀÚ¤ê½Ð¤·
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®åˆ‡ã‚Šå‡ºã—
 int CAnalyze::GetParameter(char* pszBuf, const char* &pszText)
 {
 	int iErr;
 
-	// ¥³¥ó¥Þ¤Þ¤ÇÀÚ¤ê½Ð¤¹
+	// ã‚³ãƒ³ãƒžã¾ã§åˆ‡ã‚Šå‡ºã™
 	iErr = SearchChar(pszBuf, pszText, ',');
 	if ( iErr == CFG_ERR_SYNTAX )
 	{
-		// ³ç¸ÌÂÐ±þOK¤Ç½ªÃ¼¤Ê¤é¥³¥ó¥Þ¤¬¸«¤Ä¤«¤é¤Ê¤¯¤Æ¤â²Ä
+		// æ‹¬å¼§å¯¾å¿œOKã§çµ‚ç«¯ãªã‚‰ã‚³ãƒ³ãƒžãŒè¦‹ã¤ã‹ã‚‰ãªãã¦ã‚‚å¯
 		iErr = CFG_ERR_OK;
 	}
 
@@ -169,7 +169,7 @@ int CAnalyze::GetParameter(char* pszBuf, const char* &pszText)
 }
 
 
-// Ê¸»úÎóÄê¿ô¤òÅ¸³«¤¹¤ë
+// æ–‡å­—åˆ—å®šæ•°ã‚’å±•é–‹ã™ã‚‹
 int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 {
 	bool blEsc = false;
@@ -186,7 +186,7 @@ int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 			return CFG_ERR_TEXT;
 		}
 
-		// Á°¤ÎÊ¸»ú¤¬ '\' ¤Ê¤éÆÉ¤ßÈô¤Ð¤·
+		// å‰ã®æ–‡å­—ãŒ '\' ãªã‚‰èª­ã¿é£›ã°ã—
 		if ( blEsc )
 		{
 			*pszBuf++ = *pszText++;
@@ -194,7 +194,7 @@ int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 			continue;
 		}
 
-		// ¥¨¥¹¥±¡¼¥×Ê¸»ú¥Á¥§¥Ã¥¯
+		// ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—æ–‡å­—ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == '\\' )
 		{
 			pszText++;
@@ -202,7 +202,7 @@ int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 			continue;
 		}
 
-		// ½ªÃ¼¥Á¥§¥Ã¥¯
+		// çµ‚ç«¯ãƒã‚§ãƒƒã‚¯
 		if ( *pszText == '\"' )
 		{
 			pszText++;
@@ -212,7 +212,7 @@ int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 		*pszBuf++ = *pszText++;
 	}
 
-	// ´°·ë¤·¤Æ¤¤¤Ê¤±¤ì¤Ð¥¨¥é¡¼
+	// å®Œçµã—ã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
 	if ( *pszText != '\0' )
 	{
 			return CFG_ERR_TEXT;
@@ -224,7 +224,7 @@ int CAnalyze::DecodeText(char *pszBuf, const char* pszText)
 }
 
 
-// Á°¸å¤Î¶õÇò¤òºï½ü¤¹¤ë
+// å‰å¾Œã®ç©ºç™½ã‚’å‰Šé™¤ã™ã‚‹
 void CAnalyze::SpaceCut(char* pszText)
 {
 	char *pszTmp;
@@ -232,19 +232,19 @@ void CAnalyze::SpaceCut(char* pszText)
 
 	pszTmp = pszText;
 
-	// ÀèÆ¬¤Î¶õÇò¤òÆÉ¤ßÈô¤Ð¤¹
+	// å…ˆé ­ã®ç©ºç™½ã‚’èª­ã¿é£›ã°ã™
 	while ( *pszTmp == ' ' )
 	{
 		pszTmp++;
 	}
 
-	// ¥³¥Ô¡¼
+	// ã‚³ãƒ”ãƒ¼
 	while ( *pszTmp != '\0' )
 	{
 		pszText[i++] = *pszTmp++;
 	}
 
-	// ËöÈø¤Î¶õÇò¤òºï½ü
+	// æœ«å°¾ã®ç©ºç™½ã‚’å‰Šé™¤
 	while ( i > 0 && pszText[i - 1] == ' ' )
 	{
 		i--;

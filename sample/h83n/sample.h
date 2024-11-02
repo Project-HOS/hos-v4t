@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4  ¥µ¥ó¥×¥ë¥×¥í¥°¥é¥à                           */
+/*  Hyper Operating System V4  ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ                            */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2002 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */

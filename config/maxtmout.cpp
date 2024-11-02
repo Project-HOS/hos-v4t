@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    HOS_MAX_TIMOUT API ¤Î½èÍı                                               
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    HOS_MAX_TIMOUT API ã®å‡¦ç†                                               
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -16,30 +16,30 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiMaxTimout::CApiMaxTimout()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	m_iParams         = 1;
 
 	m_iMaxTimout = 16;
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiMaxTimout::~CApiMaxTimout()
 {
 }
 
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiMaxTimout::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blEx = false;
 
-	// APIÌ¾¥Á¥§¥Ã¥¯
+	// APIåãƒã‚§ãƒƒã‚¯
 	if ( strcmp(pszApiName, "HOS_MAX_TIMOUT") != 0 )
 	{
 		return CFG_ERR_NOPROC;
@@ -61,14 +61,14 @@ int CApiMaxTimout::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// Ê¸»úÎó¤òÅ¸³«
+// æ–‡å­—åˆ—ã‚’å±•é–‹
 int CApiMaxTimout::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiMaxTimout::WriteCfgDef(FILE* fp)
 {
 	fprintf(

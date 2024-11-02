@@ -1,7 +1,7 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4  ƒÊITRON4.0d—l Real-Time OS                  */
-/*    ƒvƒƒZƒbƒT’ŠÛ‰»ƒRƒ“ƒ|[ƒlƒ“ƒg (“ú—§ H8S/2000 —p)                     */
-/*    ƒRƒ“ƒeƒLƒXƒg§Œä                                                      */
+/*  Hyper Operating System V4  Î¼ITRON4.0ä»•æ§˜ Real-Time OS                  */
+/*    ãƒ—ãƒ­ã‚»ãƒƒã‚µæŠ½è±¡åŒ–ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (æ—¥ç«‹ H8S/2000 ç”¨)                     */
+/*    ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆåˆ¶å¾¡                                                      */
 /*                                                                          */
 /*                                  Copyright (C) 2003 by Project HOS       */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -13,19 +13,19 @@
 	.text
 	.align 2
 
-	.global	_hospac_dis_int		/* Š„‚è‚İ‹Ö~ */
-	.global	_hospac_ena_int		/* Š„‚è‚İ‹–‰Â */
-	.global	_hospac_cre_ctx_asm	/* ÀsƒRƒ“ƒeƒLƒXƒg‚Ìì¬ */
-	.global	_hospac_swi_ctx		/* ÀsƒRƒ“ƒeƒLƒXƒg‚ÌØ‘Ö */
-	.global	_hospac_set_tex		/* —áŠOˆ—Àsİ’è */
+	.global	_hospac_dis_int		/* å‰²ã‚Šè¾¼ã¿ç¦æ­¢ */
+	.global	_hospac_ena_int		/* å‰²ã‚Šè¾¼ã¿è¨±å¯ */
+	.global	_hospac_cre_ctx_asm	/* å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ */
+	.global	_hospac_swi_ctx		/* å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆ‡æ›¿ */
+	.global	_hospac_set_tex		/* ä¾‹å¤–å‡¦ç†å®Ÿè¡Œè¨­å®š */
 
 /************************************************
-  Š„‚è‚İ‹Ö~
+  å‰²ã‚Šè¾¼ã¿ç¦æ­¢
   void hospac_dis_int(void)
 *************************************************/
 _hospac_dis_int:
 #if	H8S_INTMODE == 0
-	orc	#0xc0, ccr		/* Š„‚è‚İ‚Ì‹Ö~ */
+	orc	#0xc0, ccr		/* å‰²ã‚Šè¾¼ã¿ã®ç¦æ­¢ */
 #else // H8S_INTMODE == 1
         orc     #0x07, exr
 #endif
@@ -33,13 +33,13 @@ _hospac_dis_int:
 
 
 /************************************************
-  Š„‚è‚İ‹–‰Â
+  å‰²ã‚Šè¾¼ã¿è¨±å¯
   void hospac_ena_int(void)
 *************************************************/
 _hospac_ena_int:
 	mov.b	@_kernel_h83_imsk, r0l
 #if	H8S_INTMODE == 0
-	ldc.b	r0l, ccr	/* Š„‚è‚İ‚Ì‹–‰Â */
+	ldc.b	r0l, ccr	/* å‰²ã‚Šè¾¼ã¿ã®è¨±å¯ */
 #else   // H8S_INTMODE == 1
         ldc.b   r0l, exr
 #endif
@@ -47,44 +47,44 @@ _hospac_ena_int:
 
 
 /************************************************
-  ÀsƒRƒ“ƒeƒLƒXƒgƒGƒ“ƒgƒŠ[ƒAƒhƒŒƒX
+  å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ³ãƒˆãƒªãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹
 *************************************************/
 ctx_entry:	
-	mov.l	er4, er0	/* Àsƒpƒ‰ƒ[ƒ^‚ğ‘æˆêˆø”‚Éİ’è */
-	jmp	@er5		/* ÀsƒAƒhƒŒƒX‚ÉƒWƒƒƒ“ƒv */
+	mov.l	er4, er0	/* å®Ÿè¡Œæ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç¬¬ä¸€å¼•æ•°ã«è¨­å®š */
+	jmp	@er5		/* å®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹ã«ã‚¸ãƒ£ãƒ³ãƒ— */
 
 
 /************************************************
-  ÀsƒRƒ“ƒeƒLƒXƒg‚Ìì¬
+  å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä½œæˆ
   void hospac_cre_ctx_asm(
-	T_HOSPAC_CTXINF *pk_ctxinf,		ì¬‚·‚éƒRƒ“ƒeƒLƒXƒg
-	VP              sp,			ƒXƒ^ƒbƒNƒ|ƒCƒ“ƒ^
-	void            (*task)(VP_INT),	ÀsƒAƒhƒŒƒX
-	VP_INT          exinf		Àsƒpƒ‰ƒ[ƒ^
+	T_HOSPAC_CTXINF *pk_ctxinf,		ä½œæˆã™ã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	VP              sp,			ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿
+	void            (*task)(VP_INT),	å®Ÿè¡Œã‚¢ãƒ‰ãƒ¬ã‚¹
+	VP_INT          exinf		å®Ÿè¡Œæ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 	)
 *************************************************/
 _hospac_cre_ctx_asm:
-	mov.l   #ctx_entry, er3	/* ÀsƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg‚Ìİ’è */
+	mov.l   #ctx_entry, er3	/* å®Ÿè¡Œã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆã®è¨­å®š */
 	mov.l   er3, @-er1
-	mov.l   @(4,er7), er3	/* Àsƒpƒ‰ƒ[ƒ^‚Ìæ‚èo‚µ */
-	mov.l   er3, @-er1	/* Àsƒpƒ‰ƒ[ƒ^Ši”[ (er4‚Ì‘Ş”ğ•ª) */
-	mov.l   er2, @-er1	/* ÀsƒhƒŒƒX‚ğŠi”[ (er5 ‚Ì‘Ş”ğ•ª) */
-	sub.l   #4, er1		/* er6‚Ì‘Ş”ğ•ª */
-	mov.l   er1, @(0, er0)	/* ƒXƒ^ƒbƒNƒ|ƒCƒ“ƒ^‚ÌŠi”[ */
+	mov.l   @(4,er7), er3	/* å®Ÿè¡Œæ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã— */
+	mov.l   er3, @-er1	/* å®Ÿè¡Œæ™‚ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´ (er4ã®é€€é¿åˆ†) */
+	mov.l   er2, @-er1	/* å®Ÿè¡Œãƒ‰ãƒ¬ã‚¹ã‚’æ ¼ç´ (er5 ã®é€€é¿åˆ†) */
+	sub.l   #4, er1		/* er6ã®é€€é¿åˆ† */
+	mov.l   er1, @(0, er0)	/* ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ã®æ ¼ç´ */
 	rts
 
 
 /************************************************
-  ÀsƒRƒ“ƒeƒLƒXƒg‚ÌØ‘Ö
+  å®Ÿè¡Œã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®åˆ‡æ›¿
   void hospac_swi_ctx(
-	T_HOSPAC_CTXINF *pk_pre_ctxinf,	Œ»İ‚ÌƒRƒ“ƒeƒLƒXƒg‚Ì•Û‘¶æ
-	T_HOSPAC_CTXINF *pk_nxt_ctxinf	Ø‚è‘Ö‚¦‚éƒRƒ“ƒeƒLƒXƒg
+	T_HOSPAC_CTXINF *pk_pre_ctxinf,	ç¾åœ¨ã®ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®ä¿å­˜å…ˆ
+	T_HOSPAC_CTXINF *pk_nxt_ctxinf	åˆ‡ã‚Šæ›¿ãˆã‚‹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 	)
 *************************************************/
 _hospac_swi_ctx:
         stm.l   er4-er6, @-sp
-        mov.l   er7,@(0, er0)   /* ƒXƒ^ƒbƒNƒ|ƒCƒ“ƒ^•Û‘¶ */
-	mov.l	@(0, er1), er7	/* ƒXƒ^ƒbƒNƒ|ƒCƒ“ƒ^•œ‹A */
+        mov.l   er7,@(0, er0)   /* ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿ä¿å­˜ */
+	mov.l	@(0, er1), er7	/* ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿å¾©å¸° */
         ldm.l   @sp+, er4-er6
 	rts
 

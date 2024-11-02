@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    CRE_SEM API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    CRE_SEM API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,18 +15,18 @@
 #include "parpack.h"
 
 
-// CRE_SEM ÍÑ
+// CRE_SEM ç”¨
 class CApiCreSem : public CApiDef
 {
 public:
-	CApiCreSem();		// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	~CApiCreSem();		// ¥Ç¥¹¥È¥é¥¯¥¿
+	CApiCreSem();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~CApiCreSem();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API¤Î²òÀÏ
-	void  WriteId(FILE* fp);					// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ñ¤­½Ğ¤·
-	void  WriteCfgDef(FILE* fp);				// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
-	void  WriteCfgIni(FILE* fp);				// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
-	void  WriteCfgStart(FILE* fp);				// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// APIã®è§£æ
+	void  WriteId(FILE* fp);					// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
+	void  WriteCfgDef(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
+	void  WriteCfgIni(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
+	void  WriteCfgStart(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 };
 
 

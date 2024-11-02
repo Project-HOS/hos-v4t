@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¿¥¹¥¯´ÉÍıµ¡Ç½                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¿ã‚¹ã‚¯ç®¡ç†æ©Ÿèƒ½                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -12,40 +12,40 @@
 
 
 
-/* ¥¿¥¹¥¯Í¥ÀèÅÙ¤ÎÊÑ¹¹ */
+/* ã‚¿ã‚¹ã‚¯å„ªå…ˆåº¦ã®å¤‰æ›´ */
 ER chg_pri(
-		ID  tskid,		/* ÊÑ¹¹ÂĞ¾İ¤Î¥¿¥¹¥¯IDÈÖ¹æ */
-		PRI tskpri)		/* ÊÑ¹¹¸å¤Î¥Ù¡¼¥¹Í¥ÀèÅÙ */
+		ID  tskid,		/* å¤‰æ›´å¯¾è±¡ã®ã‚¿ã‚¹ã‚¯IDç•ªå· */
+		PRI tskpri)		/* å¤‰æ›´å¾Œã®ãƒ™ãƒ¼ã‚¹å„ªå…ˆåº¦ */
 {
 	T_KERNEL_TCB *tcb;
 	T_KERNEL_QUE *que;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
-	/* ¼«¥¿¥¹¥¯»ØÄê¤Ê¤é */
+	/* è‡ªã‚¿ã‚¹ã‚¯æŒ‡å®šãªã‚‰ */
 	if ( tskid == TSK_SELF )
 	{
-		tskid = KERNEL_GET_RUN_TSKID();		/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
+		tskid = KERNEL_GET_RUN_TSKID();		/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
 	}
 	
-	/* TCB¼èÆÀ */
+	/* TCBå–å¾— */
 	tcb = KERNEL_GET_TCB(tskid);
 
-	/* ¥­¥å¡¼¼èÆÀ */
+	/* ã‚­ãƒ¥ãƒ¼å–å¾— */
 	que = tcb->que;
 	
-	/* Í¥ÀèÅÙÊÑ¹¹ */
+	/* å„ªå…ˆåº¦å¤‰æ›´ */
 	tcb->tskpri = tskpri;
-	if ( que != NULL )		/* ¥­¥å¡¼¤Ë·Ò¤¬¤Ã¤Æ¤¤¤¿¤Ê¤é */
+	if ( que != NULL )		/* ã‚­ãƒ¥ãƒ¼ã«ç¹‹ãŒã£ã¦ã„ãŸãªã‚‰ */
 	{
-		kernel_rmv_que(tskid);			/* ¥­¥å¡¼¤«¤é°ìÃ¶ºï½ü */
-		kernel_add_que(que, tskid);		/* ¥­¥å¡¼¤Ë·Ò¤®Ä¾¤· */
+		kernel_rmv_que(tskid);			/* ã‚­ãƒ¥ãƒ¼ã‹ã‚‰ä¸€æ—¦å‰Šé™¤ */
+		kernel_add_que(que, tskid);		/* ã‚­ãƒ¥ãƒ¼ã«ç¹‹ãç›´ã— */
 	}
 		
-	/* ¥¿¥¹¥¯¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô */
+	/* ã‚¿ã‚¹ã‚¯ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ */
 	kernel_exe_dsp();
 	
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 	
 	return E_OK;
 }

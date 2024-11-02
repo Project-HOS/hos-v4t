@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  •≥•Û•’•£•Æ•Â•Ï°º•ø°º                           
-//    HOS_KERNEL_HEAP API §ŒΩËÕ˝                                              
+//  Hyper Operating System V4  „Ç≥„É≥„Éï„Ç£„ÇÆ„É•„É¨„Éº„Çø„Éº                           
+//    HOS_KERNEL_HEAP API „ÅÆÂá¶ÁêÜ                                              
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,17 +15,17 @@
 #include "parpack.h"
 
 
-// HOS_KERNEL_HEAP Õ—
+// HOS_KERNEL_HEAP Áî®
 class CApiKernelHeap : public CApiDef
 {
 public:
-	CApiKernelHeap();		// •≥•Û•π•»•È•Ø•ø
-	~CApiKernelHeap();		// •«•π•»•È•Ø•ø
+	CApiKernelHeap();		// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
+	~CApiKernelHeap();		// „Éá„Çπ„Éà„É©„ÇØ„Çø
 
-	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API§Œ≤Ú¿œ
+	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API„ÅÆËß£Êûê
 	int   AutoId(void);
-	void  WriteCfgDef(FILE* fp);		// cfg•’•°•§•ÎƒÍµ¡…ÙΩÒ§≠Ω–§∑
-	void  WriteCfgStart(FILE* fp);		// cfg•’•°•§•ÎµØ∆∞…ÙΩÒ§≠Ω–§∑
+	void  WriteCfgDef(FILE* fp);		// cfg„Éï„Ç°„Ç§„É´ÂÆöÁæ©ÈÉ®Êõ∏„ÅçÂá∫„Åó
+	void  WriteCfgStart(FILE* fp);		// cfg„Éï„Ç°„Ç§„É´Ëµ∑ÂãïÈÉ®Êõ∏„ÅçÂá∫„Åó
 };
 
 

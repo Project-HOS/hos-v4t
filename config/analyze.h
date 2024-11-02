@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  HOS V4 ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                                               
-//    ¹½Ê¸²òÀÏ¥¯¥é¥¹                                                          
+//  HOS V4 ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                                               
+//    æ§‹æ–‡è§£æã‚¯ãƒ©ã‚¹                                                          
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -12,15 +12,15 @@
 
 
 
-// ¹½Ê¸²òÀÏ¥¯¥é¥¹
+// æ§‹æ–‡è§£æã‚¯ãƒ©ã‚¹
 class CAnalyze
 {
 public:
-	static int  SplitState(char* pszApiName, char* pszParams, const char *pszState);	// ¥¹¥Æ¡¼¥È¥á¥ó¥È¤òAPIÌ¾¤È¥Ñ¥é¥á¡¼¥¿¡¼¤ËÊ¬³ä
-	static int  SearchChar(char* pszBuf, const char* &pszText, char c);		// ÆÃÄêÊ¸»ú¤Î¤Ş¤Ç¤ÎÀÚ¤ê½Ğ¤·
-	static int  GetParameter(char* pszBuf, const char* &pszText);			// ¥Ñ¥é¥á¡¼¥¿¡¼¤ÎÀÚ¤ê½Ğ¤·
-	static int  DecodeText(char *pszBuf, const char* pszText);				// Ê¸»úÎóÄê¿ô¤òÅ¸³«¤¹¤ë
-	static void SpaceCut(char* pszText);			// Á°¸å¤Î¶õÇò¤òºï½ü¤¹¤ë
+	static int  SplitState(char* pszApiName, char* pszParams, const char *pszState);	// ã‚¹ãƒ†ãƒ¼ãƒˆãƒ¡ãƒ³ãƒˆã‚’APIåã¨ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã«åˆ†å‰²
+	static int  SearchChar(char* pszBuf, const char* &pszText, char c);		// ç‰¹å®šæ–‡å­—ã®ã¾ã§ã®åˆ‡ã‚Šå‡ºã—
+	static int  GetParameter(char* pszBuf, const char* &pszText);			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®åˆ‡ã‚Šå‡ºã—
+	static int  DecodeText(char *pszBuf, const char* pszText);				// æ–‡å­—åˆ—å®šæ•°ã‚’å±•é–‹ã™ã‚‹
+	static void SpaceCut(char* pszText);			// å‰å¾Œã®ç©ºç™½ã‚’å‰Šé™¤ã™ã‚‹
 };
 
 

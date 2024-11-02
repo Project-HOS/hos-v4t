@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¤¥Ù¥ó¥È¥Õ¥é¥°                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,21 +11,21 @@
 
 
 
-/* ¥¤¥Ù¥ó¥È¥Õ¥é¥°¤Î¥¯¥ê¥¢ */
+/* ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ */
 ER clr_flg(
-		ID     flgid,	/* ¥¯¥ê¥¢ÂĞ¾İ¤Î¥¤¥Ù¥ó¥È¥Õ¥é¥°¤ÎIDÈÖ¹æ */
-		FLGPTN clrptn)	/* ¥¯¥ê¥¢¤¹¤ë¥Ó¥Ã¥È¥Ñ¥¿¡¼¥ó(¥Ó¥Ã¥ÈËè¤ÎÈ¿Å¾ÃÍ) */
+		ID     flgid,	/* ã‚¯ãƒªã‚¢å¯¾è±¡ã®ã‚¤ãƒ™ãƒ³ãƒˆãƒ•ãƒ©ã‚°ã®IDç•ªå· */
+		FLGPTN clrptn)	/* ã‚¯ãƒªã‚¢ã™ã‚‹ãƒ“ãƒƒãƒˆãƒ‘ã‚¿ãƒ¼ãƒ³(ãƒ“ãƒƒãƒˆæ¯ã®åè»¢å€¤) */
 {
 	T_KERNEL_FLGCB *flgcb;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 
 	flgcb = KERNEL_GET_FLGCB(flgid);
 
-	/* ¥Õ¥é¥°¤Î¥¯¥ê¥¢ */
+	/* ãƒ•ãƒ©ã‚°ã®ã‚¯ãƒªã‚¢ */
 	flgcb->flgptn = (FLGPTN)(flgcb->flgptn & clrptn);
 
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 
 	return E_OK;
 }

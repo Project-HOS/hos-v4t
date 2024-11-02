@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  •≥•Û•’•£•Æ•Â•Ï°º•ø°º                           
-//    •—•È•·°º•ø°º≥ «º•Ø•È•π                                                  
+//  Hyper Operating System V4  „Ç≥„É≥„Éï„Ç£„ÇÆ„É•„É¨„Éº„Çø„Éº                           
+//    „Éë„É©„É°„Éº„Çø„ÉºÊ†ºÁ¥ç„ÇØ„É©„Çπ                                                  
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -12,7 +12,7 @@
 #include "parpack.h"
 
 
-// •≥•Û•π•»•È•Ø•ø
+// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 CParamPack::CParamPack()
 {
 	int i;
@@ -24,7 +24,7 @@ CParamPack::CParamPack()
 }
 
 
-// •«•π•»•È•Ø•ø
+// „Éá„Çπ„Éà„É©„ÇØ„Çø
 CParamPack::~CParamPack()
 {
 	int i;
@@ -36,7 +36,7 @@ CParamPack::~CParamPack()
 }
 
 
-// •—•È•·°º•ø°º¿ﬂƒÍ
+// „Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
 void CParamPack::SetParam(int iIndex, const char *pszParam)
 {
 	if ( iIndex < 0 || iIndex >= PARAMPACK_MAX )
@@ -51,7 +51,7 @@ void CParamPack::SetParam(int iIndex, const char *pszParam)
 }
 
 
-// •—•È•·°º•ø°ººË∆¿
+// „Éë„É©„É°„Éº„Çø„ÉºÂèñÂæó
 const char* CParamPack::GetParam(int iIndex)
 {
 	if ( iIndex < 0 || iIndex >= PARAMPACK_MAX )

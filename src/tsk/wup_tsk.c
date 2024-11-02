@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ¦Ì¥«¡¼¥Í¥ë ¥¿¥¹¥¯À©¸æ                                                 */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    Î¼ã‚«ãƒ¼ãƒãƒ« ã‚¿ã‚¹ã‚¯åˆ¶å¾¡                                                 */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,26 +11,26 @@
 
 
 
-/* ¥¿¥¹¥¯¤ÎÂÔ¤Á²ò½ü */
+/* ã‚¿ã‚¹ã‚¯ã®å¾…ã¡è§£é™¤ */
 ER wup_tsk(
-		ID tskid)	/* ¥¹¥ê¡¼¥×²ò½ü¤¹¤ë¥¿¥¹¥¯ */
+		ID tskid)	/* ã‚¹ãƒªãƒ¼ãƒ—è§£é™¤ã™ã‚‹ã‚¿ã‚¹ã‚¯ */
 {
 	T_KERNEL_TCB *tcb;
 	
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 
 	tcb = KERNEL_GET_TCB(tskid);
 	
 	if ( tcb->wupcnt++ == 0 )
 	{
-		/* ¥ì¥Ç¥£¡¼¥­¥å¡¼¤ØÄÉ²Ã */
+		/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ã¸è¿½åŠ  */
 		kernel_add_que(KERNEL_GET_RDYQUE(), tskid);
 
-		/* ¥Ç¥£¥¹¥Ñ¥Ã¥Á¼Â¹Ô */
+		/* ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒå®Ÿè¡Œ */
 		kernel_exe_dsp();
 	}
 
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 	
 	return E_OK;
 }

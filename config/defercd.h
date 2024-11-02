@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ¥¨¥é¡¼¥³¡¼¥É´ÉÍý                                                        
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ç®¡ç†                                                        
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -11,23 +11,23 @@
 #define __HOSV4CFG_DefErrorCode_h__
 
 
-// Àµ¾ï·Ï¥¨¥é¡¼¥³¡¼¥ÉÄêµÁ */
-#define CFG_ERR_NOPROC			(-2)	// Ì¤½èÍý
-#define CFG_ERR_COMPLETE		(-1)	// ´°Î»
-#define CFG_ERR_OK				0		// Àµ¾ï
+// æ­£å¸¸ç³»ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å®šç¾© */
+#define CFG_ERR_NOPROC			(-2)	// æœªå‡¦ç†
+#define CFG_ERR_COMPLETE		(-1)	// å®Œäº†
+#define CFG_ERR_OK				0		// æ­£å¸¸
 
-// °Û¾ï·Ï¥¨¥é¡¼¥³¡¼¥ÉÄêµÁ
-#define CFG_ERR_EOF				1		// Í½´ü¤»¤ÌEOF
-#define CFG_ERR_CR				2		// ÉÔÀµ¤Ê²þ¹Ô
-#define CFG_ERR_STATE_LEN		3		// £±¥¹¥Æ¡¼¥È¤¬Ä¹¤¹¤®¤ë
-#define CFG_ERR_SYNTAX			4		// ¹½Ê¸¥¨¥é¡¼
-#define CFG_ERR_PAREN			5		// ()¤ÎÉÔÀ°¹ç
-#define CFG_ERR_BRACE			6		// {}¤ÎÉÔÀ°¹ç
-#define CFG_ERR_SEMICOLON		7		// ¥»¥ß¥³¥í¥ó¤¬Ìµ¤¤
-#define CFG_ERR_TEXT			8		// ÉÔÀµ¤ÊÊ¸»úÎóÄê¿ô
-#define CFG_ERR_ID_CONFLICT		9		// ID¾×ÆÍ
-#define CFG_ERR_PARAM			10		// ¥Ñ¥é¥á¡¼¥¿¡¼ÉÔÀµ
-#define CFG_ERR_MULTIDEF		11		// Í£°ì¤Ç¤¢¤ë¤Ù¤­ÄêµÁ¤¬Ê£¿ô
+// ç•°å¸¸ç³»ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰å®šç¾©
+#define CFG_ERR_EOF				1		// äºˆæœŸã›ã¬EOF
+#define CFG_ERR_CR				2		// ä¸æ­£ãªæ”¹è¡Œ
+#define CFG_ERR_STATE_LEN		3		// ï¼‘ã‚¹ãƒ†ãƒ¼ãƒˆãŒé•·ã™ãŽã‚‹
+#define CFG_ERR_SYNTAX			4		// æ§‹æ–‡ã‚¨ãƒ©ãƒ¼
+#define CFG_ERR_PAREN			5		// ()ã®ä¸æ•´åˆ
+#define CFG_ERR_BRACE			6		// {}ã®ä¸æ•´åˆ
+#define CFG_ERR_SEMICOLON		7		// ã‚»ãƒŸã‚³ãƒ­ãƒ³ãŒç„¡ã„
+#define CFG_ERR_TEXT			8		// ä¸æ­£ãªæ–‡å­—åˆ—å®šæ•°
+#define CFG_ERR_ID_CONFLICT		9		// IDè¡çª
+#define CFG_ERR_PARAM			10		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ä¸æ­£
+#define CFG_ERR_MULTIDEF		11		// å”¯ä¸€ã§ã‚ã‚‹ã¹ãå®šç¾©ãŒè¤‡æ•°
 
 
 const char* GetErrMessage(int iErr);

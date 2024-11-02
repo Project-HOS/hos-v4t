@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  •≥•Û•’•£•Æ•Â•Ï°º•ø°º                           
-//    •—•È•·°º•ø°º≥ «º•Ø•È•π                                                  
+//  Hyper Operating System V4  „Ç≥„É≥„Éï„Ç£„ÇÆ„É•„É¨„Éº„Çø„Éº                           
+//    „Éë„É©„É°„Éº„Çø„ÉºÊ†ºÁ¥ç„ÇØ„É©„Çπ                                                  
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -14,15 +14,15 @@
 #define PARAMPACK_MAX	16
 
 
-// •—•È•·°º•ø°º≥ «º•Ø•È•π
+// „Éë„É©„É°„Éº„Çø„ÉºÊ†ºÁ¥ç„ÇØ„É©„Çπ
 class CParamPack
 {
 public:
-	CParamPack();		// •≥•Û•π•»•È•Ø•ø
-	~CParamPack();		// •«•π•»•È•Ø•ø
+	CParamPack();		// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
+	~CParamPack();		// „Éá„Çπ„Éà„É©„ÇØ„Çø
 
-	void        SetParam(int iIndex, const char *pszParam);	// •—•È•·°º•ø°º¿ﬂƒÍ
-	const char* GetParam(int iIndex);						// •—•È•·°º•ø°ººË∆¿
+	void        SetParam(int iIndex, const char *pszParam);	// „Éë„É©„É°„Éº„Çø„ÉºË®≠ÂÆö
+	const char* GetParam(int iIndex);						// „Éë„É©„É°„Éº„Çø„ÉºÂèñÂæó
 
 protected:
 	char *m_pszParam[PARAMPACK_MAX];

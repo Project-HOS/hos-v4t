@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  •≥•Û•’•£•Æ•Â•Ï°º•ø°º                           
-//    ATT_INI API §ŒΩËÕ˝                                                      
+//  Hyper Operating System V4  „Ç≥„É≥„Éï„Ç£„ÇÆ„É•„É¨„Éº„Çø„Éº                           
+//    ATT_INI API „ÅÆÂá¶ÁêÜ                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -19,23 +19,23 @@
 #define ATTINI_INIRTN		2
 
 
-// •≥•Û•π•»•È•Ø•ø
+// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
 CApiAttIni::CApiAttIni()
 {
-	// •—•È•·°º•ø°ºπΩ ∏¿ﬂƒÍ
-	m_iParamSyntax[0] = 3;		// √±∆»•—•È•·°º•ø°º
+	// „Éë„É©„É°„Éº„Çø„ÉºÊßãÊñáË®≠ÂÆö
+	m_iParamSyntax[0] = 3;		// ÂçòÁã¨„Éë„É©„É°„Éº„Çø„Éº
 	m_iParams         = 1;
 }
 
 
-// •«•π•»•È•Ø•ø
+// „Éá„Çπ„Éà„É©„ÇØ„Çø
 CApiAttIni::~CApiAttIni()
 {
 }
 
 
 
-// API§Œ≤Ú¿œ
+// API„ÅÆËß£Êûê
 int CApiAttIni::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	if ( strcmp(pszApiName, "ATT_INI") == 0 )
@@ -47,14 +47,14 @@ int CApiAttIni::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-//  ∏ª˙ŒÛ§Ú≈∏≥´
+// ÊñáÂ≠óÂàó„ÇíÂ±ïÈñã
 int CApiAttIni::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// cfg•’•°•§•ÎƒÍµ¡…ÙΩÒ§≠Ω–§∑
+// cfg„Éï„Ç°„Ç§„É´ÂÆöÁæ©ÈÉ®Êõ∏„ÅçÂá∫„Åó
 void  CApiAttIni::WriteCfgIni(FILE* fp)
 {
 	int i;

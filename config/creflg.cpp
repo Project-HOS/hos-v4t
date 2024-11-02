@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  е│еєе╒егеоехеьб╝е┐б╝                           
-//    CRE_FLG API д╬╜ш═¤                                                      
+//  Hyper Operating System V4  уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уГ╝                           
+//    CRE_FLG API уБохЗжчРЖ                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -22,22 +22,22 @@
 
 
 
-// е│еєе╣е╚ещепе┐
+// уВ│уГ│уВ╣уГИуГйуВпуВ┐
 CApiCreFlg::CApiCreFlg()
 {
-	// е╤ещесб╝е┐б╝╣╜╩╕└▀─ъ
-	m_iParamSyntax[0] = 0;		// ├▒╞╚е╤ещесб╝е┐б╝
-	m_iParamSyntax[1] = 2;		// 2е╤ещесб╝е┐б╝д╬е╓еэе├еп
+	// уГСуГйуГбуГ╝уВ┐уГ╝цзЛцЦЗшинхоЪ
+	m_iParamSyntax[0] = 0;		// хНШчЛмуГСуГйуГбуГ╝уВ┐уГ╝
+	m_iParamSyntax[1] = 2;		// 2уГСуГйуГбуГ╝уВ┐уГ╝уБоуГЦуГнуГГуВп
 	m_iParams = 2;
 }
 
-// е╟е╣е╚ещепе┐
+// уГЗуВ╣уГИуГйуВпуВ┐
 CApiCreFlg::~CApiCreFlg()
 {
 }
 
 
-// APIд╬▓Є└╧
+// APIуБошзгцЮР
 int CApiCreFlg::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	if ( strcmp(pszApiName, "CRE_FLG") == 0 )
@@ -49,12 +49,12 @@ int CApiCreFlg::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// ID ─ъ╡┴е╒ебедеы╜ёдн╜╨д╖
+// ID хоЪч╛йуГХуВбуВдуГлцЫ╕уБНхЗ║уБЧ
 void CApiCreFlg::WriteId(FILE* fp)
 {
 	int i;
 
-	// ID ─╛└▄╗╪─ъд╟д╩ддеке╓е╕езепе╚дм║▀дыдлд╔дждле╡б╝е┴
+	// ID чЫ┤цОецМЗхоЪуБзуБкуБДуВкуГЦуВ╕уВзуВпуГИуБМхЬиуВЛуБЛуБйуБЖуБЛуВ╡уГ╝уГБ
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		if ( atoi(m_pParamPacks[i]->GetParam(CREFLG_FLGID)) == 0 )
@@ -84,10 +84,10 @@ void CApiCreFlg::WriteId(FILE* fp)
 }
 
 
-// cfgе╒ебедеы─ъ╡┴╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлхоЪч╛йщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreFlg::WriteCfgDef(FILE* fp)
 {
-	// е│есеєе╚╜╨╬╧
+	// уВ│уГбуГ│уГИхЗ║хКЫ
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -104,7 +104,7 @@ void  CApiCreFlg::WriteCfgDef(FILE* fp)
 			m_iObjs);
 	}
 
-	// е╞б╝е╓еые╡еде║╛Ё╩є╜╨╬╧
+	// уГЖуГ╝уГЦуГлуВ╡уВдуВ║цГЕха▒хЗ║хКЫ
 	fprintf(
 		fp,
 		"\n/* event flag control block count */\n"
@@ -113,13 +113,13 @@ void  CApiCreFlg::WriteCfgDef(FILE* fp)
 }
 
 
-// cfgе╒ебедеы╜щ┤№▓╜╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлхИЭцЬЯхМЦщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreFlg::WriteCfgIni(FILE* fp)
 {
 }
 
 
-// cfgе╒ебедеы╡п╞░╔Ї╜ёдн╜╨д╖
+// cfgуГХуВбуВдуГлш╡╖хЛХщГицЫ╕уБНхЗ║уБЧ
 void  CApiCreFlg::WriteCfgStart(FILE* fp)
 {
 }

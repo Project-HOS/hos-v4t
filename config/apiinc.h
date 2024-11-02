@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    INCLUDE API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    INCLUDE API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,16 +15,16 @@
 #include "parpack.h"
 
 
-// INCLUDE ÍÑ
+// INCLUDE ç”¨
 class CApiInclude : public CApiDef
 {
 public:
-	CApiInclude();		// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	~CApiInclude();		// ¥Ç¥¹¥È¥é¥¯¥¿
+	CApiInclude();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~CApiInclude();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API¤Î²òÀÏ
-	int   AutoId(void);							// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
-	void  WriteCfgDef(FILE* fp);				// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// APIã®è§£æ
+	int   AutoId(void);							// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
+	void  WriteCfgDef(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 };
 
 

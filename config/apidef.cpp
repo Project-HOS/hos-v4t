@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    APIÄêµÁ¥¯¥é¥¹                                                           
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    APIå®šç¾©ã‚¯ãƒ©ã‚¹                                                           
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,7 +15,7 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiDef::CApiDef()
 {
 	int i;
@@ -30,7 +30,7 @@ CApiDef::CApiDef()
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiDef::~CApiDef()
 {
 	int i;
@@ -42,7 +42,7 @@ CApiDef::~CApiDef()
 }
 
 
-// ¥Ñ¥é¥á¡¼¥¿¡¼ÄÉ²Ã¡ÊÄ¶¼êÈ´¤­¡Ë
+// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¿½åŠ ï¼ˆè¶…æ‰‹æŠœãï¼‰
 int CApiDef::AddParams(const char* pszParams)
 {
 	char szParamBlock[API_MAX_PARAM];
@@ -51,58 +51,58 @@ int CApiDef::AddParams(const char* pszParams)
 	int  iIndex = 0;
 	int  i, j;
 
-	// ¥Ñ¥é¥á¡¼¥¿³ÊÇ¼ÍÑ¥ª¥Ö¥¸¥§¥¯¥ÈÀ¸À®
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ ¼ç´ç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ
 	m_pParamPacks[m_iObjs] = new CParamPack();
 
 	for ( i = 0; i < m_iParams; i++ )
 	{
 		if ( m_iParamSyntax[i] == 0 )
 		{
-			// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼ÀÚ¤ê½Ğ¤·
+			// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼åˆ‡ã‚Šå‡ºã—
 			iErr = CAnalyze::GetParameter(szParam, pszParams);
 			if ( iErr != CFG_ERR_OK )
 			{
 				break;
 			}
 
-			// ¥Ñ¥é¥á¡¼¥¿¡¼ÄÉ²Ã
+			// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¿½åŠ 
 			CAnalyze::SpaceCut(szParam);
 			m_pParamPacks[m_iObjs]->SetParam(iIndex++, szParam);
 		}
 		else
 		{
-			// ¶õÇòÆÉ¤ßÈô¤Ğ¤·
+			// ç©ºç™½èª­ã¿é£›ã°ã—
 			while ( *pszParams == ' ' )
 			{
 				pszParams++;
 			}
 
-			// ¥Ö¥í¥Ã¥¯³«»Ï¥Á¥§¥Ã¥¯
+			// ãƒ–ãƒ­ãƒƒã‚¯é–‹å§‹ãƒã‚§ãƒƒã‚¯
 			if ( *pszParams++ != '{' )
 			{
 				iErr = CFG_ERR_SYNTAX;
 				break;
 			}
 			
-			// ¥Ö¥í¥Ã¥¯ÀÚ¤ê½Ğ¤·
+			// ãƒ–ãƒ­ãƒƒã‚¯åˆ‡ã‚Šå‡ºã—
 			iErr = CAnalyze::SearchChar(szParamBlock, pszParams, '}');
 			if ( iErr != CFG_ERR_OK )
 			{
 				break;
 			}
 
-			// ¥Ö¥í¥Ã¥¯ÆâÆÉ¤ß½Ğ¤·
+			// ãƒ–ãƒ­ãƒƒã‚¯å†…èª­ã¿å‡ºã—
 			const char* pszParamBlock = szParamBlock;
 			for ( j = 0; j < m_iParamSyntax[i] + 1; j++ )
 			{
-				// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼ÀÚ¤ê½Ğ¤·
+				// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼åˆ‡ã‚Šå‡ºã—
 				iErr = CAnalyze::GetParameter(szParam, pszParamBlock);
 				if ( iErr != CFG_ERR_OK )
 				{
 					break;
 				}
 
-				// ¥Ñ¥é¥á¡¼¥¿¡¼ÄÉ²Ã
+				// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¿½åŠ 
 				CAnalyze::SpaceCut(szParam);
 				if ( szParam[0] == '\0')
 				{
@@ -132,20 +132,20 @@ int CApiDef::AddParams(const char* pszParams)
 }
 
 
-// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
+// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
 int CApiDef::AutoId(void)
 {
 	bool blUsedId[255];
 	int iId;
 	int i;
 
-	// ÊÑ¿ô½é´ü²½
+	// å¤‰æ•°åˆæœŸåŒ–
 	for ( i = 0; i < 255; i++ )
 	{
 		blUsedId[i] = false;
 	}
 
-	// ¸ÇÄêÃÍ»ØÄê¤ÎID¤ò¥µ¡¼¥Á
+	// å›ºå®šå€¤æŒ‡å®šã®IDã‚’ã‚µãƒ¼ãƒ
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		iId = atoi(m_pParamPacks[i]->GetParam(0));
@@ -153,7 +153,7 @@ int CApiDef::AutoId(void)
 		{
 			if ( m_iId[i] != 0 )
 			{
-				return CFG_ERR_ID_CONFLICT;		// ID¾×ÆÍ
+				return CFG_ERR_ID_CONFLICT;		// IDè¡çª
 			}
 			m_iId[i] = iId;
 			blUsedId[iId - 1] = true;
@@ -164,13 +164,13 @@ int CApiDef::AutoId(void)
 		}
 	}
 
-	// ID ¼«Æ°³äÅö
+	// ID è‡ªå‹•å‰²å½“
 	iId = 1;
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		if ( m_iId[i] == 0 )
 		{
-			// »ÈÍÑºÑ¤ßID¤Î¥¹¥­¥Ã¥×
+			// ä½¿ç”¨æ¸ˆã¿IDã®ã‚¹ã‚­ãƒƒãƒ—
 			while ( blUsedId[iId - 1] )
 			{
 				iId++;
@@ -194,23 +194,23 @@ int CApiDef::AutoId(void)
 }
 
 
-// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ñ¤­½Ğ¤·
+// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
 void CApiDef::WriteId(FILE* fpId)
 {
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void CApiDef::WriteCfgDef(FILE* fpCfg)
 {
 }
 
-// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
 void CApiDef::WriteCfgIni(FILE* fpCfg)
 {
 }
 
-// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 void CApiDef::WriteCfgStart(FILE* fpCfg)
 {
 }

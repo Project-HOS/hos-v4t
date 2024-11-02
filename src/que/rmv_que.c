@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*  ¦Ì¥«¡¼¥Í¥ë ¥­¥å¡¼Áàºî                                                   */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*  Î¼ã‚«ãƒ¼ãƒãƒ« ã‚­ãƒ¥ãƒ¼æ“ä½œ                                                   */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,7 +11,7 @@
 
 
 
-/* ¥¿¥¹¥¯¤ò¥­¥å¡¼¤«¤é³°¤¹ */
+/* ã‚¿ã‚¹ã‚¯ã‚’ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å¤–ã™ */
 void kernel_rmv_que(
 		ID           tskid)
 {
@@ -24,7 +24,7 @@ void kernel_rmv_que(
 	
 	tcb = KERNEL_GET_TCB(tskid);
 
-	/* ¥­¥å¡¼¤ò¼èÆÀ */
+	/* ã‚­ãƒ¥ãƒ¼ã‚’å–å¾— */
 	que = tcb->que;
 
 	if ( tcb->next == tskid )
@@ -45,7 +45,7 @@ void kernel_rmv_que(
 		}
 	}
 	
-	/* ¥­¥å¡¼¤òÅÐÏ¿²ò½ü */
+	/* ã‚­ãƒ¥ãƒ¼ã‚’ç™»éŒ²è§£é™¤ */
 	tcb->que = NULL;
 }
 

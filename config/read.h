@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  HOS V4 ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼ Ver 1.00                                      
-//    ¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¥¯¥é¥¹                                                    
+//  HOS V4 ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼ Ver 1.00                                      
+//    ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚¯ãƒ©ã‚¹                                                    
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -12,34 +12,34 @@
 #define __HOSV4CFG_Read_h__
 
 
-#define READ_MAX_PATH		1024	// ºÇÂç¥Ñ¥¹Ì¾
-#define READ_MAX_STATE		4096	// £±¥¹¥Æ¡¼¥È¤ÎºÇÂçÊ¸»ú¿ô
+#define READ_MAX_PATH		1024	// æœ€å¤§ãƒ‘ã‚¹å
+#define READ_MAX_STATE		4096	// ï¼‘ã‚¹ãƒ†ãƒ¼ãƒˆã®æœ€å¤§æ–‡å­—æ•°
 
 
-// ¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¥¯¥é¥¹
+// ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚¯ãƒ©ã‚¹
 class CRead
 {
 public:
-	CRead(FILE *fp, const char *name);			// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	~CRead();						// ¥Ç¥¹¥È¥é¥¯¥¿
+	CRead(FILE *fp, const char *name);			// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~CRead();						// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	int ReadState(char *szState);	// £±¥¹¥Æ¡¼¥ÈÆÉ¤ß¹ş¤ß
-	int GetPhysicalLineNum(void)	// ¼Âºİ¤ËÆÉ¤ß¹ş¤ßÃæ¤Î¥Õ¥¡¥¤¥ë¤Î¹ÔÈÖ¹æ¼èÆÀ
+	int ReadState(char *szState);	// ï¼‘ã‚¹ãƒ†ãƒ¼ãƒˆèª­ã¿è¾¼ã¿
+	int GetPhysicalLineNum(void)	// å®Ÿéš›ã«èª­ã¿è¾¼ã¿ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œç•ªå·å–å¾—
 	{ return m_iPhysicalLineNum; }
-	int GetLogicalLineNum(void)	// cpp¤òÄÌ¤¹Á°¤Î¥Õ¥¡¥¤¥ë¤Î¹ÔÈÖ¹æ¼èÆÀ
+	int GetLogicalLineNum(void)	// cppã‚’é€šã™å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œç•ªå·å–å¾—
 	{ return m_iLogicalLineNum; }
 	const char *GetLogicalInputFile(void)
 	{ return m_szLogicalInputFile; }
 
 protected:
-       int SkipPreProcessorLine(char* szText, int iCount);     // ¥×¥ê¥×¥í¥»¥Ã¥µ¥é¥¤¥ó¤Î¥¹¥­¥Ã¥×
-	int ReadString(int cDelimiter, char* szText, int& iCount);	// Ê¸»úÎóÆÉ¤ß¹ş¤ß
+       int SkipPreProcessorLine(char* szText, int iCount);     // ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ©ã‚¤ãƒ³ã®ã‚¹ã‚­ãƒƒãƒ—
+	int ReadString(int cDelimiter, char* szText, int& iCount);	// æ–‡å­—åˆ—èª­ã¿è¾¼ã¿
 
-	FILE *m_fpRead;					// ÆÉ¤ß¹ş¤ßÍÑ¥Õ¥¡¥¤¥ë¥İ¥¤¥ó¥¿
-	int  m_iPhysicalLineNum;			// ¼Âºİ¤ËÆÉ¤ß¹ş¤ßÃæ¤Î¥Õ¥¡¥¤¥ë¤Î¹ÔÈÖ¹æ
-	int  m_iLogicalLineNum;				// cpp¤òÄÌ¤¹Á°¤Î¥Õ¥¡¥¤¥ë¤Î¹ÔÈÖ¹æ
-	bool m_blLineTop;				// ¹Ô¤ÎÀèÆ¬
-	char m_szLogicalInputFile[READ_MAX_PATH];	// cpp¤òÄÌ¤¹Á°¤Î¥Õ¥¡¥¤¥ëÌ¾
+	FILE *m_fpRead;					// èª­ã¿è¾¼ã¿ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
+	int  m_iPhysicalLineNum;			// å®Ÿéš›ã«èª­ã¿è¾¼ã¿ä¸­ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œç•ªå·
+	int  m_iLogicalLineNum;				// cppã‚’é€šã™å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®è¡Œç•ªå·
+	bool m_blLineTop;				// è¡Œã®å…ˆé ­
+	char m_szLogicalInputFile[READ_MAX_PATH];	// cppã‚’é€šã™å‰ã®ãƒ•ã‚¡ã‚¤ãƒ«å
 };
 
 

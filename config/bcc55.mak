@@ -1,6 +1,6 @@
 # -----------------------------------------------------------------------------
 #  HOS-V4
-#   е│еєе╒егеоехеьб╝е┐б╝еседепе╒ебедеы Borland C++ V5.5 ═╤
+#   уВ│уГ│уГХуВгуВоуГеуГмуГ╝уВ┐уГ╝уГбуВдуВпуГХуВбуВдуГл Borland C++ V5.5 чФи
 #
 #                                     Copyright (C) 1998-2003 by Project HOS
 #                                     http://sourceforge.jp/projects/hos/
@@ -8,21 +8,21 @@
 
 
 
-# е─б╝еы
+# уГДуГ╝уГл
 CC   = bcc32
 LINK = bcc32
 
 
-# еке╫е╖ечеє
+# уВкуГЧуВ╖уГзуГ│
 CFLAGS = -c -O2
 LFLAGS =
 
 
-# е┐б╝е▓е├е╚
+# уВ┐уГ╝уВ▓уГГуГИ
 TARGET  = hos4tcfg
 
 
-# еке╓е╕езепе╚е╒ебедеы
+# уВкуГЦуВ╕уВзуВпуГИуГХуВбуВдуГл
 OBJS =  hos4cfg.obj \
 	analyze.obj \
 	parpack.obj \
@@ -44,17 +44,17 @@ OBJS =  hos4cfg.obj \
 .suffixes: .cpp
 
 
-# е┐б╝е▓е├е╚└╕└о
+# уВ┐уГ╝уВ▓уГГуГИчФЯцИР
 $(TARGET).exe: $(OBJS)
 	$(LINK) -e$(TARGET).exe $(OBJS)
 
-# епеъб╝еєеве├е╫
+# уВпуГкуГ╝уГ│уВвуГГуГЧ
 clean:
 	del *.obj
 	del $(TARGET).tds
 	del $(TARGET).exe
 
-# ┐ф╧└╡м┬з
+# цОишлЦшжПхЙЗ
 .cpp.obj:
 	$(CC) $(CFLAGS) $<
 

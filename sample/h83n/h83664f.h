@@ -1,21 +1,21 @@
 /* ------------------------------------------------------------------------- */
-/*  H8/3664F ÍÑ ¥Ø¥Ã¥À¥Õ¥¡¥¤¥ë                                               */
-/*  Á´¤Æ¤Î¥Ç¥Ğ¥¤¥¹¤Ç¸¡¾Ú¤ò¤·¤Æ¤¤¤ëÌõ¤Ç¤ÏÌµ¤¤¤Î¤Ç¡¢»ÈÍÑ¤Ë¤¢¤¿¤Ã¤Æ¤Ï½½Ê¬Ãí°Õ   */
-/*  ¤¬É¬Í×¤Ç¤¹¡£                                                             */
-/*  ¤³¤ÎÊÕ¤¬¸Ä¿Í¤Î¸Â³¦¤È¸À¤¦»ö¤Ç¡¢¥Ğ¥°Êó¹ğÂÔ¤Ã¤Æ¤Ş¤¹¡£                       */
+/*  H8/3664F ç”¨ ãƒ˜ãƒƒãƒ€ãƒ•ã‚¡ã‚¤ãƒ«                                               */
+/*  å…¨ã¦ã®ãƒ‡ãƒã‚¤ã‚¹ã§æ¤œè¨¼ã‚’ã—ã¦ã„ã‚‹è¨³ã§ã¯ç„¡ã„ã®ã§ã€ä½¿ç”¨ã«ã‚ãŸã£ã¦ã¯ååˆ†æ³¨æ„   */
+/*  ãŒå¿…è¦ã§ã™ã€‚                                                             */
+/*  ã“ã®è¾ºãŒå€‹äººã®é™ç•Œã¨è¨€ã†äº‹ã§ã€ãƒã‚°å ±å‘Šå¾…ã£ã¦ã¾ã™ã€‚                       */
 /*                                                                           */
-/*  ÆüÎ©Åı°ì¥Ø¥Ã¥À¡¼¥Õ¥¡¥¤¥ë ¥Ğ¡¼¥¸¥ç¥ó£²¤È¤Î°ã¤¤                            */
-/*  ÆüÎ©¤Î¥Ø¥Ã¥À¡¼¥Õ¥¡¥¤¥ë¤Ç¤Ï16bitÄ¹¤Î¥Õ¥£¡¼¥ë¥É¤Ï int¤ÇÉ½¤·¤Æ¤¤¤Ş¤¹¡£      */
-/*  ¤³¤Î¥Ø¥Ã¥À¡¼¥Õ¥¡¥¤¥ë¤â¤½¤ì¤ËÊï¤ª¤¦¤«¤È¤â»×¤¤¤Ş¤·¤¿¤¬¡¢short¤ÇÉ½¤¹»ö¤Ë    */
-/*  ¤·¤Ş¤·¤¿¡£¤È¸À¤¦¤Î¤â SH¤Ê¤ó¤«¤â·ë¹½ H8¤ÇºîÀ®¤·¤¿¥³¡¼¥Ç¥£¥ó¥°¤½¤Î¤Ş¤ŞÆ°   */
-/*  ¤¤¤Á¤ã¤¦»ö¤¬Â¿¤¤¤Î¤Ç¤¹¤¬(ÆÃ¤Ë SCIÅù)¡¢Îã¤¨¤Ğ AD¤Ï¤ä¤Ï¤ê10bit¤Ç¤½¤ÎÄ¹¤µ   */
-/*  ¤Ï H8¤â SH¤âÊÑ¤ï¤é¤º¡¢¥ì¥¸¥¹¥¿¤Ï16bit¤Ç¥¢¥¯¥»¥¹¤·¤Ş¤¹¡£¤¢¤Ã¤Á¤Ï int¤Ç    */
-/*  ¤³¤Ã¤Á¤Ï short¤È¤Ê¤ë¤Î¤¬¥¤¥Ş¥¤¥Á·ù¤Ê¤Î¤Ç¡¢Î¾Êı¤È¤âÂ·¤¨¤ë°Ù¤Ë short¤ÇÀë   */
-/*  ¸À¤·¤Æ¤¤¤Ş¤¹¡£                                                           */
-/*  ¤Ş¤¿¡¢ÆüÎ©¥³¥ó¥Ñ¥¤¥é¡¼ ¥Ğ¡¼¥¸¥ç¥ó£³°Ê¾å¤Ç¤ÏÌäÂê¤È¤Ê¤é¤Ê¤¤¥Ó¥Ã¥È¥Õ¥£¡¼    */
-/*  ¥ë¥É¤Î¾ÊÎ¬¤Ç¤¹¤¬¡¢½©·î¥³¥ó¥Ñ¥¤¥é¡¢¤Ä¤Ş¤êÆüÎ©¥³¥ó¥Ñ¥¤¥é ¥Ğ¡¼¥¸¥ç¥ó£²¤Î    */
-/*  ¥µ¥Ö¥»¥Ã¥È¤Ç¤Ï¥³¥ó¥Ñ¥¤¥ë¥¨¥é¡¼¤È¤Ê¤ë¤Î¤Ç¡¢Å¬Åö¤Ê¥Õ¥£¡¼¥ë¥ÉÌ¾¤ò½¼¤Æ¤Æ¤¤   */
-/*  ¤Ş¤¹¡£                                                                   */
+/*  æ—¥ç«‹çµ±ä¸€ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ« ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’ã¨ã®é•ã„                            */
+/*  æ—¥ç«‹ã®ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯16bité•·ã®ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰ã¯ intã§è¡¨ã—ã¦ã„ã¾ã™ã€‚      */
+/*  ã“ã®ãƒ˜ãƒƒãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚‚ãã‚Œã«å€£ãŠã†ã‹ã¨ã‚‚æ€ã„ã¾ã—ãŸãŒã€shortã§è¡¨ã™äº‹ã«    */
+/*  ã—ã¾ã—ãŸã€‚ã¨è¨€ã†ã®ã‚‚ SHãªã‚“ã‹ã‚‚çµæ§‹ H8ã§ä½œæˆã—ãŸã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãã®ã¾ã¾å‹•   */
+/*  ã„ã¡ã‚ƒã†äº‹ãŒå¤šã„ã®ã§ã™ãŒ(ç‰¹ã« SCIç­‰)ã€ä¾‹ãˆã° ADã¯ã‚„ã¯ã‚Š10bitã§ãã®é•·ã•   */
+/*  ã¯ H8ã‚‚ SHã‚‚å¤‰ã‚ã‚‰ãšã€ãƒ¬ã‚¸ã‚¹ã‚¿ã¯16bitã§ã‚¢ã‚¯ã‚»ã‚¹ã—ã¾ã™ã€‚ã‚ã£ã¡ã¯ intã§    */
+/*  ã“ã£ã¡ã¯ shortã¨ãªã‚‹ã®ãŒã‚¤ãƒã‚¤ãƒå«Œãªã®ã§ã€ä¸¡æ–¹ã¨ã‚‚æƒãˆã‚‹ç‚ºã« shortã§å®£   */
+/*  è¨€ã—ã¦ã„ã¾ã™ã€‚                                                           */
+/*  ã¾ãŸã€æ—¥ç«‹ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãƒ¼ ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼“ä»¥ä¸Šã§ã¯å•é¡Œã¨ãªã‚‰ãªã„ãƒ“ãƒƒãƒˆãƒ•ã‚£ãƒ¼    */
+/*  ãƒ«ãƒ‰ã®çœç•¥ã§ã™ãŒã€ç§‹æœˆã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã€ã¤ã¾ã‚Šæ—¥ç«‹ã‚³ãƒ³ãƒ‘ã‚¤ãƒ© ãƒãƒ¼ã‚¸ãƒ§ãƒ³ï¼’ã®    */
+/*  ã‚µãƒ–ã‚»ãƒƒãƒˆã§ã¯ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚¨ãƒ©ãƒ¼ã¨ãªã‚‹ã®ã§ã€é©å½“ãªãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰åã‚’å……ã¦ã¦ã„   */
+/*  ã¾ã™ã€‚                                                                   */
 /*                                                                           */
 /*                                   Copyright (C) 1998-2003 by Project HOS  */
 /* ------------------------------------------------------------------------- */
@@ -24,27 +24,27 @@
 #ifndef __PROJECT_HOS__H8_3664_H_
 #define __PROJECT_HOS__H8_3664_H_
 
-/* IO ¥Ç¥Ğ¥¤¥¹¥¢¥É¥ì¥¹ÄêµÁ */
-#define	__EKR_ADD__		0xFF10		/* EKR¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__TIMER_W_ADD__	0xFF80		/* TW¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__FLASH_ADD__	0xFF90		/* FLASH¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__TIMER_V_ADD__	0xFFA0		/* TV¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__TIMER_A_ADD__	0xFFA6		/* TA¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__SCI3_ADD__	0xFFA8		/* SCI3¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__AD_ADD__		0xFFB0		/* A/D¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__WDT_ADD__		0xFFC0		/* WDT¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IIC_ADD__		0xFFC4		/* IIC¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__ADDRESS_BREAK_ADD__	0xFFC8		/* ¥¢¥É¥ì¥¹¥Ö¥ì¥¤¥¯¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IO_PORT_ADD__		0xFFD0	/* IO¥İ¡¼¥È¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__SYSCR1_ADD__	0xFFF0		/* SYSCR1¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__SYSCR2_ADD__	0xFFF1		/* SYSCR2¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IEGR1_ADD__	0xFFF2		/* IEGR1¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IEGR2_ADD__	0xFFF3		/* IEGR2¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IENR1_ADD__	0xFFF4		/* IENR1¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IRR1_ADD__	0xFFF6		/* IRR1¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__IWPR_ADD__	0xFFF8		/* IWPR¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__MSTCR1_ADD__	0xFFF9		/* MSTCR1¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
-#define	__TSCR_ADD__	0xFFFC		/* TSCR¥ì¥¸¥¹¥¿¥¹¥¿¡¼¥È¥¢¥É¥ì¥¹ */
+/* IO ãƒ‡ãƒã‚¤ã‚¹ã‚¢ãƒ‰ãƒ¬ã‚¹å®šç¾© */
+#define	__EKR_ADD__		0xFF10		/* EKRãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__TIMER_W_ADD__	0xFF80		/* TWãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__FLASH_ADD__	0xFF90		/* FLASHãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__TIMER_V_ADD__	0xFFA0		/* TVãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__TIMER_A_ADD__	0xFFA6		/* TAãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__SCI3_ADD__	0xFFA8		/* SCI3ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__AD_ADD__		0xFFB0		/* A/Dãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__WDT_ADD__		0xFFC0		/* WDTãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IIC_ADD__		0xFFC4		/* IICãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__ADDRESS_BREAK_ADD__	0xFFC8		/* ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ–ãƒ¬ã‚¤ã‚¯ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IO_PORT_ADD__		0xFFD0	/* IOãƒãƒ¼ãƒˆãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__SYSCR1_ADD__	0xFFF0		/* SYSCR1ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__SYSCR2_ADD__	0xFFF1		/* SYSCR2ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IEGR1_ADD__	0xFFF2		/* IEGR1ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IEGR2_ADD__	0xFFF3		/* IEGR2ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IENR1_ADD__	0xFFF4		/* IENR1ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IRR1_ADD__	0xFFF6		/* IRR1ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__IWPR_ADD__	0xFFF8		/* IWPRãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__MSTCR1_ADD__	0xFFF9		/* MSTCR1ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
+#define	__TSCR_ADD__	0xFFFC		/* TSCRãƒ¬ã‚¸ã‚¹ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆã‚¢ãƒ‰ãƒ¬ã‚¹ */
 
 /*TIMER W*/
 struct __TIMER_W_REGISTER__
@@ -54,14 +54,14 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char CTS:1;		/*¥«¥¦¥ó¥¿¥¹¥¿¡¼¥È*/
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char BUFEB:1;		/*¥Ğ¥Ã¥Õ¥¡Æ°ºî B*/
-			unsigned char BUFEA:1;		/*¥Ğ¥Ã¥Õ¥¡Æ°ºî A*/
-			unsigned char rsv2:1;		/*Í½Ìó*/
-			unsigned char PWMD:1;		/*PWM¥â¡¼¥É D*/
-			unsigned char PWMC:1;		/*PWM¥â¡¼¥É C*/
-			unsigned char PWMB:1;		/*PWM¥â¡¼¥É B*/
+			unsigned char CTS:1;		/*ã‚«ã‚¦ãƒ³ã‚¿ã‚¹ã‚¿ãƒ¼ãƒˆ*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char BUFEB:1;		/*ãƒãƒƒãƒ•ã‚¡å‹•ä½œ B*/
+			unsigned char BUFEA:1;		/*ãƒãƒƒãƒ•ã‚¡å‹•ä½œ A*/
+			unsigned char rsv2:1;		/*äºˆç´„*/
+			unsigned char PWMD:1;		/*PWMãƒ¢ãƒ¼ãƒ‰ D*/
+			unsigned char PWMC:1;		/*PWMãƒ¢ãƒ¼ãƒ‰ C*/
+			unsigned char PWMB:1;		/*PWMãƒ¢ãƒ¼ãƒ‰ B*/
 		} BIT;
 	} TMRW;
 	union								/*TCRW*/
@@ -69,12 +69,12 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char CCLR:1;		/*¥«¥¦¥ó¥¿¥¯¥ê¥¢*/
-			unsigned char CKS:3;		/*¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
-			unsigned char TOD:1;		/*¥¿¥¤¥Ş½ĞÎÏ¥ì¥Ù¥ë¥»¥Ã¥È D*/
-			unsigned char TOC:1;		/*¥¿¥¤¥Ş½ĞÎÏ¥ì¥Ù¥ë¥»¥Ã¥È C*/
-			unsigned char TOB:1;		/*¥¿¥¤¥Ş½ĞÎÏ¥ì¥Ù¥ë¥»¥Ã¥È B*/
-			unsigned char TOA:1;		/*¥¿¥¤¥Ş½ĞÎÏ¥ì¥Ù¥ë¥»¥Ã¥È A*/
+			unsigned char CCLR:1;		/*ã‚«ã‚¦ãƒ³ã‚¿ã‚¯ãƒªã‚¢*/
+			unsigned char CKS:3;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
+			unsigned char TOD:1;		/*ã‚¿ã‚¤ãƒå‡ºåŠ›ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ D*/
+			unsigned char TOC:1;		/*ã‚¿ã‚¤ãƒå‡ºåŠ›ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ C*/
+			unsigned char TOB:1;		/*ã‚¿ã‚¤ãƒå‡ºåŠ›ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ B*/
+			unsigned char TOA:1;		/*ã‚¿ã‚¤ãƒå‡ºåŠ›ãƒ¬ãƒ™ãƒ«ã‚»ãƒƒãƒˆ A*/
 		} BIT;
 	} TCRW;
 	union								/*TIERW*/
@@ -82,12 +82,12 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char OVIE:1;		/*¥¿¥¤¥Ş¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char rsv1:3;		/*Í½Ìó*/
-			unsigned char IMIED:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë D*/
-			unsigned char IMIEC:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë C*/
-			unsigned char IMIEB:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë B*/
-			unsigned char IMIEA:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë A*/
+			unsigned char OVIE:1;		/*ã‚¿ã‚¤ãƒã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼å‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char rsv1:3;		/*äºˆç´„*/
+			unsigned char IMIED:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒå‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ« D*/
+			unsigned char IMIEC:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒå‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ« C*/
+			unsigned char IMIEB:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒå‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ« B*/
+			unsigned char IMIEA:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒå‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ« A*/
 		} BIT;
 	} TIERW;
 	union								/*TSRW*/
@@ -95,12 +95,12 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char OVF:1;		/*¥¿¥¤¥Ş¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼*/
-			unsigned char rsv1:3;		/*Í½Ìó*/
-			unsigned char IMFD:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° D*/
-			unsigned char IMFC:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° C*/
-			unsigned char IMFB:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° B*/
-			unsigned char IMFA:1;		/*¥¤¥ó¥×¥Ã¥È¥­¥ã¥×¥Á¥ã/¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° A*/
+			unsigned char OVF:1;		/*ã‚¿ã‚¤ãƒã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼*/
+			unsigned char rsv1:3;		/*äºˆç´„*/
+			unsigned char IMFD:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° D*/
+			unsigned char IMFC:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° C*/
+			unsigned char IMFB:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° B*/
+			unsigned char IMFA:1;		/*ã‚¤ãƒ³ãƒ—ãƒƒãƒˆã‚­ãƒ£ãƒ—ãƒãƒ£/ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° A*/
 		} BIT;
 	} TSRW;
 	union								/*TIOR0*/
@@ -108,10 +108,10 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char IOB:3;		/*IO¥³¥ó¥È¥í¡¼¥ë B*/
-			unsigned char rsv2:1;		/*Í½Ìó*/
-			unsigned char IOA:3;		/*IO¥³¥ó¥È¥í¡¼¥ë A*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char IOB:3;		/*IOã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« B*/
+			unsigned char rsv2:1;		/*äºˆç´„*/
+			unsigned char IOA:3;		/*IOã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« A*/
 		} BIT;
 	} TIOR0;
 	union								/*TIOR1*/
@@ -119,17 +119,17 @@ struct __TIMER_W_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char IOD:3;		/*IO¥³¥ó¥È¥í¡¼¥ë D*/
-			unsigned char rsv2:1;		/*Í½Ìó*/
-			unsigned char IOC:3;		/*IO¥³¥ó¥È¥í¡¼¥ë C*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char IOD:3;		/*IOã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« D*/
+			unsigned char rsv2:1;		/*äºˆç´„*/
+			unsigned char IOC:3;		/*IOã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« C*/
 		} BIT;
 	} TIOR1;
-	unsigned short	TCNT;				/*¥¿¥¤¥Ş¥«¥¦¥ó¥¿*/
-	unsigned short	GRA;				/*¥¸¥§¥Í¥é¥ë¥ì¥¸¥¹¥¿ A*/
-	unsigned short	GRB;				/*¥¸¥§¥Í¥é¥ë¥ì¥¸¥¹¥¿ B*/
-	unsigned short	GRC;				/*¥¸¥§¥Í¥é¥ë¥ì¥¸¥¹¥¿ C*/
-	unsigned short	GRD;				/*¥¸¥§¥Í¥é¥ë¥ì¥¸¥¹¥¿ D*/
+	unsigned short	TCNT;				/*ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ã‚¿*/
+	unsigned short	GRA;				/*ã‚¸ã‚§ãƒãƒ©ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ A*/
+	unsigned short	GRB;				/*ã‚¸ã‚§ãƒãƒ©ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ B*/
+	unsigned short	GRC;				/*ã‚¸ã‚§ãƒãƒ©ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ C*/
+	unsigned short	GRD;				/*ã‚¸ã‚§ãƒãƒ©ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ D*/
 };
 
 #define	TW	(*(volatile struct __TIMER_W_REGISTER__ *)__TIMER_W_ADD__)
@@ -143,14 +143,14 @@ struct __FLASH_ROM_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char SWE:1;		/*¥½¥Õ¥È¥¦¥¨¥¢¥é¥¤¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char ESU:1;		/*¥¤¥ì¡¼¥¹¥»¥Ã¥È¥¢¥Ã¥×*/
-			unsigned char PSU:1;		/*¥×¥í¥°¥é¥à¥»¥Ã¥È¥¢¥Ã¥×*/
-			unsigned char EV:1;			/*¥¤¥ì¡¼¥¹¥Ù¥ê¥Õ¥¡¥¤*/
-			unsigned char PV:1;			/*¥×¥í¥°¥é¥à¥Ù¥ê¥Õ¥¡¥¤*/
-			unsigned char E:1;			/*¤¤¥¤¥ì¡¼¥¹*/
-			unsigned char P:1;			/*¥×¥í¥°¥é¥à*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char SWE:1;		/*ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ãƒ©ã‚¤ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char ESU:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—*/
+			unsigned char PSU:1;		/*ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—*/
+			unsigned char EV:1;			/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ™ãƒªãƒ•ã‚¡ã‚¤*/
+			unsigned char PV:1;			/*ãƒ—ãƒ­ã‚°ãƒ©ãƒ ãƒ™ãƒªãƒ•ã‚¡ã‚¤*/
+			unsigned char E:1;			/*ã„ã‚¤ãƒ¬ãƒ¼ã‚¹*/
+			unsigned char P:1;			/*ãƒ—ãƒ­ã‚°ãƒ©ãƒ */
 		} BIT;
 	} FLMCR1;
 	union								/*FLMCR2*/
@@ -158,8 +158,8 @@ struct __FLASH_ROM_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char FLER:1;		/*FLASH ROM ½ñ¤­¹ş¤ß¥¨¥é¡¼*/
-			unsigned char rsv1:7;		/*Í½Ìó*/
+			unsigned char FLER:1;		/*FLASH ROM æ›¸ãè¾¼ã¿ã‚¨ãƒ©ãƒ¼*/
+			unsigned char rsv1:7;		/*äºˆç´„*/
 		} BIT;
 	} FLMCR2;
 	union								/*FLPWCR*/
@@ -167,8 +167,8 @@ struct __FLASH_ROM_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char PDWND:1;		/*¥Ñ¥ï¡¼¥À¥¦¥ó¥Ç¥£¥¹¥¨¡¼¥Ö¥ë*/
-			unsigned char rsv1:7;		/*Í½Ìó*/
+			unsigned char PDWND:1;		/*ãƒ‘ãƒ¯ãƒ¼ãƒ€ã‚¦ãƒ³ãƒ‡ã‚£ã‚¹ã‚¨ãƒ¼ãƒ–ãƒ«*/
+			unsigned char rsv1:7;		/*äºˆç´„*/
 		} BIT;
 	} FLPWCR;
 	union								/*EBR1*/
@@ -176,22 +176,22 @@ struct __FLASH_ROM_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:3;		/*Í½Ìó*/
-			unsigned char EB4:1;		/*¥¤¥ì¡¼¥¹¥Ö¥í¥Ã¥¯ 4*/
-			unsigned char EB3:1;		/*¥¤¥ì¡¼¥¹¥Ö¥í¥Ã¥¯ 3*/
-			unsigned char EB2:1;		/*¥¤¥ì¡¼¥¹¥Ö¥í¥Ã¥¯ 2*/
-			unsigned char EB1:1;		/*¥¤¥ì¡¼¥¹¥Ö¥í¥Ã¥¯ 1*/
-			unsigned char EB0:1;		/*¥¤¥ì¡¼¥¹¥Ö¥í¥Ã¥¯ 0*/
+			unsigned char rsv1:3;		/*äºˆç´„*/
+			unsigned char EB4:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 4*/
+			unsigned char EB3:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 3*/
+			unsigned char EB2:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 2*/
+			unsigned char EB1:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 1*/
+			unsigned char EB0:1;		/*ã‚¤ãƒ¬ãƒ¼ã‚¹ãƒ–ãƒ­ãƒƒã‚¯ 0*/
 		} BIT;
 	} EBR1;
-	char	rsv1[ 0xff9b - 0xff93 - 1 ];	/*¶õ¤­*/
+	char	rsv1[ 0xff9b - 0xff93 - 1 ];	/*ç©ºã*/
 	union								/*FENR*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char FLSHE:1;		/*¥Õ¥é¥Ã¥·¥å¥á¥â¥ê¥³¥ó¥È¥í¡¼¥ë¥ì¥¸¥¹¥¿¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char rsv1:7;		/*Í½Ìó*/
+			unsigned char FLSHE:1;		/*ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ãƒ¡ãƒ¢ãƒªã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char rsv1:7;		/*äºˆç´„*/
 		} BIT;
 	} FENR;
 };
@@ -206,11 +206,11 @@ struct __TIMER_V_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char CMIEB:1;		/*¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë B*/
-			unsigned char CMIEA:1;		/*¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë A*/
-			unsigned char OVIE:1;		/*¥¿¥¤¥Ş¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë B*/
-			unsigned char CCLR:2;		/*¥«¥¦¥ó¥¿¥¯¥ê¥¢*/
-			unsigned char CKS:3;		/*¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
+			unsigned char CMIEB:1;		/*ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ« B*/
+			unsigned char CMIEA:1;		/*ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ« A*/
+			unsigned char OVIE:1;		/*ã‚¿ã‚¤ãƒã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ« B*/
+			unsigned char CCLR:2;		/*ã‚«ã‚¦ãƒ³ã‚¿ã‚¯ãƒªã‚¢*/
+			unsigned char CKS:3;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
 		} BIT;
 	} TCRV0;
 	union								/*TCSRV*/
@@ -218,26 +218,26 @@ struct __TIMER_V_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char CMFB:1;		/*¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° B*/
-			unsigned char CMFA:1;		/*¥³¥ó¥Ú¥¢¥Ş¥Ã¥Á¥Õ¥é¥° A*/
-			unsigned char OVF:1;		/*¥¿¥¤¥Ş¥ª¡¼¥Ğ¡¼¥Õ¥í¡¼¥Õ¥é¥°*/
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char OS:4;			/*¥¢¥¦¥È¥×¥Ã¥È¥»¥ì¥¯¥È*/
+			unsigned char CMFB:1;		/*ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° B*/
+			unsigned char CMFA:1;		/*ã‚³ãƒ³ãƒšã‚¢ãƒãƒƒãƒãƒ•ãƒ©ã‚° A*/
+			unsigned char OVF:1;		/*ã‚¿ã‚¤ãƒã‚ªãƒ¼ãƒãƒ¼ãƒ•ãƒ­ãƒ¼ãƒ•ãƒ©ã‚°*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char OS:4;			/*ã‚¢ã‚¦ãƒˆãƒ—ãƒƒãƒˆã‚»ãƒ¬ã‚¯ãƒˆ*/
 		} BIT;
 	} TCSRV;
-	unsigned char TCORA;				/*¥¿¥¤¥à¥³¥ó¥¹¥¿¥ó¥È¥ì¥¸¥¹¥¿ A*/
-	unsigned char TCORB;				/*¥¿¥¤¥à¥³¥ó¥¹¥¿¥ó¥È¥ì¥¸¥¹¥¿ B*/
-	unsigned char TCNTV;				/*¥¿¥¤¥Ş¥«¥¦¥ó¥È¥¿ V*/
+	unsigned char TCORA;				/*ã‚¿ã‚¤ãƒ ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒ¬ã‚¸ã‚¹ã‚¿ A*/
+	unsigned char TCORB;				/*ã‚¿ã‚¤ãƒ ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒ¬ã‚¸ã‚¹ã‚¿ B*/
+	unsigned char TCNTV;				/*ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ãƒˆã‚¿ V*/
 	union								/*TCRV1*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:3;		/*Í½Ìó*/
-			unsigned char TVEG:2;		/*TRGV ÆşÎÏ¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-			unsigned char TRGE:1;		/*¥«¥¦¥ó¥È¥¢¥Ã¥×¤Î³«»Ï¤È¥«¥¦¥ó¥È¥¢¥Ã¥×¤ÎÄä»ß¤Î¶Ø»ß¤È*/
-			unsigned char rsv2:1;		/*Í½Ìó*/
-			unsigned char ICKS:1;		/*¥¤¥ó¥¿¡¼¥Ê¥ë¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È 0*/
+			unsigned char rsv1:3;		/*äºˆç´„*/
+			unsigned char TVEG:2;		/*TRGV å…¥åŠ›ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+			unsigned char TRGE:1;		/*ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã®é–‹å§‹ã¨ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—ã®åœæ­¢ã®ç¦æ­¢ã¨*/
+			unsigned char rsv2:1;		/*äºˆç´„*/
+			unsigned char ICKS:1;		/*ã‚¤ãƒ³ã‚¿ãƒ¼ãƒŠãƒ«ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ 0*/
 		} BIT;
 	} TCRV1;
 };
@@ -252,12 +252,12 @@ struct __TIMER_A_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char CKSO:3;		/*TMOWÃ¼»Ò¤«¤é½ĞÎÏ¤¹¤ë¥¯¥í¥Ã¥¯¤ÎÁªÂò*/
-			unsigned char rsv1:1;		/*Í½Ìó*/
-			unsigned char CKSI:4;		/*¥¿¥¤¥ŞA¤ÎÆ°ºî¥â¡¼¥É¤ÎÀßÄê*/
+			unsigned char CKSO:3;		/*TMOWç«¯å­ã‹ã‚‰å‡ºåŠ›ã™ã‚‹ã‚¯ãƒ­ãƒƒã‚¯ã®é¸æŠ*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
+			unsigned char CKSI:4;		/*ã‚¿ã‚¤ãƒAã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã®è¨­å®š*/
 		} BIT;
 	} TMA;
-	unsigned char TCA;					/*¥¿¥¤¥Ş¥«¥¦¥ó¥¿ A*/
+	unsigned char TCA;					/*ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ã‚¿ A*/
 };
 
 #define	TA	(*(volatile struct __TIMER_A_REGISTER__ *)__TIMER_A_ADD__)
@@ -270,28 +270,28 @@ struct __SCI3_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char COM:1;		/*¥³¥ß¥å¥Ë¥±¡¼¥·¥ç¥ó¥â¡¼¥É*/
-			unsigned char CHR:1;		/*¥­¥ã¥é¥¯¥¿¥ì¥ó¥°¥¹*/
-			unsigned char PE:1;			/*¥Ñ¥ê¥Æ¥£¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char PM:1;			/*¥Ñ¥ê¥Æ¥£¥â¡¼¥É*/
-			unsigned char STOP:1;		/*¥¹¥È¥Ã¥×¥Ó¥Ã¥È¥ì¥ó¥°¥¹*/
-			unsigned char MP:1;			/*¥Ş¥ë¥Á¥×¥í¥»¥Ã¥µ¥â¡¼¥É*/
-			unsigned char CKS:2;		/*¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
+			unsigned char COM:1;		/*ã‚³ãƒŸãƒ¥ãƒ‹ã‚±ãƒ¼ã‚·ãƒ§ãƒ³ãƒ¢ãƒ¼ãƒ‰*/
+			unsigned char CHR:1;		/*ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¬ãƒ³ã‚°ã‚¹*/
+			unsigned char PE:1;			/*ãƒ‘ãƒªãƒ†ã‚£ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char PM:1;			/*ãƒ‘ãƒªãƒ†ã‚£ãƒ¢ãƒ¼ãƒ‰*/
+			unsigned char STOP:1;		/*ã‚¹ãƒˆãƒƒãƒ—ãƒ“ãƒƒãƒˆãƒ¬ãƒ³ã‚°ã‚¹*/
+			unsigned char MP:1;			/*ãƒãƒ«ãƒãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ¢ãƒ¼ãƒ‰*/
+			unsigned char CKS:2;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
 		} BIT;
 	} SMR;
-	unsigned char BRR;					/*¥Ó¥Ã¥È¥ì¡¼¥È¥ì¥¸¥¹¥¿*/
+	unsigned char BRR;					/*ãƒ“ãƒƒãƒˆãƒ¬ãƒ¼ãƒˆãƒ¬ã‚¸ã‚¹ã‚¿*/
 	union								/*SCR3*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char TIE:1;		/*¥È¥é¥ó¥¹¥ß¥Ã¥È¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char RIE:1;		/*¥ì¥·¡¼¥Ö¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char TE:1;			/*¥È¥é¥ó¥¹¥ß¥Ã¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char RE:1;			/*¥ì¥·¡¼¥Ö¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char MPIE:1;		/*¥Ş¥ë¥Á¥×¥í¥»¥Ã¥µ¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char TEIE:1;		/*¥È¥é¥ó¥¹¥ß¥Ã¥È¥¨¥ó¥É¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char CKE:2;		/*¥¯¥í¥Ã¥¯¥¤¥Í¡¼¥Ö¥ë*/
+			unsigned char TIE:1;		/*ãƒˆãƒ©ãƒ³ã‚¹ãƒŸãƒƒãƒˆã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char RIE:1;		/*ãƒ¬ã‚·ãƒ¼ãƒ–ã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char TE:1;			/*ãƒˆãƒ©ãƒ³ã‚¹ãƒŸãƒƒãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char RE:1;			/*ãƒ¬ã‚·ãƒ¼ãƒ–ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char MPIE:1;		/*ãƒãƒ«ãƒãƒ—ãƒ­ã‚»ãƒƒã‚µã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char TEIE:1;		/*ãƒˆãƒ©ãƒ³ã‚¹ãƒŸãƒƒãƒˆã‚¨ãƒ³ãƒ‰ã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char CKE:2;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
 		} BIT;
 	} SCR3;
 	unsigned char TDR;					/**/
@@ -300,17 +300,17 @@ struct __SCI3_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char TDRE:1;		/*¥È¥é¥ó¥¹¥ß¥Ã¥È¥Ç¡¼¥¿¥ì¥¸¥¹¥¿¥¨¥ó¥×¥Æ¥£*/
-			unsigned char RDRF:1;		/*¥ì¥·¡¼¥Ö¥Ç¡¼¥¿¥ì¥¸¥¹¥¿¥Õ¥ë*/
-			unsigned char OER:1;		/*¥ª¡¼¥Ğ¡¼¥é¥ó¥¨¥é¡¼*/
-			unsigned char FER:1;		/*¥Õ¥ì¡¼¥ß¥ó¥°¥¨¥é¡¼*/
-			unsigned char PER:1;		/*¥Ñ¥ê¥Æ¥£¥¨¥é¡¼*/
-			unsigned char TEND:1;		/*¥È¥é¥ó¥¹¥ß¥Ã¥È¥¨¥ó¥É*/
-			unsigned char MPBR:1;		/*¥Ş¥ë¥Á¥×¥í¥»¥Ã¥µ¥Ó¥Ã¥È¥ì¥·¡¼¥Ö*/
-			unsigned char MPBT:1;		/*¥Ş¥ë¥Á¥×¥í¥»¥Ã¥µ¥Ó¥Ã¥È¥È¥é¥ó¥¹¥Õ¥¡*/
+			unsigned char TDRE:1;		/*ãƒˆãƒ©ãƒ³ã‚¹ãƒŸãƒƒãƒˆãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ã‚¨ãƒ³ãƒ—ãƒ†ã‚£*/
+			unsigned char RDRF:1;		/*ãƒ¬ã‚·ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ãƒ•ãƒ«*/
+			unsigned char OER:1;		/*ã‚ªãƒ¼ãƒãƒ¼ãƒ©ãƒ³ã‚¨ãƒ©ãƒ¼*/
+			unsigned char FER:1;		/*ãƒ•ãƒ¬ãƒ¼ãƒŸãƒ³ã‚°ã‚¨ãƒ©ãƒ¼*/
+			unsigned char PER:1;		/*ãƒ‘ãƒªãƒ†ã‚£ã‚¨ãƒ©ãƒ¼*/
+			unsigned char TEND:1;		/*ãƒˆãƒ©ãƒ³ã‚¹ãƒŸãƒƒãƒˆã‚¨ãƒ³ãƒ‰*/
+			unsigned char MPBR:1;		/*ãƒãƒ«ãƒãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ“ãƒƒãƒˆãƒ¬ã‚·ãƒ¼ãƒ–*/
+			unsigned char MPBT:1;		/*ãƒãƒ«ãƒãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ“ãƒƒãƒˆãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚¡*/
 		} BIT;
 	} SSR;
-	unsigned char RDR;					/*¥ì¥·¡¼¥Ö¥Ç¡¼¥¿¥ì¥¸¥¹¥¿*/
+	unsigned char RDR;					/*ãƒ¬ã‚·ãƒ¼ãƒ–ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿*/
 };
 
 #define	SCI3	(*(volatile struct __SCI3_REGISTER__ *)__SCI3_ADD__)
@@ -318,21 +318,21 @@ struct __SCI3_REGISTER__
 /*AD*/
 struct __AD_REGISTER__
 {
-	unsigned short ADDRA;				/*A/D ¥Ç¡¼¥¿¥ì¥¸¥¹¥¿ A*/
-	unsigned short ADDRB;				/*A/D ¥Ç¡¼¥¿¥ì¥¸¥¹¥¿ B*/
-	unsigned short ADDRC;				/*A/D ¥Ç¡¼¥¿¥ì¥¸¥¹¥¿ C*/
-	unsigned short ADDRD;				/*A/D ¥Ç¡¼¥¿¥ì¥¸¥¹¥¿ D*/
+	unsigned short ADDRA;				/*A/D ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ A*/
+	unsigned short ADDRB;				/*A/D ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ B*/
+	unsigned short ADDRC;				/*A/D ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ C*/
+	unsigned short ADDRD;				/*A/D ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿ D*/
 	union								/*ADCSR*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char ADF:1;		/*A/D ¥¨¥ó¥É¥Õ¥é¥°*/
-			unsigned char ADIE:1;		/*A/D ¥¤¥ó¥¿¥é¥×¥È¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char ADST:1;		/*A/D ¥¹¥¿¡¼¥È*/
-			unsigned char SCAN:1;		/*¥¹¥­¥ã¥ó¥â¡¼¥É*/
-			unsigned char CKS:1;		/*¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
-			unsigned char CH:3;			/*¥Á¥ã¥Í¥ë¥»¥ì¥¯¥È*/
+			unsigned char ADF:1;		/*A/D ã‚¨ãƒ³ãƒ‰ãƒ•ãƒ©ã‚°*/
+			unsigned char ADIE:1;		/*A/D ã‚¤ãƒ³ã‚¿ãƒ©ãƒ—ãƒˆã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char ADST:1;		/*A/D ã‚¹ã‚¿ãƒ¼ãƒˆ*/
+			unsigned char SCAN:1;		/*ã‚¹ã‚­ãƒ£ãƒ³ãƒ¢ãƒ¼ãƒ‰*/
+			unsigned char CKS:1;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
+			unsigned char CH:3;			/*ãƒãƒ£ãƒãƒ«ã‚»ãƒ¬ã‚¯ãƒˆ*/
 		} BIT;
 	} ADCSR;
 	union								/*ADCR*/
@@ -340,8 +340,8 @@ struct __AD_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char TRGE:1;		/*¥È¥ê¥¬¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char rsv1:7;		/*Í½Ìó*/
+			unsigned char TRGE:1;		/*ãƒˆãƒªã‚¬ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char rsv1:7;		/*äºˆç´„*/
 		} BIT;
 	} ADCR;
 };
@@ -356,24 +356,24 @@ struct __WDT_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char B6WI:1;		/*¥Ó¥Ã¥È 6 ½ñ¹ş¤ß¶Ø»ß*/
-			unsigned char TCWE:1;		/*¥¿¥¤¥Ş¥«¥¦¥ó¥¿ W ½ñ¤­¹ş¤ßµö²Ä*/
-			unsigned char B4WI:1;		/*¥Ó¥Ã¥È 4 ½ñ¹ş¤ß¶Ø»ß*/
-			unsigned char TCSRWE:1;		/*¥¿¥¤¥Ş¥³¥ó¥È¥í¡¼¥ë/¥¹¥Æ¡¼¥¿¥¹¥ì¥¸¥¹¥¿ W ½ñ¤­¹ş¤ßµö²Ä*/
-			unsigned char B2WI:1;		/*¥Ó¥Ã¥È 2 ½ñ¹ş¤ß¶Ø»ß*/
-			unsigned char WDON:1;		/*¥¦¥ª¥Ã¥Á¥É¥Ã¥°¥¿¥¤¥Ş¥ª¥ó*/
-			unsigned char B0WI:1;		/*¥Ó¥Ã¥È 0 ½ñ¹ş¤ß¶Ø»ß*/
-			unsigned char WRST:1;		/*¥¦¥ª¥Ã¥Á¥É¥Ã¥°¥¿¥¤¥Ş¥ê¥»¥Ã¥È*/
+			unsigned char B6WI:1;		/*ãƒ“ãƒƒãƒˆ 6 æ›¸è¾¼ã¿ç¦æ­¢*/
+			unsigned char TCWE:1;		/*ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ã‚¿ W æ›¸ãè¾¼ã¿è¨±å¯*/
+			unsigned char B4WI:1;		/*ãƒ“ãƒƒãƒˆ 4 æ›¸è¾¼ã¿ç¦æ­¢*/
+			unsigned char TCSRWE:1;		/*ã‚¿ã‚¤ãƒã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«/ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒ¬ã‚¸ã‚¹ã‚¿ W æ›¸ãè¾¼ã¿è¨±å¯*/
+			unsigned char B2WI:1;		/*ãƒ“ãƒƒãƒˆ 2 æ›¸è¾¼ã¿ç¦æ­¢*/
+			unsigned char WDON:1;		/*ã‚¦ã‚ªãƒƒãƒãƒ‰ãƒƒã‚°ã‚¿ã‚¤ãƒã‚ªãƒ³*/
+			unsigned char B0WI:1;		/*ãƒ“ãƒƒãƒˆ 0 æ›¸è¾¼ã¿ç¦æ­¢*/
+			unsigned char WRST:1;		/*ã‚¦ã‚ªãƒƒãƒãƒ‰ãƒƒã‚°ã‚¿ã‚¤ãƒãƒªã‚»ãƒƒãƒˆ*/
 		} BIT;
 	} TCSRWD;
-	unsigned char	TCWD;				/*¥¿¥¤¥Ş¥«¥¦¥ó¥¿*/
+	unsigned char	TCWD;				/*ã‚¿ã‚¤ãƒã‚«ã‚¦ãƒ³ã‚¿*/
 	union								/*TMWD*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:4;		/*Í½Ìó*/
-			unsigned char CKS:4;		/*¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
+			unsigned char rsv1:4;		/*äºˆç´„*/
+			unsigned char CKS:4;		/*ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
 		} BIT;
 	} TMWD;
 };
@@ -388,14 +388,14 @@ struct __IIC_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char ICE:1;		/*I2C¥Ğ¥¹¥¤¥ó¥¿¥Õ¥§¡¼¥¹¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char IEIC:1;		/*I2C¥Ğ¥¹¥¤¥ó¥¿¥Õ¥§¡¼¥¹³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char MST:1;		/*¥Ş¥¹¥¿¡¼/¥¹¥ì¡¼¥ÖÁªÂò*/
-			unsigned char TRS:1;		/*Á÷¼õÁªÂò*/
-			unsigned char ACKE:1;		/*¥¢¥¯¥Î¥ê¥Ã¥¸¥Ó¥Ã¥ÈÈ½ÄêÁªÂò*/
-			unsigned char BBSY:1;		/*¥Ğ¥¹¥Ó¥¸¡¼*/
-			unsigned char IRIC:1;		/*I2C¥Ğ¥¹¥¤¥ó¥¿¥Õ¥§¡¼¥¹³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-			unsigned char SCP:1;		/*³«»Ï¾ò·ï/Ää»ß¾ò·ïÈ¯¹Ô¶Ø»ß¥Ó¥Ã¥È*/
+			unsigned char ICE:1;		/*I2Cãƒã‚¹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char IEIC:1;		/*I2Cãƒã‚¹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char MST:1;		/*ãƒã‚¹ã‚¿ãƒ¼/ã‚¹ãƒ¬ãƒ¼ãƒ–é¸æŠ*/
+			unsigned char TRS:1;		/*é€å—é¸æŠ*/
+			unsigned char ACKE:1;		/*ã‚¢ã‚¯ãƒãƒªãƒƒã‚¸ãƒ“ãƒƒãƒˆåˆ¤å®šé¸æŠ*/
+			unsigned char BBSY:1;		/*ãƒã‚¹ãƒ“ã‚¸ãƒ¼*/
+			unsigned char IRIC:1;		/*I2Cãƒã‚¹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+			unsigned char SCP:1;		/*é–‹å§‹æ¡ä»¶/åœæ­¢æ¡ä»¶ç™ºè¡Œç¦æ­¢ãƒ“ãƒƒãƒˆ*/
 		} BIT;
 	} ICCR;
 	union								/*ICSR*/
@@ -403,14 +403,14 @@ struct __IIC_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char ESTP:1;		/*¥¨¥é¡¼Ää»ß¾ò·ï¸¡½Ğ¥Õ¥é¥°*/
-			unsigned char STOP:1;		/*Àµ¾ïÄä»ß¾ò·ï¸¡½Ğ¥Õ¥é¥°*/
-			unsigned char IRTR:1;		/*I2C¥Ğ¥¹¥¤¥ó¥¿¥Õ¥§¡¼¥¹Ï¢Â³Á÷¼õ¿®³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-			unsigned char AASX:1;		/*ÂèÆó¥¹¥ì¡¼¥Ö¥¢¥É¥ì¥¹Ç§¼±¥Õ¥é¥°*/
-			unsigned char AL:1;			/*¥¢¡¼¥Ó¥È¥ì¡¼¥·¥ç¥ó¥í¥¹¥È¥Õ¥é¥°*/
-			unsigned char AAS:1;		/*¥¹¥ì¡¼¥Ö¥¢¥É¥ì¥¹Ç§¼±¥Õ¥é¥°*/
-			unsigned char ADZ:1;		/*¥¼¥Í¥é¥ë¥³¡¼¥ë¥¢¥É¥ì¥¹Ç§¼±¥Õ¥é¥°*/
-			unsigned char ACKB:1;		/*¥¢¥¯¥Î¥ê¥Ã¥¸¥Ó¥Ã¥È*/
+			unsigned char ESTP:1;		/*ã‚¨ãƒ©ãƒ¼åœæ­¢æ¡ä»¶æ¤œå‡ºãƒ•ãƒ©ã‚°*/
+			unsigned char STOP:1;		/*æ­£å¸¸åœæ­¢æ¡ä»¶æ¤œå‡ºãƒ•ãƒ©ã‚°*/
+			unsigned char IRTR:1;		/*I2Cãƒã‚¹ã‚¤ãƒ³ã‚¿ãƒ•ã‚§ãƒ¼ã‚¹é€£ç¶šé€å—ä¿¡å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+			unsigned char AASX:1;		/*ç¬¬äºŒã‚¹ãƒ¬ãƒ¼ãƒ–ã‚¢ãƒ‰ãƒ¬ã‚¹èªè­˜ãƒ•ãƒ©ã‚°*/
+			unsigned char AL:1;			/*ã‚¢ãƒ¼ãƒ“ãƒˆãƒ¬ãƒ¼ã‚·ãƒ§ãƒ³ãƒ­ã‚¹ãƒˆãƒ•ãƒ©ã‚°*/
+			unsigned char AAS:1;		/*ã‚¹ãƒ¬ãƒ¼ãƒ–ã‚¢ãƒ‰ãƒ¬ã‚¹èªè­˜ãƒ•ãƒ©ã‚°*/
+			unsigned char ADZ:1;		/*ã‚¼ãƒãƒ©ãƒ«ã‚³ãƒ¼ãƒ«ã‚¢ãƒ‰ãƒ¬ã‚¹èªè­˜ãƒ•ãƒ©ã‚°*/
+			unsigned char ACKB:1;		/*ã‚¢ã‚¯ãƒãƒªãƒƒã‚¸ãƒ“ãƒƒãƒˆ*/
 		} BIT;
 	} ICSR;
 	union
@@ -422,8 +422,8 @@ struct __IIC_REGISTER__
 				unsigned char	BYTE;	/*Byte Access*/
 				struct					/*Bit Access*/
 				{
-					unsigned char SVAX:7;	/*ÂèÆó¥¹¥ì¡¼¥Ö¥¢¥É¥ì¥¹*/
-					unsigned char FSX:1;	/*SAR¤ÎFS¤È¤ÎÁÈ¤ß¹ç¤ï¤»¤ÇÅ¾Á÷¥Õ¥©¡¼¥Ş¥Ã¥È¤òÀßÄê*/
+					unsigned char SVAX:7;	/*ç¬¬äºŒã‚¹ãƒ¬ãƒ¼ãƒ–ã‚¢ãƒ‰ãƒ¬ã‚¹*/
+					unsigned char FSX:1;	/*SARã®FSã¨ã®çµ„ã¿åˆã‚ã›ã§è»¢é€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®š*/
 				} BIT;
 			} UN_SARX;
 			union
@@ -431,23 +431,23 @@ struct __IIC_REGISTER__
 				unsigned char	BYTE;	/*Byte Access*/
 				struct					/*Bit Access*/
 				{
-					unsigned char SVA:7;	/*¥¹¥ì¡¼¥Ö¥¢¥É¥ì¥¹*/
-					unsigned char FS:1;		/*SARX¤ÎFSX¤È¤ÎÁÈ¤ß¹ç¤ï¤»¤ÇÅ¾Á÷¥Õ¥©¡¼¥Ş¥Ã¥È¤òÀßÄê*/
+					unsigned char SVA:7;	/*ã‚¹ãƒ¬ãƒ¼ãƒ–ã‚¢ãƒ‰ãƒ¬ã‚¹*/
+					unsigned char FS:1;		/*SARXã®FSXã¨ã®çµ„ã¿åˆã‚ã›ã§è»¢é€ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã‚’è¨­å®š*/
 				} BIT;
 			} UN_SAR;
 		} ICE0;
 		struct
 		{
-			unsigned char	UN_ICDR;	/* I2C¥Ğ¥¹ ¥Ç¡¼¥¿¥ì¥¸¥¹¥¿*/
+			unsigned char	UN_ICDR;	/* I2Cãƒã‚¹ ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿*/
 			union
 			{
 				unsigned char	BYTE;	/*Byte Access*/
 				struct					/*Bit Access*/
 				{
-					unsigned char MLS:1;	/*MSB¥Õ¥¡¡¼¥¹¥È/LSB¥Õ¥¡¡¼¥¹¥ÈÁªÂò*/
-					unsigned char WAIT:1;	/*¥¦¥¨¥¤¥ÈÁŞÆş¥Ó¥Ã¥È*/
-					unsigned char CKS:3;	/*Å¾Á÷¥¯¥í¥Ã¥¯ÁªÂò*/
-					unsigned char BC:3;		/*¥Ó¥Ã¥È¥«¥¦¥ó¥¿¡¼*/
+					unsigned char MLS:1;	/*MSBãƒ•ã‚¡ãƒ¼ã‚¹ãƒˆ/LSBãƒ•ã‚¡ãƒ¼ã‚¹ãƒˆé¸æŠ*/
+					unsigned char WAIT:1;	/*ã‚¦ã‚¨ã‚¤ãƒˆæŒ¿å…¥ãƒ“ãƒƒãƒˆ*/
+					unsigned char CKS:3;	/*è»¢é€ã‚¯ãƒ­ãƒƒã‚¯é¸æŠ*/
+					unsigned char BC:3;		/*ãƒ“ãƒƒãƒˆã‚«ã‚¦ãƒ³ã‚¿ãƒ¼*/
 				} BIT;
 			} UN_ICMR;
 		} ICE1;
@@ -468,10 +468,10 @@ struct __ADDRESS_BREAK_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char RTINTE:1;		/*RTE³ä¹ş¤ß¥¤¥Í¡¼¥Ö¥ë*/
-			unsigned char CSEL:2;		/*¥³¥ó¥Ç¥£¥·¥ç¥ó¥»¥ì¥¯¥È*/
-			unsigned char ACMP:3;		/*¥¢¥É¥ì¥¹¥³¥ó¥Ú¥¢*/
-			unsigned char DCMP:2;		/*¥Ç¡¼¥¿¥³¥ó¥Ú¥¢*/
+			unsigned char RTINTE:1;		/*RTEå‰²è¾¼ã¿ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+			unsigned char CSEL:2;		/*ã‚³ãƒ³ãƒ‡ã‚£ã‚·ãƒ§ãƒ³ã‚»ãƒ¬ã‚¯ãƒˆ*/
+			unsigned char ACMP:3;		/*ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚³ãƒ³ãƒšã‚¢*/
+			unsigned char DCMP:2;		/*ãƒ‡ãƒ¼ã‚¿ã‚³ãƒ³ãƒšã‚¢*/
 		} BIT;
 	} CR;
 	union								/*ABRKSR*/
@@ -479,13 +479,13 @@ struct __ADDRESS_BREAK_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char ABIF:1;		/*ABRKCR¤ÇÀßÄê¤µ¤ì¤¿¾ò·ï¤¬À®Î©¤·¤¿»ş*/
-			unsigned char ABIE:1;		/* 1¤Î»ş¥¢¥É¥ì¥¹¥Ö¥ì¡¼¥¯³ä¹ş¤ßÍ×µá¤ò¥¤¥Í¡¼¥Ö¥ë¤Ë¤·¤Ş¤¹*/
-			unsigned char rsv1:6;		/*Í½Ìó*/
+			unsigned char ABIF:1;		/*ABRKCRã§è¨­å®šã•ã‚ŒãŸæ¡ä»¶ãŒæˆç«‹ã—ãŸæ™‚*/
+			unsigned char ABIE:1;		/* 1ã®æ™‚ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ–ãƒ¬ãƒ¼ã‚¯å‰²è¾¼ã¿è¦æ±‚ã‚’ã‚¤ãƒãƒ¼ãƒ–ãƒ«ã«ã—ã¾ã™*/
+			unsigned char rsv1:6;		/*äºˆç´„*/
 		} BIT;
 	} SR;
-	void			*BAR;				/*¥Ö¥ì¡¼¥¯¥¢¥É¥ì¥¹¥ì¥¸¥¹¥¿*/
-	unsigned short	BDR;				/*¥Ö¥ì¡¼¥¯¥Ç¡¼¥¿¥ì¥¸¥¹¥¿*/
+	void			*BAR;				/*ãƒ–ãƒ¬ãƒ¼ã‚¯ã‚¢ãƒ‰ãƒ¬ã‚¹ãƒ¬ã‚¸ã‚¹ã‚¿*/
+	unsigned short	BDR;				/*ãƒ–ãƒ¬ãƒ¼ã‚¯ãƒ‡ãƒ¼ã‚¿ãƒ¬ã‚¸ã‚¹ã‚¿*/
 };
 
 #define	ABRK	(*(volatile struct __ADDRESS_BREAK_REGISTER__ *)__ADDRESS_BREAK_ADD__)
@@ -502,7 +502,7 @@ struct __IO_PORT_REGISTER__
 			unsigned char B6:1;			/* Bit 6 */
 			unsigned char B5:1;			/* Bit 5 */
 			unsigned char B4:1;			/* Bit 4 */
-			unsigned char rsv1:1;		/*Í½Ìó*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
 			unsigned char B2:1;			/* Bit 2 */
 			unsigned char B1:1;			/* Bit 1 */
 			unsigned char B0:1;			/* Bit 0 */
@@ -513,7 +513,7 @@ struct __IO_PORT_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:2;		/*Í½Ìó*/
+			unsigned char rsv1:2;		/*äºˆç´„*/
 			unsigned char B5:1;			/* Bit 5 */
 			unsigned char B4:1;			/* Bit 4 */
 			unsigned char B3:1;			/* Bit 3 */
@@ -522,7 +522,7 @@ struct __IO_PORT_REGISTER__
 			unsigned char B0:1;			/* Bit 0 */
 		} BIT;
 	} PUCR5;
-	char	rsv1[ 0xffd4 - 0xffd1 - 1 ];	/*¶õ¤­*/
+	char	rsv1[ 0xffd4 - 0xffd1 - 1 ];	/*ç©ºã*/
 	union								/*PDR1*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
@@ -532,7 +532,7 @@ struct __IO_PORT_REGISTER__
 			unsigned char B6:1;			/* Bit 6 */
 			unsigned char B5:1;			/* Bit 5 */
 			unsigned char B4:1;			/* Bit 4 */
-			unsigned char rsv1:1;		/*Í½Ìó*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
 			unsigned char B2:1;			/* Bit 2 */
 			unsigned char B1:1;			/* Bit 1 */
 			unsigned char B0:1;			/* Bit 0 */
@@ -543,13 +543,13 @@ struct __IO_PORT_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:5;		/*Í½Ìó*/
+			unsigned char rsv1:5;		/*äºˆç´„*/
 			unsigned char B2:1;			/* Bit 2 */
 			unsigned char B1:1;			/* Bit 1 */
 			unsigned char B0:1;			/* Bit 0 */
 		} BIT;
 	} PDR2;
-	char	rsv2[ 0xffd8 - 0xffd5 - 1 ];	/*¶õ¤­*/
+	char	rsv2[ 0xffd8 - 0xffd5 - 1 ];	/*ç©ºã*/
 	union								/*PDR5*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
@@ -565,17 +565,17 @@ struct __IO_PORT_REGISTER__
 			unsigned char B0:1;			/* Bit 0 */
 		} BIT;
 	} PDR5;
-	char	rsv3[ 0xffda - 0xffd8 - 1 ];	/*¶õ¤­*/
+	char	rsv3[ 0xffda - 0xffd8 - 1 ];	/*ç©ºã*/
 	union								/*PDR7*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:1;		/*Í½Ìó*/
+			unsigned char rsv1:1;		/*äºˆç´„*/
 			unsigned char B6:1;			/* Bit 6 */
 			unsigned char B5:1;			/* Bit 5 */
 			unsigned char B4:1;			/* Bit 4 */
-			unsigned char rsv2:4;		/*Í½Ìó*/
+			unsigned char rsv2:4;		/*äºˆç´„*/
 		} BIT;
 	} PDR7;
 	union								/*PDR8*/
@@ -593,7 +593,7 @@ struct __IO_PORT_REGISTER__
 			unsigned char B0:1;			/* Bit 0 */
 		} BIT;
 	} PDR8;
-	char	rsv4[ 0xffdd - 0xffdb - 1 ];	/*¶õ¤­*/
+	char	rsv4[ 0xffdd - 0xffdb - 1 ];	/*ç©ºã*/
 	union								/*PDRB*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
@@ -609,19 +609,19 @@ struct __IO_PORT_REGISTER__
 			unsigned char B0:1;			/* Bit 0 */
 		} BIT;
 	} PDRB;
-	char	rsv5[ 0xffe0 - 0xffdd - 1 ];	/*¶õ¤­*/
+	char	rsv5[ 0xffe0 - 0xffdd - 1 ];	/*ç©ºã*/
 	union								/*PMR1*/
 	{
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char IRQ3:1;		/*P17/IRQ3/TRGVÃ¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char IRQ2:1;		/*P16/IRQ2Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char IRQ1:1;		/*P15/IRQ1Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char IRQ0:1;		/*P14/IRQ0Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char rsv1:2;		/*Í½Ìó*/
-			unsigned char TXD:1;		/*P22/TXDÃ¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char TMOW:1;		/*P10/TMOWÃ¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
+			unsigned char IRQ3:1;		/*P17/IRQ3/TRGVç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char IRQ2:1;		/*P16/IRQ2ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char IRQ1:1;		/*P15/IRQ1ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char IRQ0:1;		/*P14/IRQ0ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char rsv1:2;		/*äºˆç´„*/
+			unsigned char TXD:1;		/*P22/TXDç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char TMOW:1;		/*P10/TMOWç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
 		} BIT;
 	} PMR1;
 	union								/*PMR5*/
@@ -629,21 +629,21 @@ struct __IO_PORT_REGISTER__
 		unsigned char BYTE;				/*Byte Access*/
 		struct							/*Bit Access*/
 		{
-			unsigned char rsv1:2;		/*Í½Ìó*/
-			unsigned char WKP5:1;		/*P55/WKP5Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char WKP4:1;		/*P54/WKP4Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char WKP3:1;		/*P53/WKP3Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char WKP2:1;		/*P52/WKP2Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char WKP1:1;		/*P51/WKP1Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
-			unsigned char WKP0:1;		/*P50/WKP0Ã¼»Ò¤Îµ¡Ç½¤ÎÁªÂò¤ò¤·¤Ş¤¹*/
+			unsigned char rsv1:2;		/*äºˆç´„*/
+			unsigned char WKP5:1;		/*P55/WKP5ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char WKP4:1;		/*P54/WKP4ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char WKP3:1;		/*P53/WKP3ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char WKP2:1;		/*P52/WKP2ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char WKP1:1;		/*P51/WKP1ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
+			unsigned char WKP0:1;		/*P50/WKP0ç«¯å­ã®æ©Ÿèƒ½ã®é¸æŠã‚’ã—ã¾ã™*/
 		} BIT;
 	} PMR5;
-	char	rsv6[ 0xffe4 - 0xffe1 - 1 ];	/*¶õ¤­*/
+	char	rsv6[ 0xffe4 - 0xffe1 - 1 ];	/*ç©ºã*/
 	unsigned char	PCR1;				/**/
 	unsigned char	PCR2;				/**/
-	char	rsv7[ 0xffe8 - 0xffe5 - 1 ];	/*¶õ¤­*/
+	char	rsv7[ 0xffe8 - 0xffe5 - 1 ];	/*ç©ºã*/
 	unsigned char	PCR5;				/**/
-	char	rsv8[ 0xffea - 0xffe8 - 1 ];	/*¶õ¤­*/
+	char	rsv8[ 0xffea - 0xffe8 - 1 ];	/*ç©ºã*/
 	unsigned char	PCR7;				/**/
 	unsigned char	PCR8;				/**/
 };
@@ -656,10 +656,10 @@ union __SYSCR1_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char SSBY:1;			/*¥½¥Õ¥È¥¦¥¨¥¢¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char STS:3;			/*¥¹¥¿¥ó¥Ğ¥¤¥¿¥¤¥Ş¥»¥ì¥¯¥È*/
-		unsigned char NESEL:1;			/*¥Î¥¤¥º½üµî¥µ¥ó¥×¥ê¥ó¥°¼şÇÈ¿ôÁªÂò*/
-		unsigned char rsv1:3;			/*Í½Ìó*/
+		unsigned char SSBY:1;			/*ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char STS:3;			/*ã‚¹ã‚¿ãƒ³ãƒã‚¤ã‚¿ã‚¤ãƒã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char NESEL:1;			/*ãƒã‚¤ã‚ºé™¤å»ã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°å‘¨æ³¢æ•°é¸æŠ*/
+		unsigned char rsv1:3;			/*äºˆç´„*/
 	} BIT;
 };
 
@@ -671,11 +671,11 @@ union __SYSCR2_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char SMSEL:1;			/*¥¹¥ê¡¼¥×¥â¡¼¥ÉÁªÂò*/
-		unsigned char LSON:1;			/*¥í¡¼¥¹¥Ô¡¼¥É¥ª¥ó¥Õ¥é¥°*/
-		unsigned char DTON:1;			/*¥À¥¤¥ì¥¯¥È¥È¥é¥ó¥¹¥Õ¥¡¥ª¥ó¥Õ¥é¥°*/
-		unsigned char MA:3;				/*¥¢¥¯¥Æ¥£¥Ö¥â¡¼¥É¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
-		unsigned char SA:2;				/*¥µ¥Ö¥¢¥¯¥Æ¥£¥Ö¥â¡¼¥É¥¯¥í¥Ã¥¯¥»¥ì¥¯¥È*/
+		unsigned char SMSEL:1;			/*ã‚¹ãƒªãƒ¼ãƒ—ãƒ¢ãƒ¼ãƒ‰é¸æŠ*/
+		unsigned char LSON:1;			/*ãƒ­ãƒ¼ã‚¹ãƒ”ãƒ¼ãƒ‰ã‚ªãƒ³ãƒ•ãƒ©ã‚°*/
+		unsigned char DTON:1;			/*ãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆãƒˆãƒ©ãƒ³ã‚¹ãƒ•ã‚¡ã‚ªãƒ³ãƒ•ãƒ©ã‚°*/
+		unsigned char MA:3;				/*ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¢ãƒ¼ãƒ‰ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char SA:2;				/*ã‚µãƒ–ã‚¢ã‚¯ãƒ†ã‚£ãƒ–ãƒ¢ãƒ¼ãƒ‰ã‚¯ãƒ­ãƒƒã‚¯ã‚»ãƒ¬ã‚¯ãƒˆ*/
 	} BIT;
 };
 
@@ -687,12 +687,12 @@ union __IEGR1_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char NMIEG:1;			/*NMI¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char rsv1:3;			/*Í½Ìó*/
-		unsigned char IEG3:1;			/*IRQ3¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char IEG2:1;			/*IRQ2¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char IEG1:1;			/*IRQ1¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char IEG0:1;			/*IRQ0¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
+		unsigned char NMIEG:1;			/*NMIã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char rsv1:3;			/*äºˆç´„*/
+		unsigned char IEG3:1;			/*IRQ3ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char IEG2:1;			/*IRQ2ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char IEG1:1;			/*IRQ1ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char IEG0:1;			/*IRQ0ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
 	} BIT;
 };
 
@@ -704,13 +704,13 @@ union __IEGR2_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char rsv1:2;			/*Í½Ìó*/
-		unsigned char WPEG5:1;			/*WKOP5¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char WPEG4:1;			/*WKOP4¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char WPEG3:1;			/*WKOP3¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char WPEG2:1;			/*WKOP2¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char WPEG1:1;			/*WKOP1¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
-		unsigned char WPEG0:1;			/*WKOP0¥¨¥Ã¥¸¥»¥ì¥¯¥È*/
+		unsigned char rsv1:2;			/*äºˆç´„*/
+		unsigned char WPEG5:1;			/*WKOP5ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char WPEG4:1;			/*WKOP4ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char WPEG3:1;			/*WKOP3ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char WPEG2:1;			/*WKOP2ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char WPEG1:1;			/*WKOP1ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
+		unsigned char WPEG0:1;			/*WKOP0ã‚¨ãƒƒã‚¸ã‚»ãƒ¬ã‚¯ãƒˆ*/
 	} BIT;
 };
 
@@ -722,14 +722,14 @@ union __IENR1_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char IENDT:1;			/*Ä¾ÀÜÁ«°Ü³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char IENTA:1;			/*¥¿¥¤¥Ş A ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char IENWP:1;			/* WAKE UP ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char rsv1:1;			/*Í½Ìó*/
-		unsigned char IEN3:1;			/*IRQ3 ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char IEN2:1;			/*IRQ2 ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char IEN1:1;			/*IRQ1 ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
-		unsigned char IEN0:1;			/*IRQ0 ³ä¹ş¤ßÍ×µá¥¤¥Í¡¼¥Ö¥ë*/
+		unsigned char IENDT:1;			/*ç›´æ¥é·ç§»å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char IENTA:1;			/*ã‚¿ã‚¤ãƒ A å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char IENWP:1;			/* WAKE UP å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char rsv1:1;			/*äºˆç´„*/
+		unsigned char IEN3:1;			/*IRQ3 å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char IEN2:1;			/*IRQ2 å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char IEN1:1;			/*IRQ1 å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
+		unsigned char IEN0:1;			/*IRQ0 å‰²è¾¼ã¿è¦æ±‚ã‚¤ãƒãƒ¼ãƒ–ãƒ«*/
 	} BIT;
 };
 
@@ -741,13 +741,13 @@ union __IRR1_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char IRRDT:1;			/*Ä¾ÀÜÁ«°Ü³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IRRTA:1;			/*¥¿¥¤¥Ş A ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char rsv1:2;			/*Í½Ìó*/
-		unsigned char IRRI3:1;			/*IRQ3 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IRRI2:1;			/*IRQ2 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IRRI1:1;			/*IRQ1 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IRRI0:1;			/*IRQ0 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
+		unsigned char IRRDT:1;			/*ç›´æ¥é·ç§»å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IRRTA:1;			/*ã‚¿ã‚¤ãƒ A å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char rsv1:2;			/*äºˆç´„*/
+		unsigned char IRRI3:1;			/*IRQ3 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IRRI2:1;			/*IRQ2 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IRRI1:1;			/*IRQ1 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IRRI0:1;			/*IRQ0 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
 	} BIT;
 };
 
@@ -759,13 +759,13 @@ union __IWPR_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char rsv1:2;			/*Í½Ìó*/
-		unsigned char IWPF5:1;			/*WKP5 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IWPF4:1;			/*WKP4 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IWPF3:1;			/*WKP3 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IWPF2:1;			/*WKP2 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IWPF1:1;			/*WKP1 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
-		unsigned char IWPF0:1;			/*WKP0 ³ä¹ş¤ßÍ×µá¥Õ¥é¥°*/
+		unsigned char rsv1:2;			/*äºˆç´„*/
+		unsigned char IWPF5:1;			/*WKP5 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IWPF4:1;			/*WKP4 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IWPF3:1;			/*WKP3 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IWPF2:1;			/*WKP2 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IWPF1:1;			/*WKP1 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
+		unsigned char IWPF0:1;			/*WKP0 å‰²è¾¼ã¿è¦æ±‚ãƒ•ãƒ©ã‚°*/
 	} BIT;
 };
 
@@ -777,14 +777,14 @@ union __MSTCR1_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char rsv1:1;			/*Í½Ìó*/
-		unsigned char MSTIIC:1;			/*IIC¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTS3:1;			/*SCI3¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTAD:1;			/*A/DÊÑ´¹¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTWD:1;			/*¥¦¥ª¥Ã¥Á¥É¥Ã¥°¥¿¥¤¥Ş¡¼¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTTW:1;			/*¥¿¥¤¥Ş W ¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTTV:1;			/*¥¿¥¤¥Ş V ¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
-		unsigned char MSTTA:1;			/*¥¿¥¤¥Ş A ¥â¥¸¥å¡¼¥ë¥¹¥¿¥ó¥Ğ¥¤*/
+		unsigned char rsv1:1;			/*äºˆç´„*/
+		unsigned char MSTIIC:1;			/*IICãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTS3:1;			/*SCI3ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTAD:1;			/*A/Då¤‰æ›ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTWD:1;			/*ã‚¦ã‚ªãƒƒãƒãƒ‰ãƒƒã‚°ã‚¿ã‚¤ãƒãƒ¼ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTTW:1;			/*ã‚¿ã‚¤ãƒ W ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTTV:1;			/*ã‚¿ã‚¤ãƒ V ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
+		unsigned char MSTTA:1;			/*ã‚¿ã‚¤ãƒ A ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚¹ã‚¿ãƒ³ãƒã‚¤*/
 	} BIT;
 };
 
@@ -796,9 +796,9 @@ union __TSCR_REGISTER__
 	unsigned char BYTE;					/*Byte Access*/
 	struct								/*Bit Access*/
 	{
-		unsigned char rsv1:6;			/*Í½Ìó*/
-		unsigned char IICRST:1;			/*IICRST¤Ï¡¢I2C¥ì¥¸¥¹¥¿¤ò½ü¤¯¥³¥ó¥È¥í¡¼¥ëÉô¤òRESET¤·¤Ş¤¹¡£*/
-		unsigned char IICX:1;			/*ICMR¤ÎCKS2¡Á0¤È¤ÎÁÈ¤ß¹ç¤ï¤»¤Ç¡¢¥Ş¥¹¥¿¡¼¥â¡¼¥É¤ÎÅ¾Á÷¥ì¡¼¥È¤òÁªÂò¤·¤Ş¤¹¡£*/
+		unsigned char rsv1:6;			/*äºˆç´„*/
+		unsigned char IICRST:1;			/*IICRSTã¯ã€I2Cãƒ¬ã‚¸ã‚¹ã‚¿ã‚’é™¤ãã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«éƒ¨ã‚’RESETã—ã¾ã™ã€‚*/
+		unsigned char IICX:1;			/*ICMRã®CKS2ã€œ0ã¨ã®çµ„ã¿åˆã‚ã›ã§ã€ãƒã‚¹ã‚¿ãƒ¼ãƒ¢ãƒ¼ãƒ‰ã®è»¢é€ãƒ¬ãƒ¼ãƒˆã‚’é¸æŠã—ã¾ã™ã€‚*/
 	} BIT;
 };
 

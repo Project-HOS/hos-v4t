@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ¥·¥¹¥Æ¥à                                                              */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ã‚·ã‚¹ãƒ†ãƒ                                                               */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -10,47 +10,47 @@
 #include "kernel.h"
 
 
-/*T_KERNEL_SYS kernel_sys;	*/		/* ¥·¥¹¥Æ¥à¾õÂÖ */
+/*T_KERNEL_SYS kernel_sys;	*/		/* ã‚·ã‚¹ãƒ†ãƒ çŠ¶æ…‹ */
 UW           kernel_idl_stk[16];	
 
 
 static void kernel_idle(VP_INT exinf);
 
 
-/* HOS ¥«¡¼¥Í¥ëÆ°ºî³«»Ï */
+/* HOS ã‚«ãƒ¼ãƒãƒ«å‹•ä½œé–‹å§‹ */
 ER sta_hos(void)
 {
 	T_HOSPAC_CTXINF ctxinf_dmy;
 	T_HOSPAC_CTXINF *ctxinf_top;
 	ID              tskid_top;
 	
-	/* ¥Ç¥£¥¹¥Ñ¥Ã¥Á¤ò¶Ø»ß */
+	/* ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã‚’ç¦æ­¢ */
 	kernel_sys.stat = KERNEL_TSS_DDSP;
 	
-	/* ¥¢¥¤¥É¥ë¥¿¥¹¥¯À¸À® */
+	/* ã‚¢ã‚¤ãƒ‰ãƒ«ã‚¿ã‚¹ã‚¯ç”Ÿæˆ */
 	hospac_cre_ctx(&kernel_sys.ctxinf_idle,  &kernel_idl_stk[16], kernel_idle, 0);
 	
-	/* ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¤Î½é´ü²½¸Æ¤Ó½Ğ¤· */
+	/* ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ã®åˆæœŸåŒ–å‘¼ã³å‡ºã— */
 	hoscfg_ini();
 
-	/* ¥Ç¥£¥¹¥Ñ¥Ã¥Á¤òµö²Ä */
+	/* ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã‚’è¨±å¯ */
 	kernel_sys.stat = KERNEL_TSS_TSK;
 
-	/* ºÇ¹âÍ¥ÀèÅÙ¤Î¼Â¹Ô²ÄÇ½¥¿¥¹¥¯¤ò¼èÆÀ */
+	/* æœ€é«˜å„ªå…ˆåº¦ã®å®Ÿè¡Œå¯èƒ½ã‚¿ã‚¹ã‚¯ã‚’å–å¾— */
 	tskid_top  = kernel_ref_qhd(KERNEL_GET_RDYQUE());
 	ctxinf_top = &KERNEL_GET_TCB(tskid_top)->ctxinf;
 
-	/* ¼Â¹Ô¥¿¥¹¥¯¤ÎÅĞÏ¿ */
+	/* å®Ÿè¡Œã‚¿ã‚¹ã‚¯ã®ç™»éŒ² */
 	KERNEL_SET_RUN_TSKID(tskid_top);
 
-	/* ¥¿¥¹¥¯ÀÚ¤êÂØ¤¨ */
+	/* ã‚¿ã‚¹ã‚¯åˆ‡ã‚Šæ›¿ãˆ */
 	hospac_swi_ctx(&ctxinf_dmy, ctxinf_top);
 	
 	return E_OK;
 }
 
 
-/* ¥¢¥¤¥É¥ë¥¿¥¹¥¯ */
+/* ã‚¢ã‚¤ãƒ‰ãƒ«ã‚¿ã‚¹ã‚¯ */
 void kernel_idle(VP_INT exinf)
 {
 	for ( ; ; )

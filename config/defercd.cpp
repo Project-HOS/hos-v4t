@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ¥¨¥é¡¼¥³¡¼¥É´ÉÍı                                                        
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰ç®¡ç†                                                        
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -12,21 +12,21 @@
 
 static const char *szErrMsg[] =
 	{
-		"unanticipated EOF.",		// Í½´ü¤»¤ÌEOF
-		"illegal CR.",				// ÉÔÀµ¤Ê²ş¹Ô
-		"status too long.",			// £±¥¹¥Æ¡¼¥È¤¬Ä¹¤¹¤®¤ë
-		"syntax error."	,			// ¹½Ê¸¥¨¥é¡¼
-		"expect \')\' but found.",	// ()¤ÎÉÔÀ°¹ç
-		"expect \'}\' but found.",	// {}¤ÎÉÔÀ°¹ç
-		"expect \';\' but found.",	// ¥»¥ß¥³¥í¥ó¤¬Ìµ¤¤
-		"illegal text.",			// ÉÔÀµ¤ÊÊ¸»úÎóÄê¿ô
-		"conflict ID.",				// ID¾×ÆÍ
-		"illegal parameter.",		 // ¥Ñ¥é¥á¡¼¥¿¡¼ÉÔÀµ
-		"multiple definition.",		// Í£°ì¤Ç¤¢¤ë¤Ù¤­APIÄêµÁ¤¬Ê£¿ô
+		"unanticipated EOF.",		// äºˆæœŸã›ã¬EOF
+		"illegal CR.",				// ä¸æ­£ãªæ”¹è¡Œ
+		"status too long.",			// ï¼‘ã‚¹ãƒ†ãƒ¼ãƒˆãŒé•·ã™ãã‚‹
+		"syntax error."	,			// æ§‹æ–‡ã‚¨ãƒ©ãƒ¼
+		"expect \')\' but found.",	// ()ã®ä¸æ•´åˆ
+		"expect \'}\' but found.",	// {}ã®ä¸æ•´åˆ
+		"expect \';\' but found.",	// ã‚»ãƒŸã‚³ãƒ­ãƒ³ãŒç„¡ã„
+		"illegal text.",			// ä¸æ­£ãªæ–‡å­—åˆ—å®šæ•°
+		"conflict ID.",				// IDè¡çª
+		"illegal parameter.",		 // ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ä¸æ­£
+		"multiple definition.",		// å”¯ä¸€ã§ã‚ã‚‹ã¹ãAPIå®šç¾©ãŒè¤‡æ•°
 	};
 
 
-// ¥¨¥é¡¼Ê¸»úÎó¼èÆÀ
+// ã‚¨ãƒ©ãƒ¼æ–‡å­—åˆ—å–å¾—
 const char* GetErrMessage(int iErr)
 {
 	if ( iErr < 1 || iErr > 11 )

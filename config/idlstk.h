@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  •≥•Û•’•£•Æ•Â•Ï°º•ø°º                           
-//    HOS_IDL_STK API §ŒΩËÕ˝                                                  
+//  Hyper Operating System V4  „Ç≥„É≥„Éï„Ç£„ÇÆ„É•„É¨„Éº„Çø„Éº                           
+//    HOS_IDL_STK API „ÅÆÂá¶ÁêÜ                                                  
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,16 +15,16 @@
 #include "parpack.h"
 
 
-// HOS_KERNEL_HEAP Õ—
+// HOS_KERNEL_HEAP Áî®
 class CApiIdleStack : public CApiDef
 {
 public:
-	CApiIdleStack();		// •≥•Û•π•»•È•Ø•ø
-	~CApiIdleStack();		// •«•π•»•È•Ø•ø
+	CApiIdleStack();		// „Ç≥„É≥„Çπ„Éà„É©„ÇØ„Çø
+	~CApiIdleStack();		// „Éá„Çπ„Éà„É©„ÇØ„Çø
 
-	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API§Œ≤Ú¿œ
+	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API„ÅÆËß£Êûê
 	int   AutoId(void);
-	void  WriteCfgDef(FILE* fp);		// cfg•’•°•§•ÎƒÍµ¡…ÙΩÒ§≠Ω–§∑
+	void  WriteCfgDef(FILE* fp);		// cfg„Éï„Ç°„Ç§„É´ÂÆöÁæ©ÈÉ®Êõ∏„ÅçÂá∫„Åó
 };
 
 

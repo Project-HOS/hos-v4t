@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4  ¥µ¥ó¥×¥ë¥×¥í¥°¥é¥à                           */
-/*    H8/3048 ÍÑ OS¥¿¥¤¥Ş (ITU0¤òÍøÍÑ)                                      */
+/*  Hyper Operating System V4  ã‚µãƒ³ãƒ—ãƒ«ãƒ—ãƒ­ã‚°ãƒ©ãƒ                            */
+/*    H8/3048 ç”¨ OSã‚¿ã‚¤ãƒ (ITU0ã‚’åˆ©ç”¨)                                      */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2002 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -15,8 +15,8 @@
 extern "C" {
 #endif
 
-void OsTimer_Initialize(VP_INT exinf);		/* OS¥¿¥¤¥Ş¤Î½é´ü²½ */
-void OsTimer_TimerHandler(VP_INT exinf);	/* ¥¿¥¤¥ŞÍÑ³ä¤ê¹ş¤ß¥Ï¥ó¥É¥é */
+void OsTimer_Initialize(VP_INT exinf);		/* OSã‚¿ã‚¤ãƒã®åˆæœŸåŒ– */
+void OsTimer_TimerHandler(VP_INT exinf);	/* ã‚¿ã‚¤ãƒç”¨å‰²ã‚Šè¾¼ã¿ãƒãƒ³ãƒ‰ãƒ© */
 
 #ifdef __cplusplus
 }

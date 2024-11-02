@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*  ¦Ì¥«¡¼¥Í¥ë ¥­¥å¡¼Áàºî                                                   */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*  Î¼ã‚«ãƒ¼ãƒãƒ« ã‚­ãƒ¥ãƒ¼æ“ä½œ                                                   */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,10 +11,10 @@
 
 
 
-/* ¥¿¥¹¥¯Í¥ÀèÅÙ½ç¤ÇÄÉ²Ã */
+/* ã‚¿ã‚¹ã‚¯å„ªå…ˆåº¦é †ã§è¿½åŠ  */
 void kernel_add_que(
-		T_KERNEL_QUE *que,		/* ÄÉ²Ã¤¹¤ë¥­¥å¡¼ */
-		ID           tskid)		/* ÄÉ²Ã¤¹¤ë¥¿¥¹¥¯ */
+		T_KERNEL_QUE *que,		/* è¿½åŠ ã™ã‚‹ã‚­ãƒ¥ãƒ¼ */
+		ID           tskid)		/* è¿½åŠ ã™ã‚‹ã‚¿ã‚¹ã‚¯ */
 {
 	T_KERNEL_TCB *tcb;
 	T_KERNEL_TCB *tcb_ptr;
@@ -22,37 +22,37 @@ void kernel_add_que(
 	
 	tcb = KERNEL_GET_TCB(tskid);
 	
-	/* ÀÜÂ³¤·¤¿¥­¥å¡¼¤òÅĞÏ¿ */
+	/* æ¥ç¶šã—ãŸã‚­ãƒ¥ãƒ¼ã‚’ç™»éŒ² */
 	tcb->que = que;
 	
 	if ( que->head == 0 )
 	{
-		/* ¥­¥å¡¼¤Ë¥¿¥¹¥¯¤¬Ìµ¤±¤ì¤ĞÀèÆ¬¤ËÀßÄê */
+		/* ã‚­ãƒ¥ãƒ¼ã«ã‚¿ã‚¹ã‚¯ãŒç„¡ã‘ã‚Œã°å…ˆé ­ã«è¨­å®š */
 		que->head  = tskid;
 		tcb->next  = tskid;
 		tcb->prev  = tskid;
 	}
 	else
 	{
-		/* ¥­¥å¡¼ÀèÆ¬¤«¤é¸¡º÷ */
+		/* ã‚­ãƒ¥ãƒ¼å…ˆé ­ã‹ã‚‰æ¤œç´¢ */
 		tskid_ptr = que->head;
 		tcb_ptr   = KERNEL_GET_TCB(tskid_ptr);
 		
-		if ( tcb->tskpri < tcb_ptr->tskpri )	/* ºÇÍ¥Àè¤Ê¤é */
+		if ( tcb->tskpri < tcb_ptr->tskpri )	/* æœ€å„ªå…ˆãªã‚‰ */
 		{
-			/* ÀèÆ¬¤ò¹¹¿· */
+			/* å…ˆé ­ã‚’æ›´æ–° */
 			que->head  = tskid;
 		}
 		else
 		{
-			/* ÁŞÆş°ÌÃÖ¸¡º÷ */
+			/* æŒ¿å…¥ä½ç½®æ¤œç´¢ */
 			do {
 				tskid_ptr = tcb_ptr->next;
 				tcb_ptr   = KERNEL_GET_TCB(tskid_ptr);
 			} while ( tcb->tskpri >= tcb_ptr->tskpri && tskid_ptr != que->head );
 		}
 		
-		/* ÁŞÆş½èÍı */
+		/* æŒ¿å…¥å‡¦ç† */
 		tcb->next     = tskid_ptr;
 		tcb->prev     = tcb_ptr->prev;
 		tcb_ptr->prev = tskid;

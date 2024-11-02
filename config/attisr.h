@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ATT_ISR API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ATT_ISR API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,17 +15,17 @@
 #include "parpack.h"
 
 
-// ATT_ISR ÍÑ
+// ATT_ISR ç”¨
 class CApiAttIsr : public CApiDef
 {
 public:
-	CApiAttIsr();		// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	~CApiAttIsr();		// ¥Ç¥¹¥È¥é¥¯¥¿
+	CApiAttIsr();		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	~CApiAttIsr();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// API¤Î²òÀÏ
+	int   AnalyzeApi(const char* pszApiName, const char* pszParams);	// APIã®è§£æ
 	int   AutoId(void);
-	void  WriteCfgDef(FILE* fp);	// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
-	void  WriteCfgIni(FILE* fp);	// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
+	void  WriteCfgDef(FILE* fp);	// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
+	void  WriteCfgIni(FILE* fp);	// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
 
 protected:
 	int m_iMaxIntNo;

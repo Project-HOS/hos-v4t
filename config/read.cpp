@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ¥Ç¡¼¥¿ÆÉ¤ß¹ş¤ß¥¯¥é¥¹                                                    
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ãƒ‡ãƒ¼ã‚¿èª­ã¿è¾¼ã¿ã‚¯ãƒ©ã‚¹                                                    
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -15,7 +15,7 @@
 #include "read.h"
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CRead::CRead(FILE *fp, const char *name)
 {
 	m_fpRead    = fp;
@@ -26,45 +26,45 @@ CRead::CRead(FILE *fp, const char *name)
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CRead::~CRead()
 {
 }
 
 
-// £±¥¹¥Æ¡¼¥ÈÆÉ¤ß¹ş¤ß
+// ï¼‘ã‚¹ãƒ†ãƒ¼ãƒˆèª­ã¿è¾¼ã¿
 int CRead::ReadState(char *szState)
 {
 	bool blEsc   = false;
-	bool blSpace = true;	// true ¤Ç»Ï¤á¤ÆÀèÆ¬¤Î¶õÇò¤òÆÉ¤ßÈô¤Ğ¤¹
+	bool blSpace = true;	// true ã§å§‹ã‚ã¦å…ˆé ­ã®ç©ºç™½ã‚’èª­ã¿é£›ã°ã™
 	int  iCount = 0;
 	int  iErr;
 	int  c;
 
 	for ( ; ; )
 	{
-		// £±Ê¸»úÆÉ¤ß¹ş¤ß
+		// ï¼‘æ–‡å­—èª­ã¿è¾¼ã¿
 		if ( (c = fgetc(m_fpRead)) == EOF )
 		{
 			if ( blEsc || iCount != 0 )
 			{
-				iErr = CFG_ERR_EOF;	// Í½´ü¤»¤ÌEOF
+				iErr = CFG_ERR_EOF;	// äºˆæœŸã›ã¬EOF
 			}
 			else
 			{
-				iErr = CFG_ERR_COMPLETE;	// ´°Î»
+				iErr = CFG_ERR_COMPLETE;	// å®Œäº†
 			}
 			break;
 		}
 
-		// ¥µ¥¤¥º¥Á¥§¥Ã¥¯
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if ( iCount >= READ_MAX_STATE - 1 )
 		{
 			iErr = CFG_ERR_STATE_LEN;
 			break;
 		}
 
-		// ¹ÔÆ¬¤¬ # ¤Ê¤é¥¹¥­¥Ã¥×
+		// è¡Œé ­ãŒ # ãªã‚‰ã‚¹ã‚­ãƒƒãƒ—
 		if ( m_blLineTop && c == '#' )
 		{
                        iErr = SkipPreProcessorLine(szState, iCount);
@@ -75,7 +75,7 @@ int CRead::ReadState(char *szState)
 			continue;
 		}
 
-		// ²ş¹ÔÊ¸»ú¤Î½èÍı
+		// æ”¹è¡Œæ–‡å­—ã®å‡¦ç†
 		if ( c == '\n' )
 		{
 			m_iPhysicalLineNum++;
@@ -87,7 +87,7 @@ int CRead::ReadState(char *szState)
 			m_blLineTop = false;
 		}
 
-		// ¶õÇòÊ¸»ú¤Î¥¹¥­¥Ã¥×
+		// ç©ºç™½æ–‡å­—ã®ã‚¹ã‚­ãƒƒãƒ—
 		if ( isspace(c) || c == '\n' )
 		{
 			if ( !blSpace )
@@ -99,7 +99,7 @@ int CRead::ReadState(char *szState)
 		}
 		blSpace = false;
 
-		// Ê¸»úÎó¤Î½èÍı
+		// æ–‡å­—åˆ—ã®å‡¦ç†
 		if ( c == '\"' || c == '\'' )
 		{
 			szState[iCount++] = c;
@@ -111,18 +111,18 @@ int CRead::ReadState(char *szState)
 			continue;
 		}
 
-		// ¥¹¥Æ¡¼¥È´°Î»Ê¸»ú¤Ê¤é
+		// ã‚¹ãƒ†ãƒ¼ãƒˆå®Œäº†æ–‡å­—ãªã‚‰
 		if ( c == ';' )
 		{
 			iErr = CFG_ERR_OK;
 			break;
 		}
 
-		// Ê¸»ú¤ÎÆÉ¤ß¹ş¤ß
+		// æ–‡å­—ã®èª­ã¿è¾¼ã¿
 		szState[iCount++] = c;
 	}
 
-	// ËöÈø¤Î¶õÇòÊ¸»úºï½ü
+	// æœ«å°¾ã®ç©ºç™½æ–‡å­—å‰Šé™¤
 	if ( iCount > 0 && szState[iCount - 1] == ' ' )
 	{
 		iCount--;
@@ -134,7 +134,7 @@ int CRead::ReadState(char *szState)
 }
 
 
-// ¥×¥ê¥×¥í¥»¥Ã¥µ¥é¥¤¥ó¤Î¥¹¥­¥Ã¥×
+// ãƒ—ãƒªãƒ—ãƒ­ã‚»ãƒƒã‚µãƒ©ã‚¤ãƒ³ã®ã‚¹ã‚­ãƒƒãƒ—
 int CRead::SkipPreProcessorLine(char* szText, int iCountOrg)
 {
 	int  c;
@@ -144,19 +144,19 @@ int CRead::SkipPreProcessorLine(char* szText, int iCountOrg)
 
 	for ( ; ; )
 	{
-		// £±Ê¸»úÆÉ¤ß¹ş¤ß
+		// ï¼‘æ–‡å­—èª­ã¿è¾¼ã¿
 		if ( (c = fgetc(m_fpRead)) == EOF )
 		{
 			return CFG_ERR_OK;
 		}
 
-		// ¥µ¥¤¥º¥Á¥§¥Ã¥¯
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if ( iCount >= READ_MAX_STATE - 1 )
 		{
 			return CFG_ERR_STATE_LEN;
 		}
 
-		// ¹ÔËö¤Î¥Á¥§¥Ã¥¯
+		// è¡Œæœ«ã®ãƒã‚§ãƒƒã‚¯
 		if ( c == '\n' )
 		{
 			m_iPhysicalLineNum++;
@@ -166,30 +166,30 @@ int CRead::SkipPreProcessorLine(char* szText, int iCountOrg)
 
 			// #line 123 "filename"
 			// # 123 "filename"
-			// ¤Î·Á¼°¤Î¤É¤Á¤é¤Ç¤â¼õ¤±ÉÕ¤±¤ë
+			// ã®å½¢å¼ã®ã©ã¡ã‚‰ã§ã‚‚å—ã‘ä»˜ã‘ã‚‹
 			if (strncmp(&szText[iCountOrg], "line", 4) == 0)
 				iCountOrg += 4;
 
 			// #line123
 			// #12
-			// ¤Ê¤É¤òÇÓ½ü
+			// ãªã©ã‚’æ’é™¤
 			if (!isspace(szText[iCountOrg]))
 				return CFG_ERR_OK;
 
-			// ¹ÔÈÖ¹æÆÉ¤ß¹ş¤ß
+			// è¡Œç•ªå·èª­ã¿è¾¼ã¿
 			tmpLineNum = strtol(&szText[iCountOrg], &p1, 10);
 			if (p1 == &szText[iCountOrg])
 				return CFG_ERR_OK;
 
 			// # 123a
-			// ¤Ê¤É¹ÔÈÖ¹æ¤Î¸å¤í¤ËÍ¾Ê¬¤Ê¤â¤Î¤¬¤Ä¤¤¤Æ¤¤¤ë¾ì¹ç¤òÇÓ½ü
+			// ãªã©è¡Œç•ªå·ã®å¾Œã‚ã«ä½™åˆ†ãªã‚‚ã®ãŒã¤ã„ã¦ã„ã‚‹å ´åˆã‚’æ’é™¤
 			if (!isspace(*p1) && *p1 != '\0')
 				return CFG_ERR_OK;
 
-			// ÆÉ¤ß¹ş¤ó¤À¹ÔÈÖ¹æ¤òÈ¿±Ç
+			// èª­ã¿è¾¼ã‚“ã è¡Œç•ªå·ã‚’åæ˜ 
 			m_iLogicalLineNum = tmpLineNum;
 
-			// ¥Õ¥¡¥¤¥ëÌ¾¤òÃµ¤¹
+			// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’æ¢ã™
 			while (isspace(*p1))
 				p1++;
 			if (*p1 != '\"')
@@ -200,20 +200,20 @@ int CRead::SkipPreProcessorLine(char* szText, int iCountOrg)
 				return CFG_ERR_OK;
 			*p2 = '\0';
 
-			// ¥Õ¥¡¥¤¥ëÌ¾¤òÈ¿±Ç
+			// ãƒ•ã‚¡ã‚¤ãƒ«åã‚’åæ˜ 
 			strncpy(m_szLogicalInputFile, p1, READ_MAX_PATH - 1);
 			m_szLogicalInputFile[READ_MAX_PATH - 1] = '\0';
 
 			return CFG_ERR_OK;
 		}
 
-		// Ê¸»ú¤ÎÆÉ¤ß¹ş¤ß
+		// æ–‡å­—ã®èª­ã¿è¾¼ã¿
 		szText[iCount++] = c;
 	}
 }
 
 
-// Ê¸»úÎóÆÉ¤ß¹ş¤ß
+// æ–‡å­—åˆ—èª­ã¿è¾¼ã¿
 int CRead::ReadString(int cDelimiter, char* szText, int& iCount)
 {
 	bool blEsc  = false;
@@ -221,35 +221,35 @@ int CRead::ReadString(int cDelimiter, char* szText, int& iCount)
 
 	for ( ; ; )
 	{
-		// £±Ê¸»úÆÉ¤ß¹ş¤ß
+		// ï¼‘æ–‡å­—èª­ã¿è¾¼ã¿
 		if ( (c = fgetc(m_fpRead)) == EOF )
 		{
-			return CFG_ERR_EOF;	// Í½´ü¤»¤ÌEOF
+			return CFG_ERR_EOF;	// äºˆæœŸã›ã¬EOF
 		}
 
-		// ¥µ¥¤¥º¥Á¥§¥Ã¥¯
+		// ã‚µã‚¤ã‚ºãƒã‚§ãƒƒã‚¯
 		if ( iCount >= READ_MAX_STATE - 1 )
 		{
 			return CFG_ERR_STATE_LEN;
 		}
 
-		// ²ş¹Ô¥Á¥§¥Ã¥¯
+		// æ”¹è¡Œãƒã‚§ãƒƒã‚¯
 		if ( c == '\n' )
 		{
-			return CFG_ERR_CR;		// ÉÔÀµ¤Ê²ş¹Ô
+			return CFG_ERR_CR;		// ä¸æ­£ãªæ”¹è¡Œ
 		}
 
-		// Ê¸»ú¤ÎÀßÄê
+		// æ–‡å­—ã®è¨­å®š
 		szText[iCount++] = c;
 
-		// \ ¤Î¼¡¤ÏÌµ¾ò·ï¤Ë¥¹¥­¥Ã¥×
+		// \ ã®æ¬¡ã¯ç„¡æ¡ä»¶ã«ã‚¹ã‚­ãƒƒãƒ—
 		if ( blEsc )
 		{
 			blEsc  = false;
 			continue;
 		}
 
-		// \ ¤Î¥Á¥§¥Ã¥¯
+		// \ ã®ãƒã‚§ãƒƒã‚¯
 		if ( c == '\\' )
 		{
 			blEsc  = true;
@@ -258,7 +258,7 @@ int CRead::ReadString(int cDelimiter, char* szText, int& iCount)
 
 		blEsc  = false;
 
-		// ¥Ç¥ê¥ß¥¿Ê¸»ú¤Ê¤é´°Î»
+		// ãƒ‡ãƒªãƒŸã‚¿æ–‡å­—ãªã‚‰å®Œäº†
 		if ( c == cDelimiter )
 		{
 			return CFG_ERR_OK;

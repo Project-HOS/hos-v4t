@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    HOS_KERNEL_HEAP API ¤Î½èÍı                                              
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    HOS_KERNEL_HEAP API ã®å‡¦ç†                                              
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -16,29 +16,29 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiKernelHeap::CApiKernelHeap()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	m_iParams = 1;
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiKernelHeap::~CApiKernelHeap()
 {
 }
 
 
-// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
+// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
 int CApiKernelHeap::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiKernelHeap::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blEx = false;
@@ -59,7 +59,7 @@ int CApiKernelHeap::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiKernelHeap::WriteCfgDef(FILE* fp)
 {
 	if ( m_iObjs <= 0 )
@@ -72,7 +72,7 @@ void  CApiKernelHeap::WriteCfgDef(FILE* fp)
 		return;
 	}
 
-	// ¥³¥á¥ó¥È½ĞÎÏ
+	// ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -80,7 +80,7 @@ void  CApiKernelHeap::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n"
 		, fp);
 
-	// ¥Ò¡¼¥×ÎÎ°èÀ¸À®
+	// ãƒ’ãƒ¼ãƒ—é ˜åŸŸç”Ÿæˆ
 	fprintf(
 		fp,
 		"\n"
@@ -89,7 +89,7 @@ void  CApiKernelHeap::WriteCfgDef(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 void  CApiKernelHeap::WriteCfgStart(FILE* fp)
 {
 	if ( m_iObjs <= 0 )

@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    HOS_INT_STK API ¤Î½èÍı                                                  
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    HOS_INT_STK API ã®å‡¦ç†                                                  
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -19,32 +19,32 @@
 #define INTSTK_STK			1
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiIntStack::CApiIntStack()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	m_iParams = 2;
 
-	// ¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿
+	// ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿
 	m_szStackPointer[0] = '\0';
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiIntStack::~CApiIntStack()
 {
 }
 
 
-// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
+// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
 int CApiIntStack::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiIntStack::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	static bool blEx = false;
@@ -73,19 +73,19 @@ int CApiIntStack::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiIntStack::WriteCfgDef(FILE* fp)
 {
 	const char* pszSize;
 	const char* pszStack;
 
-	// ¥Ñ¥é¥á¡¼¥¿ÆÉ¤ß½Ğ¤·
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿èª­ã¿å‡ºã—
 	if ( m_iObjs <= 0 && m_szStackPointer[0] == '\0' )
 	{
 		return ;
 	}
 
-	// ¥³¥á¥ó¥È½ĞÎÏ
+	// ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -93,7 +93,7 @@ void  CApiIntStack::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n\n"
 		, fp);
 
-	// ³ä¤ê¹ş¤ßÍÑ¥¹¥¿¥Ã¥¯¥İ¥¤¥ó¥¿½ĞÎÏ
+	// å‰²ã‚Šè¾¼ã¿ç”¨ã‚¹ã‚¿ãƒƒã‚¯ãƒã‚¤ãƒ³ã‚¿å‡ºåŠ›
 	if ( m_szStackPointer[0] != '\0' )
 	{
 		fprintf(

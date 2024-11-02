@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥¿¥¹¥¯´ÉÍıµ¡Ç½                                          */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚¿ã‚¹ã‚¯ç®¡ç†æ©Ÿèƒ½                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,28 +11,28 @@
 
 
 
-/* ¥¿¥¹¥¯Í¥ÀèÅÙ¤Î»²¾È */
+/* ã‚¿ã‚¹ã‚¯å„ªå…ˆåº¦ã®å‚ç…§ */
 ER get_pri(
 		ID  tskid,
 		PRI *p_tskpri)
 {
 	T_KERNEL_TCB *tcb;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
-	/* ¼«¥¿¥¹¥¯»ØÄê¤Ê¤é */
+	/* è‡ªã‚¿ã‚¹ã‚¯æŒ‡å®šãªã‚‰ */
 	if ( tskid == TSK_SELF )
 	{
-		tskid = KERNEL_GET_RUN_TSKID();		/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
+		tskid = KERNEL_GET_RUN_TSKID();		/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
 	}
 	
-	/* TCB¼èÆÀ */
+	/* TCBå–å¾— */
 	tcb = KERNEL_GET_TCB(tskid);
 	
-	/* Í¥ÀèÅÙ¼èÆÀ */
+	/* å„ªå…ˆåº¦å–å¾— */
 	*p_tskpri = tcb->tskpri;
 	
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 	
 	return E_OK;
 }

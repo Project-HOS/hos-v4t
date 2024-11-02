@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    APIÄêµÁ¥¯¥é¥¹                                                           
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    APIå®šç¾©ã‚¯ãƒ©ã‚¹                                                           
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -14,33 +14,33 @@
 #include "parpack.h"
 
 
-#define API_MAX_OBJS		1024		// ºÇÂç¥ª¥Ö¥¸¥§¥¯¥È¿ô
-#define API_MAX_PARAM		4096		// ºÇÂç¥Ñ¥é¥á¡¼¥¿Ê¸»ú¿ô
+#define API_MAX_OBJS		1024		// æœ€å¤§ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+#define API_MAX_PARAM		4096		// æœ€å¤§ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿æ–‡å­—æ•°
 
 
-// APIÄêµÁ¥¯¥é¥¹
+// APIå®šç¾©ã‚¯ãƒ©ã‚¹
 class CApiDef
 {
 public:
-	CApiDef();				// ¥³¥ó¥¹¥È¥é¥¯¥¿
-	virtual ~CApiDef();		// ¥Ç¥¹¥È¥é¥¯¥¿
+	CApiDef();				// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	virtual ~CApiDef();		// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 
-	virtual int   AnalyzeApi(const char* pszApiName, const char* pszParams) = 0;	// API¤Î²òÀÏ
-	virtual int   AutoId(void);							// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
-	virtual void  WriteId(FILE* fp);					// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ñ¤­½Ğ¤·
-	virtual void  WriteCfgDef(FILE* fp);				// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
-	virtual void  WriteCfgIni(FILE* fp);				// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
-	virtual void  WriteCfgStart(FILE* fp);				// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+	virtual int   AnalyzeApi(const char* pszApiName, const char* pszParams) = 0;	// APIã®è§£æ
+	virtual int   AutoId(void);							// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
+	virtual void  WriteId(FILE* fp);					// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
+	virtual void  WriteCfgDef(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
+	virtual void  WriteCfgIni(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
+	virtual void  WriteCfgStart(FILE* fp);				// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 
 protected:
-	virtual int   AddParams(const char* pszParams);		// ¥Ñ¥é¥á¡¼¥¿¡¼ÄÉ²Ã
+	virtual int   AddParams(const char* pszParams);		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¿½åŠ 
 
-	CParamPack* m_pParamPacks[API_MAX_OBJS];	// ¥Ñ¥é¥á¡¼¥¿¡¼¥ê¥¹¥È
-	int         m_iId[API_MAX_OBJS];			// IDÈÖ¹æ¥ê¥¹¥È
-	int         m_iObjs;		// ¥ª¥Ö¥¸¥§¥¯¥È¿ô
-	int         m_iMaxId;		// ºÇÂç ID ÈÖ¹æ
-	int         m_iParams;						// ¥Ñ¥é¥á¡¼¥¿¡¼¿ô
-	int         m_iParamSyntax[PARAMPACK_MAX];	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸
+	CParamPack* m_pParamPacks[API_MAX_OBJS];	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒªã‚¹ãƒˆ
+	int         m_iId[API_MAX_OBJS];			// IDç•ªå·ãƒªã‚¹ãƒˆ
+	int         m_iObjs;		// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°
+	int         m_iMaxId;		// æœ€å¤§ ID ç•ªå·
+	int         m_iParams;						// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ•°
+	int         m_iParamSyntax[PARAMPACK_MAX];	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡
 };
 
 

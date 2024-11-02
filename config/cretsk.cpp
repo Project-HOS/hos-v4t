@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    CRE_TSK API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    CRE_TSK API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -25,23 +25,23 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiCreTsk::CApiCreTsk()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
-	m_iParamSyntax[1] = 6;		// 6¥Ñ¥é¥á¡¼¥¿¡¼¤Î¥Ö¥í¥Ã¥¯
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
+	m_iParamSyntax[1] = 6;		// 6ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ã®ãƒ–ãƒ­ãƒƒã‚¯
 	m_iParams = 2;
 }
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiCreTsk::~CApiCreTsk()
 {
 }
 
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiCreTsk::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	if ( strcmp(pszApiName, "CRE_TSK") == 0 )
@@ -53,12 +53,12 @@ int CApiCreTsk::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// ID ÄêµÁ¥Õ¥¡¥¤¥ë½ñ¤­½Ğ¤·
+// ID å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«æ›¸ãå‡ºã—
 void CApiCreTsk::WriteId(FILE* fp)
 {
 	int i;
 
-	// ID Ä¾ÀÜ»ØÄê¤Ç¤Ê¤¤¥ª¥Ö¥¸¥§¥¯¥È¤¬ºß¤ë¤«¤É¤¦¤«¥µ¡¼¥Á
+	// ID ç›´æ¥æŒ‡å®šã§ãªã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒåœ¨ã‚‹ã‹ã©ã†ã‹ã‚µãƒ¼ãƒ
 	for ( i = 0; i < m_iObjs; i++ )
 	{
 		if ( atoi(m_pParamPacks[i]->GetParam(CRETSK_TSKID)) == 0 )
@@ -88,14 +88,14 @@ void CApiCreTsk::WriteId(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiCreTsk::WriteCfgDef(FILE* fp)
 {
 	const char* pszParam;
 	bool blOutput;
 	int  i;
 
-	// ¥³¥á¥ó¥È½ĞÎÏ
+	// ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -103,7 +103,7 @@ void  CApiCreTsk::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n"
 		, fp);
 
-	// ¥¹¥¿¥Ã¥¯ÎÎ°è½ĞÎÏ
+	// ã‚¹ã‚¿ãƒƒã‚¯é ˜åŸŸå‡ºåŠ›
 	blOutput = false;
 	for ( i = 0; i < m_iObjs; i++ )
 	{
@@ -134,7 +134,7 @@ void  CApiCreTsk::WriteCfgDef(FILE* fp)
 			"\t{{}, NULL,(PRI)0,(ID)0,(ID)0,(UB)0,NULL,NULL}, /* system */\n",
 			m_iObjs+1);
 
-		// ¥¿¥¹¥¯¥³¥ó¥È¥í¡¼¥ë¥Ö¥í¥Ã¥¯½ĞÎÏ
+		// ã‚¿ã‚¹ã‚¯ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ãƒ–ãƒ­ãƒƒã‚¯å‡ºåŠ›
 		for ( i = 0; i < m_iObjs; i++ )
 		{
 			fprintf(
@@ -163,7 +163,7 @@ void  CApiCreTsk::WriteCfgDef(FILE* fp)
 		fprintf(fp, "};\n");
 	}
 
-	// ¥¿¥¹¥¯¾ğÊó½ĞÎÏ
+	// ã‚¿ã‚¹ã‚¯æƒ…å ±å‡ºåŠ›
 	fprintf(
 		fp,
 		"\n/* task control block count */\n"
@@ -172,18 +172,18 @@ void  CApiCreTsk::WriteCfgDef(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
 void  CApiCreTsk::WriteCfgIni(FILE* fp)
 {
 	int	i;
 
-	// ¥ª¥Ö¥¸¥§¥¯¥ÈÂ¸ºß¥Á¥§¥Ã¥¯
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå­˜åœ¨ãƒã‚§ãƒƒã‚¯
 	if ( m_iObjs == 0 )
 	{
 		return;
 	}
 
-	// ½é´ü²½Éô½ĞÎÏ
+	// åˆæœŸåŒ–éƒ¨å‡ºåŠ›
 	fputs( "\t\n\t\n\t/* start tasks assigned TA_ACT */\n",	fp);
 
 	for ( i=0; i<m_iObjs; i++)
@@ -201,7 +201,7 @@ void  CApiCreTsk::WriteCfgIni(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëµ¯Æ°Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«èµ·å‹•éƒ¨æ›¸ãå‡ºã—
 void  CApiCreTsk::WriteCfgStart(FILE* fp)
 {
 }

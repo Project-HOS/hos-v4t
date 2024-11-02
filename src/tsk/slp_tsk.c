@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ¦Ì¥«¡¼¥Í¥ë ¥¿¥¹¥¯À©¸æ                                                 */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    Î¼ã‚«ãƒ¼ãƒãƒ« ã‚¿ã‚¹ã‚¯åˆ¶å¾¡                                                 */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,29 +11,29 @@
 
 
 
-/* ¥¿¥¹¥¯¤Î¥¹¥ê¡¼¥× */
+/* ã‚¿ã‚¹ã‚¯ã®ã‚¹ãƒªãƒ¼ãƒ— */
 ER slp_tsk(void)
 {
 	T_KERNEL_TCB *tcb;
 	ID           tskid;
 
-	kernel_loc_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
-	/* ¼Â¹ÔÃæ¥¿¥¹¥¯ID¤Î¼èÆÀ */
+	/* å®Ÿè¡Œä¸­ã‚¿ã‚¹ã‚¯IDã®å–å¾— */
 	tskid = KERNEL_GET_RUN_TSKID();
 	
 	tcb = KERNEL_GET_TCB(tskid);
 	
 	if ( --tcb->wupcnt == 0 )
 	{
-		/* ¥ì¥Ç¥£¡¼¥­¥å¡¼¤«¤éºï½ü */
+		/* ãƒ¬ãƒ‡ã‚£ãƒ¼ã‚­ãƒ¥ãƒ¼ã‹ã‚‰å‰Šé™¤ */
 		kernel_rmv_que(tskid);
 
-		/* ¥Ç¥£¥¹¥Ñ¥Ã¥Á¼Â¹Ô */
+		/* ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒå®Ÿè¡Œ */
 		kernel_exe_dsp();
 	}
 	
-	kernel_unl_sys();	/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();	/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 	
 	return E_OK;
 }

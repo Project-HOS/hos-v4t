@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    ATT_ISR API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    ATT_ISR API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -21,11 +21,11 @@
 #define ATTISR_ISR		3
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiAttIsr::CApiAttIsr()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 4;		// 4¤Ä¤Î¥Ñ¥é¥á¡¼¥¿¡¼¥Ö¥í¥Ã¥¯
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 4;		// 4ã¤ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼ãƒ–ãƒ­ãƒƒã‚¯
 	m_iParams = 1;
 
 	m_iMaxIntNo = 0;
@@ -33,20 +33,20 @@ CApiAttIsr::CApiAttIsr()
 	m_iMaxIsrId = 0;
 }
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiAttIsr::~CApiAttIsr()
 {
 }
 
 
-// ¼«Æ°IDÈÖ¹æ³ä¤êÅö¤Æ
+// è‡ªå‹•IDç•ªå·å‰²ã‚Šå½“ã¦
 int CApiAttIsr::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiAttIsr::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	if ( strcmp(pszApiName, "ATT_ISR") == 0 )
@@ -58,18 +58,18 @@ int CApiAttIsr::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiAttIsr::WriteCfgDef(FILE* fp)
 {
 	int	i,j,max;
 
-	// ¥ª¥Ö¥¸¥§¥¯¥ÈÂ¸ºß¥Á¥§¥Ã¥¯
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆå­˜åœ¨ãƒã‚§ãƒƒã‚¯
 	if ( m_iObjs == 0 )
 	{
 		return;
 	}
 
-	// ³ä¤ê¹ş¤ßÈÖ¹æ¤ÎºÇÂçÃÍ¤òÃµ¤¹
+	// å‰²ã‚Šè¾¼ã¿ç•ªå·ã®æœ€å¤§å€¤ã‚’æ¢ã™
 	for ( i = max = 0; i < m_iObjs; i++ )
 	{
 		if (( j = atoi(m_pParamPacks[i]->GetParam(ATTISR_INTNO))) > max)
@@ -78,7 +78,7 @@ void  CApiAttIsr::WriteCfgDef(FILE* fp)
 		}
 	} 
 
-	// ¥³¥á¥ó¥È½ĞÎÏ
+	// ã‚³ãƒ¡ãƒ³ãƒˆå‡ºåŠ›
 	fputs(
 		"\n\n\n"
 		"/* ------------------------------------------ */\n"
@@ -86,7 +86,7 @@ void  CApiAttIsr::WriteCfgDef(FILE* fp)
 		"/* ------------------------------------------ */\n"
 		, fp);
 
-	// ³ä¤ê¹ş¤ß´ÉÍı¥Æ¡¼¥Ö¥ëÀ¸À®
+	// å‰²ã‚Šè¾¼ã¿ç®¡ç†ãƒ†ãƒ¼ãƒ–ãƒ«ç”Ÿæˆ
 	fputs(
 		"\n"
 		"/* interrupt control block table */\n"
@@ -117,7 +117,7 @@ void  CApiAttIsr::WriteCfgDef(FILE* fp)
 }
 
 
-// cfg¥Õ¥¡¥¤¥ë½é´ü²½Éô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«åˆæœŸåŒ–éƒ¨æ›¸ãå‡ºã—
 void  CApiAttIsr::WriteCfgIni(FILE* fp)
 {
 }

@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ¦ÌITRON4.0»ÅÍÍ Real-Time OS             */
-/*    ITRON¥«¡¼¥Í¥ë ¥»¥Ş¥Õ¥©                                                */
+/*  Hyper Operating System V4 Tiny  Î¼ITRON4.0ä»•æ§˜ Real-Time OS             */
+/*    ITRONã‚«ãƒ¼ãƒãƒ« ã‚»ãƒãƒ•ã‚©                                                */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,27 +11,27 @@
 
 
 
-/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ(¥İ¡¼¥ê¥ó¥°) */
+/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾—(ãƒãƒ¼ãƒªãƒ³ã‚°) */
 ER pol_sem(
-		ID semid)	/* »ñ¸»³ÍÆÀÂĞ¾İ¤Î¥»¥Ş¥Õ¥©IDÈÖ¹æ */
+		ID semid)	/* è³‡æºç²å¾—å¯¾è±¡ã®ã‚»ãƒãƒ•ã‚©IDç•ªå· */
 {
 	T_KERNEL_SEMCB *semcb;
 	ER             ercd;
 
-	kernel_loc_sys();		/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯ */
+	kernel_loc_sys();		/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯ */
 	
-	/* ¥»¥Ş¥Õ¥©»ñ¸»¤¬³ÍÆÀ¤Ç¤­¤ì¤ĞÀ®¸ù */
+	/* ã‚»ãƒãƒ•ã‚©è³‡æºãŒç²å¾—ã§ãã‚Œã°æˆåŠŸ */
 	if ( semcb->semcnt > 0 )
 	{
-		semcb->semcnt--;	/* ¥»¥Ş¥Õ¥©»ñ¸»¤Î³ÍÆÀ */
+		semcb->semcnt--;	/* ã‚»ãƒãƒ•ã‚©è³‡æºã®ç²å¾— */
 		ercd = E_OK;
 	}
 	else
 	{
-		ercd = E_TMOUT;		/* ¥¿¥¤¥à¥¢¥¦¥È */
+		ercd = E_TMOUT;		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆ */
 	}
 
-	kernel_unl_sys();		/* ¥·¥¹¥Æ¥à¤Î¥í¥Ã¥¯²ò½ü */
+	kernel_unl_sys();		/* ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ­ãƒƒã‚¯è§£é™¤ */
 
 	return ercd;
 }

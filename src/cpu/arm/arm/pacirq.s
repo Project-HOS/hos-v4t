@@ -1,7 +1,7 @@
 ; --------------------------------------------------------------------------- 
-;  Hyper Operating System V4 Tiny ¦ÌITRON4.0»ÅÍÍ Real-Time OS                 
-;    ¥×¥í¥»¥Ã¥µÃê¾İ²½¥³¥ó¥İ¡¼¥Í¥ó¥È (ARM Thumb¥â¡¼¥ÉÍÑ)                       
-;    IRQÎã³°¥Ï¥ó¥É¥é                                                          
+;  Hyper Operating System V4 Tiny Î¼ITRON4.0ä»•æ§˜ Real-Time OS                 
+;    ãƒ—ãƒ­ã‚»ãƒƒã‚µæŠ½è±¡åŒ–ã‚³ãƒ³ãƒãƒ¼ãƒãƒ³ãƒˆ (ARM Thumbãƒ¢ãƒ¼ãƒ‰ç”¨)                       
+;    IRQä¾‹å¤–ãƒãƒ³ãƒ‰ãƒ©                                                          
 ;                                                                             
 ;                                     Copyright (C) 1998-2003 by Project HOS  
 ;                                     http://sourceforge.jp/projects/hos/     
@@ -11,7 +11,7 @@
 				INCLUDE	pacarm.inc
 
 
-; T_KERNEL_SYS ¹½Â¤ÂÎ¤Î¥ª¥Õ¥»¥Ã¥È
+; T_KERNEL_SYS æ§‹é€ ä½“ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 SYS_STAT		EQU		6
 SYS_DLYDSP		EQU		7
 SYS_INTCNT		EQU		8
@@ -22,91 +22,91 @@ SYS_INTCNT		EQU		8
 				EXPORT	_HOS_IrqHandler
 
 ; ----------------------------------------------
-;  IRQ ¥Ï¥ó¥É¥é
+;  IRQ ãƒãƒ³ãƒ‰ãƒ©
 ; ----------------------------------------------
-				IMPORT	hosarm_exe_irq				; IRQ³ä¤ê¹ş¤ß½èÍı¤Î¼Â¹Ô
-				IMPORT	hosarm_chk_mpi				; Â¿½Å³ä¤ê¹ş¤ß¤Î¥Á¥§¥Ã¥¯
-				IMPORT	kernel_exe_dsp				; ¥Ç¥£¥¹¥Ñ¥Ã¥Á¤Î¼Â¹Ô
-				IMPORT	kernel_tcb_tbl				; ¥·¥¹¥Æ¥à¾ğÊó
+				IMPORT	hosarm_exe_irq				; IRQå‰²ã‚Šè¾¼ã¿å‡¦ç†ã®å®Ÿè¡Œ
+				IMPORT	hosarm_chk_mpi				; å¤šé‡å‰²ã‚Šè¾¼ã¿ã®ãƒã‚§ãƒƒã‚¯
+				IMPORT	kernel_exe_dsp				; ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒã®å®Ÿè¡Œ
+				IMPORT	kernel_tcb_tbl				; ã‚·ã‚¹ãƒ†ãƒ æƒ…å ±
 
 				CODE32
 				
 _HOS_IrqHandler
-			; ---- ¥ì¥¸¥¹¥¿ÂàÈò
-				sub		lr, lr, #4					; ¥ê¥¿¡¼¥ó¥¢¥É¥ì¥¹»»½Ğ
-				stmfd	sp!, {a1-a4, lr}			; ¥ì¥¸¥¹¥¿ÂàÈò
+			; ---- ãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿
+				sub		lr, lr, #4					; ãƒªã‚¿ãƒ¼ãƒ³ã‚¢ãƒ‰ãƒ¬ã‚¹ç®—å‡º
+				stmfd	sp!, {a1-a4, lr}			; ãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿
 			
-			; ---- Thumb¥â¡¼¥É¤Ë°Ü¹Ô
+			; ---- Thumbãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 				adr		r0, ToThumb1 + 1
 				bx		r0
 				CODE16
 ToThumb1		
 
-			; ---- Â¿½Å³ä¤ê¹ş¤ß¥Á¥§¥Ã¥¯
+			; ---- å¤šé‡å‰²ã‚Šè¾¼ã¿ãƒã‚§ãƒƒã‚¯
 				bl		hosarm_chk_mpi
 				cmp		r0, #0
-				bne		MultipleInt					; Â¿½Å³ä¤ê¹ş¤ß¤Ê¤éÊ¬´ô
+				bne		MultipleInt					; å¤šé‡å‰²ã‚Šè¾¼ã¿ãªã‚‰åˆ†å²
 				
-			; ---- ³ä¤ê¹ş¤ß½èÍı¤Î³«»ÏÀßÄê
+			; ---- å‰²ã‚Šè¾¼ã¿å‡¦ç†ã®é–‹å§‹è¨­å®š
 				ldr		r0, =kernel_tcb_tbl
 				ldrb	r1, [r0, #SYS_STAT]
 				add		r1, #0x04
 				strb	r1, [r0, #SYS_STAT]
 				
-			; ---- ³ä¤ê¹ş¤ß½èÍı
-				bl		hosarm_exe_irq				; ³ä¤ê¹ş¤ß½èÍı¼Â¹Ô
+			; ---- å‰²ã‚Šè¾¼ã¿å‡¦ç†
+				bl		hosarm_exe_irq				; å‰²ã‚Šè¾¼ã¿å‡¦ç†å®Ÿè¡Œ
 				
-			; ---- ÃÙ±ä¥Ç¥£¥¹¥Ñ¥Ã¥Á¤¬É¬Í×¤«¤É¤¦¤«È½Äê
+			; ---- é…å»¶ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒãŒå¿…è¦ã‹ã©ã†ã‹åˆ¤å®š
 				ldrb	r0, [r0, #SYS_DLYDSP]		
 				sub		r0, #1
-				bneq	IrqReturn					; ¥Ç¥£¥¹¥Ñ¥Ã¥ÁÉÔÍ×¤Ê¤é¥ê¥¿¡¼¥ó
+				bneq	IrqReturn					; ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒä¸è¦ãªã‚‰ãƒªã‚¿ãƒ¼ãƒ³
 
-				strb	r0, [r0, #SYS_DLYDSP]		; ÃÙ±ä¥Ç¥£¥¹¥Ñ¥Ã¥Á¥Õ¥é¥°¥¯¥ê¥¢
-				ldr		r2, [sp, #20]				; ÂàÈòÃæ¤Îlr_irq¤ò¼è¤ê½Ğ¤·
+				strb	r0, [r0, #SYS_DLYDSP]		; é…å»¶ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒãƒ•ãƒ©ã‚°ã‚¯ãƒªã‚¢
+				ldr		r2, [sp, #20]				; é€€é¿ä¸­ã®lr_irqã‚’å–ã‚Šå‡ºã—
 				ldr		r0, =pac_irq_data
 
-			; ---- ARM¥â¡¼¥É¤Ë°Ü¹Ô
+			; ---- ARMãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 				adr		r1, ToArm1
 				bx		r1
 				ALIGN
 				CODE32
 ToArm1
-				mrs		r1, spsr					; spsr_irq ¼è¤ê½Ğ¤·
-				stmia	r0, {r1, r2}				; spsr_irq, lr_irq ÊİÂ¸
-				ldmfd	sp!, {a1-a4, lr}			; ¥ì¥¸¥¹¥¿Éüµ¢
+				mrs		r1, spsr					; spsr_irq å–ã‚Šå‡ºã—
+				stmia	r0, {r1, r2}				; spsr_irq, lr_irq ä¿å­˜
+				ldmfd	sp!, {a1-a4, lr}			; ãƒ¬ã‚¸ã‚¹ã‚¿å¾©å¸°
 				
-			; ---- System¥â¡¼¥É¤Ë°Ü¹Ô
+			; ---- Systemãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 				msr		cpsr_csxf, #I_Bit:OR:Mode_SYS
 				
-			; ---- Thumb ¥â¡¼¥É¤Ë°Ü¹Ô
+			; ---- Thumb ãƒ¢ãƒ¼ãƒ‰ã«ç§»è¡Œ
 				adr		r0, ToThumb2
 				bx		r0
 				CODE16
 ToThumb2		
 				
-				push	{a1-a4}						; ÇË²õ¥ì¥¸¥¹¥¿ÂàÈò
+				push	{a1-a4}						; ç ´å£Šãƒ¬ã‚¸ã‚¹ã‚¿é€€é¿
 				ldr		r0, =pac_irq_data
-				ldmia	r0!, {r1, r2}				; spsr_irq, lr_irq ¼è¤ê½Ğ¤·
-				push	{r1, r2}					; spsr_irq, lr_irq ÂàÈò
+				ldmia	r0!, {r1, r2}				; spsr_irq, lr_irq å–ã‚Šå‡ºã—
+				push	{r1, r2}					; spsr_irq, lr_irq é€€é¿
 				
-			; ---- ÃÙ±ä¥Ç¥£¥¹¥Ñ¥Ã¥Á½èÍı
+			; ---- é…å»¶ãƒ‡ã‚£ã‚¹ãƒ‘ãƒƒãƒå‡¦ç†
 				bl		kernel_exe_dsp
 				
-			; ---- Éüµ¢½èÍı
-				pop		{r1, r2}					; spsr_irq, lr_irq ¼è¤ê½Ğ¤·
+			; ---- å¾©å¸°å‡¦ç†
+				pop		{r1, r2}					; spsr_irq, lr_irq å–ã‚Šå‡ºã—
 				ldr		r0, =pac_irq_data
 				stmia	r0!, {r1, r2}
 				
-			; ---- ARM¥â¡¼¥É¤Ø°Ü¹Ô
+			; ---- ARMãƒ¢ãƒ¼ãƒ‰ã¸ç§»è¡Œ
 				adr		r0, ToArm2
 				bx		r0
 				ALIGN
 				CODE32
 ToArm2
 
-				ldmfd	sp!, {a1-a4}				; ÇË²õ¥ì¥¸¥¹¥¿Éüµ¢
+				ldmfd	sp!, {a1-a4}				; ç ´å£Šãƒ¬ã‚¸ã‚¹ã‚¿å¾©å¸°
 				
-			; ---- IRQ¥â¡¼¥É¤ØÌá¤Ã¤Æ¥ê¥¿¡¼¥ó½èÍı
+			; ---- IRQãƒ¢ãƒ¼ãƒ‰ã¸æˆ»ã£ã¦ãƒªã‚¿ãƒ¼ãƒ³å‡¦ç†
 				msr		cpsr_csxf, #I_Bit:OR:Mode_IRQ
 				stmfd	sp!, {a1-a2}
 				ldr		r0, =pac_irq_data
@@ -117,9 +117,9 @@ ToArm2
 				CODE16
 
 
-			;---- Â¿½Å³ä¤ê¹ş¤ß½èÍı
+			;---- å¤šé‡å‰²ã‚Šè¾¼ã¿å‡¦ç†
 MultipleInt		
-				bl		hosarm_exe_irq			; ³ä¤ê¹ş¤ß½èÍı¼Â¹Ô
+				bl		hosarm_exe_irq			; å‰²ã‚Šè¾¼ã¿å‡¦ç†å®Ÿè¡Œ
 				
 IrqReturn
 				adr		r0, ToArm3
@@ -128,17 +128,17 @@ IrqReturn
 				ALIGN
 				CODE32
 ToArm3
-			; ---- Éüµ¢½èÍı
-				ldmfd	sp!, {a1-a4, pc}^		; ¥ì¥¸¥¹¥¿Éüµ¢
+			; ---- å¾©å¸°å‡¦ç†
+				ldmfd	sp!, {a1-a4, pc}^		; ãƒ¬ã‚¸ã‚¹ã‚¿å¾©å¸°
 
 
 
 ; ----------------------------------------------
-;  ¥°¥í¡¼¥Ğ¥ëÊÑ¿ô
+;  ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 ; ----------------------------------------------
 				AREA	irqhdr_bss, NOINIT
 
-pac_irq_data	%		8		; lr, cpsr ¤ÎÃÍÅÏ¤·ÍÑ
+pac_irq_data	%		8		; lr, cpsr ã®å€¤æ¸¡ã—ç”¨
 
 
 				END

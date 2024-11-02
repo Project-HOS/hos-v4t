@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------------ */
-/*  Hyper Operating System V4 Tiny  ��ITRON4.0���� Real-Time OS             */
-/*    ITRON�����ͥ� ���٥�ȥե饰                                          */
+/*  Hyper Operating System V4 Tiny  μITRON4.0仕様 Real-Time OS             */
+/*    ITRONカーネル イベントフラグ                                          */
 /*                                                                          */
 /*                                  Copyright (C) 1998-2003 by Project HOS  */
 /*                                  http://sourceforge.jp/projects/hos/     */
@@ -11,7 +11,7 @@
 
 
 
-/* ���٥�ȥե饰�Ԥ�(�ݡ����) */
+/* イベントフラグ待ち(ポーリング) */
 ER pol_flg(
 		ID     flgid,
 		FLGPTN waiptn,
@@ -21,31 +21,31 @@ ER pol_flg(
 	T_KERNEL_FLGCB *flgcb;
 	ER             ercd;
 
-	kernel_loc_sys();	/* �����ƥ�Υ��å� */
+	kernel_loc_sys();	/* システムのロック */
 
 	flgcb = KERNEL_GET_FLGCB(flgid);
 
-	/* �Ԥ�������� */
+	/* 待ち条件設定 */
 	flgcb->waiptn = waiptn;
 	flgcb->wfmode = wfmode;
 	
-	/* �ե饰�����å� */
+	/* フラグチェック */
 	if ( kernel_chk_flg(flgcb) )
 	{
-		/* ���˾����������Ƥ���ʤ� */
+		/* 既に条件を満たしているなら */
 		if ( p_flgptn != NULL )
 		{
-			*p_flgptn = flgcb->flgptn;		/* ������Υե饰�ѥ�������Ǽ */
+			*p_flgptn = flgcb->flgptn;		/* 解除時のフラグパターンを格納 */
 		}
 		ercd = E_OK;
 	}
 	else
 	{
-		/* ���˾����������Ƥ��ʤ���Х����ॢ���� */
+		/* 既に条件を満たしていなければタイムアウト */
 		ercd = E_TMOUT;
 	}
 	
-	kernel_unl_sys();	/* �����ƥ�Υ��å���� */
+	kernel_unl_sys();	/* システムのロック解除 */
 
 	return ercd;
 }

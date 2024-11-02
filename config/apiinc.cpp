@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------------------
-//  Hyper Operating System V4  ¥³¥ó¥Õ¥£¥®¥å¥ì¡¼¥¿¡¼                           
-//    INCLUDE API ¤Î½èÍı                                                      
+//  Hyper Operating System V4  ã‚³ãƒ³ãƒ•ã‚£ã‚®ãƒ¥ãƒ¬ãƒ¼ã‚¿ãƒ¼                           
+//    INCLUDE API ã®å‡¦ç†                                                      
 //                                                                            
 //                                    Copyright (C) 1998-2002 by Project HOS  
 //                                    http://sourceforge.jp/projects/hos/     
@@ -16,42 +16,42 @@
 
 
 
-// ¥³¥ó¥¹¥È¥é¥¯¥¿
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiInclude::CApiInclude()
 {
-	// ¥Ñ¥é¥á¡¼¥¿¡¼¹½Ê¸ÀßÄê
-	m_iParamSyntax[0] = 0;		// Ã±ÆÈ¥Ñ¥é¥á¡¼¥¿¡¼
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼æ§‹æ–‡è¨­å®š
+	m_iParamSyntax[0] = 0;		// å˜ç‹¬ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	m_iParams         = 1;
 }
 
 
-// ¥Ç¥¹¥È¥é¥¯¥¿
+// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CApiInclude::~CApiInclude()
 {
 }
 
 
 
-// API¤Î²òÀÏ
+// APIã®è§£æ
 int CApiInclude::AnalyzeApi(const char* pszApiName, const char* pszParams)
 {
 	char szBuf[4096];
 	int  iErr;
 	
-	// APIÌ¾¥Á¥§¥Ã¥¯
+	// APIåãƒã‚§ãƒƒã‚¯
 	if ( strcmp(pszApiName, "INCLUDE") != 0 )
 	{
 		return CFG_ERR_NOPROC;
 	}
 
-	// ¥Ñ¥é¥á¡¼¥¿¡¼ÄÉ²Ã
+	// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼è¿½åŠ 
 	iErr = AddParams(pszParams);
 	if ( iErr != CFG_ERR_OK )
 	{
 		return iErr;
 	}
 
-	// Ê¸»úÎó¤ÎÅ¸³«
+	// æ–‡å­—åˆ—ã®å±•é–‹
 	iErr = CAnalyze::DecodeText(szBuf, m_pParamPacks[m_iObjs - 1]->GetParam(0));
 	if ( iErr != CFG_ERR_OK )
 	{
@@ -63,14 +63,14 @@ int CApiInclude::AnalyzeApi(const char* pszApiName, const char* pszParams)
 }
 
 
-// Ê¸»úÎó¤òÅ¸³«
+// æ–‡å­—åˆ—ã‚’å±•é–‹
 int CApiInclude::AutoId(void)
 {
 	return CFG_ERR_OK;
 }
 
 
-// cfg¥Õ¥¡¥¤¥ëÄêµÁÉô½ñ¤­½Ğ¤·
+// cfgãƒ•ã‚¡ã‚¤ãƒ«å®šç¾©éƒ¨æ›¸ãå‡ºã—
 void  CApiInclude::WriteCfgDef(FILE* fp)
 {
 	int i;

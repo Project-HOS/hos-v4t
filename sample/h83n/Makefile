@@ -1,23 +1,23 @@
 # --------------------------------------------------------------------------- 
-#  Hyper Operating System V4  е╡еєе╫еые╫еэе░ещер                              
-#    еседепе╒ебедеыб╩h8300-hms  GNUCе│еєе╤едещ╚╟б╦                            
+#  Hyper Operating System V4  уВ╡уГ│уГЧуГлуГЧуГнуВ░уГйуГа                              
+#    уГбуВдуВпуГХуВбуВдуГля╝Иh8300-hms  GNUCуВ│уГ│уГСуВдуГйчЙИя╝Й                            
 #                                                                             
 #                                   Copyright (C) 1998-2003 by Project HOS    
 #                                   http://sourceforge.jp/projects/hos/       
 # --------------------------------------------------------------------------- 
 
 
-# FreeBSD 4.6R╔╒┬░makeбвGNU make 3.79.1д╦д╞╞░║ю│╬╟зд╖д╞ддд▐д╣бг
+# FreeBSD 4.6Rф╗Шх▒ЮmakeуАБGNU make 3.79.1уБлуБжхЛХф╜Ьчв║шкНуБЧуБжуБДуБ╛уБЩуАВ
 
 
-# е╤е╣
+# уГСуВ╣
 HOSROOT  = ../..
 INCDIR   = $(HOSROOT)/include
 HINCDIR  = .
 PACDIR   = $(HOSROOT)/include/h83
 LIBDIR   = $(HOSROOT)/lib/h8/h83n/gcc
 
-# е─б╝еы
+# уГДуГ╝уГл
 CC     = h8300-hms-gcc
 CPP    = h8300-hms-gcc
 ASM    = h8300-hms-gcc -x assembler-with-cpp
@@ -29,31 +29,31 @@ RM     = rm -f
 #RM    = command /c del
 #RM    = del
 
-# еке╫е╖ечеє
+# уВкуГЧуВ╖уГзуГ│
 CFLAGS   = -O2 -fomit-frame-pointer -Wall -I$(INCDIR) -I$(PACDIR) -I$(HINCDIR) -mh -mn -c -pipe
 CPPFLAGS = -E -mh -mn -x c
 AFLAGS   = -mh -mn -c
 LFLAGS   = -mh -mn -mrelax -nostartfiles -Wl,-Map,$(TARGET).map \
 		-Wl,-T$(LDSCRIPT) -L$(LIBDIR)
 LIBS	 = -lh4th83n
-# е┐б╝е▓е├е╚
+# уВ┐уГ╝уВ▓уГГуГИ
 TARGET = sample
 
-#едеєепеыб╝е╔е╒ебедеы
+#уВдуГ│уВпуГлуГ╝уГЙуГХуВбуВдуГл
 INCS = kernel_id.h sample.h h8t_sci.h
 
-#еъеєеле╣епеъе╫е╚
+#уГкуГ│уВлуВ╣уВпуГкуГЧуГИ
 LDSCRIPT = h83664.x
 
-# еке╓е╕езепе╚е╒ебедеы
+# уВкуГЦуВ╕уВзуВпуГИуГХуВбуВдуГл
 OBJS = crt0.o vector.o sample.o h8t_sci.o kernel_cfg.o ostimer.o
 
-# е┐б╝е▓е├е╚ете╕ехб╝еы└╕└о
+# уВ┐уГ╝уВ▓уГГуГИуГвуВ╕уГеуГ╝уГлчФЯцИР
 $(TARGET).mot: $(OBJS) $(LDSCRIPT)
 	$(LINK) $(LFLAGS) -o $(TARGET).coff $(OBJS) $(LIBS)
 	$(OBJCNV) $(TARGET).coff $(TARGET).mot
 
-# еке╓е╕езепе╚└╕└о
+# уВкуГЦуВ╕уВзуВпуГИчФЯцИР
 kernel_cfg.o: kernel_cfg.c $(INCS)
 	$(CC) $(CFLAGS) kernel_cfg.c
 
@@ -75,11 +75,11 @@ ostimer.o: ostimer.c $(INCS)
 kernel_cfg.c kernel_id.h: system.cfg
 	$(CPP) $(CPPFLAGS) system.cfg | $(HOSCFG) -
 
-# е╒еще├е╖ех╜ёдн╣■д▀
+# уГХуГйуГГуВ╖уГецЫ╕уБНш╛╝уБ┐
 write: $(TARGET).mot
 	h8write -3664 $(TARGET).mot /dev/cuaa0
 
-# епеъб╝еєе╩е├е╫
+# уВпуГкуГ╝уГ│уГКуГГуГЧ
 clean:
 	$(RM) $(TARGET).coff
 	$(RM) $(TARGET).mot
