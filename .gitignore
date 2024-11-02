@@ -1,4 +1,14 @@
-#backup
+# setting
+.*
+!.gitignore
+!.gitattributes
+
+# private file
+_*
+*_
+*_.*
+
+# backup file
 *.bak
 *~
 
@@ -57,8 +67,3 @@ tools/make_release/hos-v4a
 # etc
 *.bmm
 *.v
-
-# setting
-.*
-!.gitignore
-!.gitattributes
